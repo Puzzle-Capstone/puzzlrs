@@ -24,4 +24,4 @@ deployment:
   production:
     branch: main
     commands:
-      - surge --project ../build/index.html --domain puzzlrs.surge.sh
+      - surge --project ../build --domain puzzlrs.surge.sh
