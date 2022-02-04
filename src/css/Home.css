@@ -1,0 +1,17 @@
+.homepage {
+  width: 80vw;
+  height: 30em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F2EEEA;
+  border-radius: 10px;
+}
+
+.homepage button {
+  background-color: #5D736B;
+  color: #fff;
+  margin: 0 1em;
+  padding: .2em .7em;
+}

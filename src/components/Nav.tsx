@@ -1,9 +1,15 @@
 import React from "react";
+import '../css/Nav.css';
 
 const Nav = () => {
-
   return (
-    <section></section>
+    <header>
+      <h1>Puzzlrs</h1>
+      <div className='nav-buttons'>
+        <button>Log In</button>
+        <button>Sign Up</button>
+      </div>
+    </header>
   )
 }
 

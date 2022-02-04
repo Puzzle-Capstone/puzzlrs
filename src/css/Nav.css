@@ -1,0 +1,15 @@
+header {
+  border: 1px solid purple;
+  width: 100vw;
+  height: 7em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3em;
+}
+
+.nav-buttons button {
+  height: 2em;
+  margin: 0 1em;
+  padding: .2em .7em;
+}
