@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "test": "echo \"Error: no test specified.\"",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
