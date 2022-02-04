@@ -24,4 +24,4 @@ deployment:
   production:
     branch: main
     commands:
-      - surge --project /Users/kbergsund/Turing/4module/projects/puzzlrs/build/ --domain puzzlrs.surge.sh
+      - surge --project /Users/kbergsund/Turing/4module/projects/puzzlrs/build/ --domain puzzlers.surge.sh
