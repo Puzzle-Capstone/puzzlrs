@@ -12,6 +12,7 @@
 .homepage button {
   background-color: #5D736B;
   color: #fff;
+  height: 2em;
   margin: 0 1em;
   padding: .2em .7em;
 }

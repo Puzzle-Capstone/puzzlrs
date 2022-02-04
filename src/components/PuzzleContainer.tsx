@@ -3,7 +3,7 @@ import React from "react";
 const PuzzleContainer = () => {
 
   return (
-    <section></section>
+    <section>puzzle container pizza</section>
   )
 }
 

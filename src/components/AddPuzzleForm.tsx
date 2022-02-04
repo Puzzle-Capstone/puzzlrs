@@ -3,7 +3,7 @@ import React from "react";
 const AddPuzzleForm = () => {
 
   return (
-    <section></section>
+    <section>add puzzle form</section>
   )
 }
 
