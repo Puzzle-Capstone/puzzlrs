@@ -1,0 +1,23 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  height: 33em;
+  margin-bottom: 3em;
+}
+
+.user-profile h2 {
+  padding: 1em 0;
+}
+
+.profile-column-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.profile-column {
+  background-color: #F2EEEA;
+  width: 17em;
+  border-radius: 10px;
+}

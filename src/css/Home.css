@@ -1,12 +1,13 @@
 .homepage {
-  width: 80vw;
-  height: 30em;
+  width: 85vw;
+  height: 33em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #F2EEEA;
   border-radius: 10px;
+  margin-bottom: 3em;
 }
 
 .homepage button {
