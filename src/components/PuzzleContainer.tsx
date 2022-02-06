@@ -25,8 +25,32 @@ const PuzzleContainer = () => {
     />)
 
   return (
-    <section className='puzzles-container'>
-      {puzzles}
+    <section className='puzzle-page'>
+      <div className='filters'>
+        <h3>Filter Puzzles</h3>
+        <div>
+          <select>
+            <option value="" hidden>Catagory</option>
+            <option value='Animals'>Animals</option>
+            <option value='Colors'>Colors</option>
+          </select>
+          <select>
+            <option value="" hidden>Piece Count</option>
+            <option value='500'>500</option>
+            <option value='1000'>1000</option>
+            <option value='1500'>1500</option>
+          </select>
+          <select>
+            <option value="" hidden>Difficulty</option>
+            <option value='Easy'>Easy</option>
+            <option value='Intermediate'>Intermediate</option>
+            <option value='Hard'>Hard</option>
+          </select>
+        </div>
+      </div>
+      <section className='puzzles-container'>
+        {puzzles}
+      </section>
     </section>
   )
 }
