@@ -24,6 +24,78 @@ const AddPuzzleForm = () => {
     <section className='form-container'>
       <form>
         <h3>Submit your puzzle</h3>
+        <FormControl variant="standard">
+          <InputLabel id='category-type-select-label'>Category</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='category-type-select-label'
+            id="category-type-select"
+            value={category}
+            onChange={event => setCategory(event.target.value)}
+            >
+            {categoryOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Missing Pieces</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='piece-count-type-select-label'
+            id="piece-count-type-select"
+            value={pieceCount}
+            onChange={event => setPieceCount(event.target.value)}
+          >
+            {piecesOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Price</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='piece-count-type-select-label'
+            id="piece-count-type-select"
+            value={pieceCount}
+            onChange={event => setPieceCount(event.target.value)}
+          >
+            {piecesOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Quality</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='piece-count-type-select-label'
+            id="piece-count-type-select"
+            value={pieceCount}
+            onChange={event => setPieceCount(event.target.value)}
+          >
+            {piecesOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Size (piece count)</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='piece-count-type-select-label'
+            id="piece-count-type-select"
+            value={pieceCount}
+            onChange={event => setPieceCount(event.target.value)}
+          >
+            {piecesOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Upload Image</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='piece-count-type-select-label'
+            id="piece-count-type-select"
+            value={pieceCount}
+            onChange={event => setPieceCount(event.target.value)}
+          >
+            {piecesOptions}
+          </Select>
+        </FormControl>
         <button className="submit-button">Submit</button>
       </form>
     </section>

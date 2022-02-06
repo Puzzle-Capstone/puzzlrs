@@ -50,3 +50,7 @@ form {
   background-color: #474E4A;
   transform: translateY(2px);
 }
+
+.dropdown {
+  width: 25em;
+}
