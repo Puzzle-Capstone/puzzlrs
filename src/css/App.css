@@ -9,7 +9,10 @@
   background-image: linear-gradient(to left top, #474859, #586272, #6a7d8b, #8098a2, #99b4b8, #a8c1bf, #bacec6, #cddbcf, #d9dccd, #e4dccf, #edddd5, #f1dfde);
   height: 100vh;
   width: 100vw;
-  display: flex;
+}
+ 
+.flex {
+  display: flex; 
   flex-direction: column;
   align-items: center;
 }

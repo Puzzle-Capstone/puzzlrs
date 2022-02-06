@@ -10,21 +10,23 @@ import '../css/App.css';
 function App() {
   return (
     <div className='App'>
-    <Nav />
-    <Routes>
-      <Route path='/' element={
-        <Home />
-      } />
-      <Route path='/user-profile' element={
-        <UserProfile />
-      } />
-      <Route path='/puzzles' element={
-        <PuzzleContainer />
-      } />
-      <Route path='/add-puzzle' element={
-        <AddPuzzleForm />
-      } />
-    </Routes>
+      <Nav />
+      <Routes>
+        <Route path='/' element={
+          <div className='flex'>
+            <Home />
+          </div>
+        } />
+        <Route path='/user-profile' element={
+          <UserProfile />
+        } />
+        <Route path='/puzzles' element={
+          <PuzzleContainer />
+        } />
+        <Route path='/add-puzzle' element={
+          <AddPuzzleForm />
+        } />
+      </Routes>
     </div>
   );
 }

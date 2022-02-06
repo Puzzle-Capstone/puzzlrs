@@ -1,0 +1,10 @@
+.puzzles-container {
+	margin: 0 5em;
+	height: 80vh;
+	background: white;
+	padding: 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+  justify-items: center;
+  gap: 1% 2%;
+}
