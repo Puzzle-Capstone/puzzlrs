@@ -1,0 +1,46 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+form {
+  width: 50em;
+  height: 80%;
+  box-shadow: 0 10px 14px rgb(34 15 15 / 13%), 0 4px 14px rgb(0 0 0 / 22%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.5);
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.submit-button {
+  margin: 15px 0 5px 0;
+  background: #5D736B;
+  border: none;
+  border-radius: 5px;
+  padding: 17px;
+  color: white;
+  width: 40%;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
+.submit-button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}

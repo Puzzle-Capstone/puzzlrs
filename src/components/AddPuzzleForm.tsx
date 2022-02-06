@@ -1,9 +1,14 @@
 import React from "react";
+import '../css/AddPuzzleForm.css'
 
 const AddPuzzleForm = () => {
 
   return (
-    <section>add puzzle form</section>
+    <section className='form-container'>
+      <form>
+        <button className="submit-button">Submit</button>
+      </form>
+    </section>
   )
 }
 
