@@ -1,5 +1,6 @@
 import React from "react";
 import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
+import { categories, missingPieces } from "../utils";
 import '../css/AddPuzzleForm.css'
 
 const AddPuzzleForm = () => {
