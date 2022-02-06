@@ -1,3 +1,9 @@
+h3 {
+  font-size: 30px;
+  color: #585c5b;
+  margin: 0;
+}
+
 .form-container {
   display: flex;
   align-items: center;
