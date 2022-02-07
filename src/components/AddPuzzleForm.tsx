@@ -52,9 +52,9 @@ const AddPuzzleForm = () => {
             {qualityOptions}
           </Select>
         </FormControl>
-        {/* <FormControl variant="standard">
+        <FormControl variant="standard">
           <InputLabel id='piece-count-select-label'>Price</InputLabel>
-          <Select
+          {/* <Select
             className='dropdown'
             labelId='price-select-label'
             id="price-select"
@@ -62,7 +62,7 @@ const AddPuzzleForm = () => {
             onChange={event => setPrice(event.target.value)}
           >
             {piecesOptions}
-          </Select>
+          </Select> */}
           <Input
             className='dropdown'
             id="price-select"
@@ -71,8 +71,8 @@ const AddPuzzleForm = () => {
             onChange={event => setPrice(event.target.value)}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             />
-        </FormControl> */}
-        <TextField
+        </FormControl>
+        {/* <TextField
           className='dropdown'
           id="price-select"
           label="Price"
@@ -80,7 +80,7 @@ const AddPuzzleForm = () => {
           variant="standard"
           value={price}
           onChange={event => setPrice(event.target.value)}
-        />
+        /> */}
         {/* <FormControl variant="standard">
           <InputLabel id='piece-count-select-label'>Size (piece count)</InputLabel>
           <Select
