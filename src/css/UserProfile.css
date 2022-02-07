@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 85vw;
-  height: 33em;
+  height: 30em;
   margin-bottom: 3em;
 }
 
 .user-profile h2 {
-  padding: 1em 0;
+  padding: .5em 0;
 }
 
 .profile-column-container {
