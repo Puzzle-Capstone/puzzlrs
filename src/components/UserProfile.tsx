@@ -1,9 +1,36 @@
-import React from "react";
+import UserProfilePuzzle from './UserProfilePuzzle';
+import '../css/UserProfile.css';
 
 const UserProfile = () => {
 
   return (
-    <section>user profile</section>
+    <section className='user-profile'>
+      <h2>Hi, Kyra!</h2>
+      <div className='profile-column-container'>
+        <section className='profile-column'>
+          <p>Your Puzzles</p>
+          <div className='user-puzzle-container'>
+            <UserProfilePuzzle />
+          </div>
+        </section>
+        <section className='profile-column center'>
+          <p>Sent Requests</p>
+          <div className='user-puzzle-container'>
+            <UserProfilePuzzle />
+            <UserProfilePuzzle />
+            <UserProfilePuzzle />
+            <UserProfilePuzzle />
+          </div>
+        </section>
+        <section className='profile-column'>
+          <p>Received Requests</p>
+          <div className='user-puzzle-container'>
+            <UserProfilePuzzle />
+            <UserProfilePuzzle />
+          </div>
+        </section>
+      </div>
+    </section>
   )
 }
 
