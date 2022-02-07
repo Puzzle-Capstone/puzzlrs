@@ -9,13 +9,13 @@ const UserProfile = () => {
       <div className='profile-column-container'>
         <section className='profile-column'>
           <p>Your Puzzles</p>
-          <div className='user-puzzles'>
+          <div className='user-puzzle-container'>
             <UserProfilePuzzle />
           </div>
         </section>
         <section className='profile-column center'>
           <p>Sent Requests</p>
-          <div className='user-puzzles'>
+          <div className='user-puzzle-container'>
             <UserProfilePuzzle />
             <UserProfilePuzzle />
             <UserProfilePuzzle />
@@ -24,7 +24,7 @@ const UserProfile = () => {
         </section>
         <section className='profile-column'>
           <p>Received Requests</p>
-          <div className='user-puzzles'>
+          <div className='user-puzzle-container'>
             <UserProfilePuzzle />
             <UserProfilePuzzle />
           </div>

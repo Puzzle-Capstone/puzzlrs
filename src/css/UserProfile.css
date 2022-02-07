@@ -28,14 +28,40 @@
 }
 
 .center {
-  margin: 0 2em;
+  margin: 0 3em;
 }
 
-.user-puzzles {
-  min-width: 100%;
+.user-puzzle-container {
+  width: 100%;
   overflow: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-column-container {
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .profile-column {
+    width: 100%;
+    margin-bottom: 3em;
+    height: fit-content;
+  }
+
+  .user-puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 2em;
+    justify-items: center;
+    padding: 0 1em;
+  }
+
+  .center {
+    margin: 0;
+  }
 }
