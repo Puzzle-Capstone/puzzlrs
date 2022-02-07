@@ -1,24 +1,16 @@
 import React, {useState} from "react";
-import { Select, InputLabel, FormControl, MenuItem } from "@mui/material";
-import { categories, missingPieces } from "../utils";
+import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
+import { categoryOptions, piecesOptions, qualityOptions } from "../utils";
 import '../css/AddPuzzleForm.css'
 
 const AddPuzzleForm = () => {
 
   const [category, setCategory] = useState('');
-  const [pieceCount, setPieceCount] = useState('');
+  const [missingPieceCount, setMissingPieceCount] = useState('');
+  const [price, setPrice] = useState('');
+  const [quality, setQuality] = useState('');
+  const [size, setSize] = useState('');
 
-  const categoryOptions = categories.map(category => {
-    return (
-      <MenuItem value={category} key={category}>{category}</MenuItem>
-    )
-  })
-
-  const piecesOptions = missingPieces.map(missingPiece => {
-    return (
-      <MenuItem value={missingPiece} key={missingPiece}>{missingPiece}</MenuItem>
-    )
-  })
 
   return (
     <section className='form-container'>
@@ -37,25 +29,13 @@ const AddPuzzleForm = () => {
           </Select>
         </FormControl>
         <FormControl variant="standard">
-          <InputLabel id='piece-count-select-label'>Missing Pieces</InputLabel>
+          <InputLabel id='missing-pieces-select-label'>Missing Pieces</InputLabel>
           <Select
             className='dropdown'
-            labelId='piece-count-type-select-label'
-            id="piece-count-type-select"
-            value={pieceCount}
-            onChange={event => setPieceCount(event.target.value)}
-          >
-            {piecesOptions}
-          </Select>
-        </FormControl>
-        <FormControl variant="standard">
-          <InputLabel id='piece-count-select-label'>Price</InputLabel>
-          <Select
-            className='dropdown'
-            labelId='piece-count-type-select-label'
-            id="piece-count-type-select"
-            value={pieceCount}
-            onChange={event => setPieceCount(event.target.value)}
+            labelId='missing-pieces-select-label'
+            id="missing-pieces-select"
+            value={missingPieceCount}
+            onChange={event => setMissingPieceCount(event.target.value)}
           >
             {piecesOptions}
           </Select>
@@ -66,13 +46,42 @@ const AddPuzzleForm = () => {
             className='dropdown'
             labelId='piece-count-type-select-label'
             id="piece-count-type-select"
-            value={pieceCount}
-            onChange={event => setPieceCount(event.target.value)}
+            value={quality}
+            onChange={event => setQuality(event.target.value)}
+          >
+            {qualityOptions}
+          </Select>
+        </FormControl>
+        {/* <FormControl variant="standard">
+          <InputLabel id='piece-count-select-label'>Price</InputLabel>
+          <Select
+            className='dropdown'
+            labelId='price-select-label'
+            id="price-select"
+            value={price}
+            onChange={event => setPrice(event.target.value)}
           >
             {piecesOptions}
           </Select>
-        </FormControl>
-        <FormControl variant="standard">
+          <Input
+            className='dropdown'
+            id="price-select"
+            type="number"
+            value={price}
+            onChange={event => setPrice(event.target.value)}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            />
+        </FormControl> */}
+        <TextField
+          className='dropdown'
+          id="price-select"
+          label="Price"
+          type="number"
+          variant="standard"
+          value={price}
+          onChange={event => setPrice(event.target.value)}
+        />
+        {/* <FormControl variant="standard">
           <InputLabel id='piece-count-select-label'>Size (piece count)</InputLabel>
           <Select
             className='dropdown'
@@ -83,15 +92,24 @@ const AddPuzzleForm = () => {
           >
             {piecesOptions}
           </Select>
-        </FormControl>
+        </FormControl> */}
+        <TextField
+          className='dropdown'
+          id="piece-count-type-select"
+          label="Size (Piece Count)"
+          type="number"
+          variant="standard"
+          value={size}
+          onChange={event => setSize(event.target.value)}
+        />
         <FormControl variant="standard">
           <InputLabel id='piece-count-select-label'>Upload Image</InputLabel>
           <Select
             className='dropdown'
             labelId='piece-count-type-select-label'
             id="piece-count-type-select"
-            value={pieceCount}
-            onChange={event => setPieceCount(event.target.value)}
+            value={missingPieceCount}
+            onChange={event => setMissingPieceCount(event.target.value)}
           >
             {piecesOptions}
           </Select>
