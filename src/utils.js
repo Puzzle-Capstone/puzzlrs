@@ -1,8 +1,8 @@
 import { MenuItem } from "@mui/material";
 
-const categories = ['Animals', 'Art', 'Mystery', 'Mythical', 'Nature', 'Funny', 'Travel'];
-const missingPieces = ['0-10', '10-20', '20-30', '30-40', '40-50'];
-const conditions = ['Fair', 'Good', 'Very Good', 'Excellent']
+const categories = ['Art', 'Animals', 'Food', 'Holidays', 'Miscellaneous', 'Mythical', 'Nature', 'People', 'Structures', 'Travel'];
+const missingPieces = ['1', '2', '3', '4', '5+'];
+const conditions = ['Poor', 'Fair', 'Good', 'Excellent']
 const pieceCount = ['0-99', '100-499', '500-999', '1000-1499', '1500+']
 
 export const categoryOptions = categories.map(category => {
