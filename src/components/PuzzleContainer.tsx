@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
 import { categoryOptions, piecesOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
@@ -9,6 +9,7 @@ const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
+
 
   const dumbieData = [{ id: 1, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
   { id: 2, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },

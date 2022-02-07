@@ -6,28 +6,31 @@ import UserProfile from './UserProfile';
 import PuzzleContainer from './PuzzleContainer';
 import AddPuzzleForm from './AddPuzzleForm';
 import '../css/App.css';
+import { PuzzleProvider } from './Context';
 
 function App() {
   return (
-    <div className='App'>
-      <Nav />
-      <Routes>
-        <Route path='/' element={
-          <div className='flex'>
-            <Home />
-          </div>
-        } />
-        <Route path='/user-profile' element={
-          <UserProfile />
-        } />
-        <Route path='/puzzles' element={
-          <PuzzleContainer />
-        } />
-        <Route path='/add-puzzle' element={
-          <AddPuzzleForm />
-        } />
-      </Routes>
-    </div>
+    <PuzzleProvider>
+      <div className='App'>
+        <Nav />
+        <Routes>
+          <Route path='/' element={
+            <div className='flex'>
+              <Home />
+            </div>
+          } />
+          <Route path='/user-profile' element={
+            <UserProfile />
+          } />
+          <Route path='/puzzles' element={
+            <PuzzleContainer />
+          } />
+          <Route path='/add-puzzle' element={
+            <AddPuzzleForm />
+          } />
+        </Routes>
+      </div>
+    </PuzzleProvider>
   );
 }
 
