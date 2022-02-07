@@ -1,0 +1,6 @@
+.puzzle-image {
+  border: 1px solid blue;
+  width: 60%;
+  min-height: 7em;
+  margin-bottom: 2em;
+}
