@@ -1,0 +1,12 @@
+.puzzle-image {
+  border: 1px solid blue;
+  width: 8em;
+  min-height: 7em;
+  margin-bottom: 2em;
+}
+
+@media screen and (max-width: 800px) {
+  .puzzle-image {
+    margin: 0;
+  }
+}

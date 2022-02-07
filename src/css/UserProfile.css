@@ -1,0 +1,67 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  height: 30em;
+  margin-bottom: 3em;
+}
+
+.user-profile h2 {
+  padding: .5em 0;
+}
+
+.profile-column-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.profile-column {
+  background-color: #F2EEEA;
+  width: 17em;
+  height: 28em;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5em;
+}
+
+.center {
+  margin: 0 3em;
+}
+
+.user-puzzle-container {
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  .profile-column-container {
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .profile-column {
+    width: 100%;
+    margin-bottom: 3em;
+    height: fit-content;
+  }
+
+  .user-puzzle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 2em;
+    justify-items: center;
+    padding: 0 1em;
+  }
+
+  .center {
+    margin: 0 0 3em 0;
+  }
+}
