@@ -13,7 +13,7 @@ interface PuzzleObjectInterface {
 	}
 }
 
-interface cleanedPuzzleObjectInterface {
+export interface cleanedPuzzleObjectInterface {
 	id: string
 	image: string
 	category: string
@@ -22,6 +22,7 @@ interface cleanedPuzzleObjectInterface {
 	availability: boolean
 	quality: string
 	price: string
+	[key: string]: string | boolean
 }
 
 interface PuzzlesContextInterface {

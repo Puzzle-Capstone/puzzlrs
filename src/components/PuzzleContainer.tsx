@@ -4,12 +4,13 @@ import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
+import { cleanedPuzzleObjectInterface } from '../Context';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  // const [filteredPuzzles, setFilteredPuzzles] = useState([]);
+  const [filteredPuzzles, setFilteredPuzzles] = useState<cleanedPuzzleObjectInterface[]>([]);
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
@@ -22,35 +23,36 @@ const PuzzleContainer = () => {
   )
 
   const filterPuzzles = (event: SelectChangeEvent<string>) => {
-    // const filterBy = event.target
-    // switch (filterBy) {
-    //   case 'category':
-    //     setCategory(event.target.value)
-    //     filterBy = 'category'
-    //     break;
-    //   case 'pieceCount':
-    //     setPieceCount(event.target.value)
-    //     break;
-    //   case 'quality':
-    //     setQuality(event.target.value)
-    //     break;
-    // }
-    // const filteredPuzzles = fetchedPuzzles.puzzles.filter(puzzle => puzzle[filterBy] === filterBy.value)
-
-    setCategory(event.target.value)
-    const filteredPuzzles = fetchedPuzzles.puzzles.filter(puzzle => puzzle.category === event.target.value)
-    console.log(filteredPuzzles)
-    // setFilteredPuzzles(filteredPuzzles)
+    console.log(event.target)
+    let filterBy: string = event.target.name
+    switch (filterBy) {
+      case 'category':
+        setCategory(event.target.value)
+        filterBy = 'category'
+        break;
+      case 'pieceCount':
+        setPieceCount(event.target.value)
+        filterBy = 'pieceCount'
+        break;
+      case 'quality':
+        setQuality(event.target.value)
+        console.log(quality)
+        filterBy = 'quality'
+        break;
+    }
+    const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value) : 
+    filteredPuzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value);
+    setFilteredPuzzles(filteredPuzzless)
   }
 
-  // const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
-  //   <Puzzle
-  //     key={puzzle.id}
-  //     id={puzzle.id}
-  //     pieceCount={puzzle.pieceCount}
-  //     image={puzzle.image}
-  //   />
-  // )
+  const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
+    <Puzzle
+      key={puzzle.id}
+      id={puzzle.id}
+      pieceCount={puzzle.pieceCount}
+      image={puzzle.image}
+    />
+  )
 
   return (
     <section className='puzzle-page'>
@@ -73,7 +75,7 @@ const PuzzleContainer = () => {
               className='puzzle-grid-dropdown'
               name='pieceCount'
               value={pieceCount}
-              onChange={event => setPieceCount(event.target.value)}
+              onChange={event => filterPuzzles(event)}
             >
               {pieceCountOptions}
             </Select>
@@ -84,15 +86,15 @@ const PuzzleContainer = () => {
               className='puzzle-grid-dropdown'
               name='quality'
               value={quality}
-              onChange={event => setQuality(event.target.value)}
+              onChange={event => filterPuzzles(event)}
             >
               {qualityOptions}
             </Select>
           </FormControl>
       </div>
       <section className='puzzles-container'>
-        {/* {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles} */}
-        {allPuzzles}
+        {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
+        {/* {allPuzzles} */}
       </section>
     </section>
   )
