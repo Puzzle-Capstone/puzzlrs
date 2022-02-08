@@ -17,38 +17,51 @@ interface PuzzleObjectInterface {
 	}
 }
 
-const PuzzleContext = createContext<PuzzlesContextInterface | null>(null);
+const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 
 const PuzzleProvider: React.FC = ({children}) => {
 	const [puzzles, setPuzzles] = useState([])
 
-	const fetchPuzzles = async () => {
-    try {
-      const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
-      const { puzzles } = await puzzleData.json()
-      setPuzzles(puzzles.map((puzzle: PuzzleObjectInterface) => {
-        return {
-          id: puzzle.id,
-					image: puzzle.attributes.image,
-					category: puzzle.attributes.category,
-					pieceCount: puzzle.attributes.piece_count,
-					missingPieces: puzzle.attributes.missing_pieces,
-					availability: puzzle.attributes.availability,
-					quality: puzzle.attributes.quality,
-					price: puzzle.attributes.original_price_point
-        }
-      }))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+	// const fetchPuzzles = async () => {
+  //   try {
+  //     const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
+  //     const { data } = await puzzleData.json()
+	// 		console.log(data)
+	// 		// const puzzles = data
+  //     // setPuzzles(puzzles.map((puzzle: PuzzleObjectInterface) => {
+  //     //   return {
+  //     //     id: puzzle.id,
+	// 		// 		image: puzzle.attributes.image,
+	// 		// 		category: puzzle.attributes.category,
+	// 		// 		pieceCount: puzzle.attributes.piece_count,
+	// 		// 		missingPieces: puzzle.attributes.missing_pieces,
+	// 		// 		availability: puzzle.attributes.availability,
+	// 		// 		quality: puzzle.attributes.quality,
+	// 		// 		price: puzzle.attributes.original_price_point
+  //     //   }
+  //     // }))
+	// 		console.log('In fetch>>>', puzzles)
+	// 		setPuzzles(puzzles)
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
+	// useEffect(() => {
+	// 	fetchPuzzles()
+	// 	// console.log('In effect>>>', puzzles)
+	// }, [])
 	useEffect(() => {
-		fetchPuzzles()
-		console.log(puzzles)
+		const fetchData = async() => {
+			const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
+			const { data } = await puzzleData.json()
+			.catch(error => console.log(error));
+			setPuzzles(data)
+		}
+		fetchData();
+		console.log('My Log>>>>', puzzles)
 	}, [])
  
-
 	return (
 		<PuzzleContext.Provider value={{ puzzles }}>
 			{children}
