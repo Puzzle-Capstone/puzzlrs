@@ -1,10 +1,20 @@
 .individual-puzzle {
 	background: #5D736B;
-	width: 200px;
-	height: 200px;
+	height: 220px;
 	cursor: pointer;
+}
+
+.individual-puzzle:hover {
+	transition: .2s ease-in-out;
+  transform: scale(1.05);
 }
 
 .piece-count {
 	margin: .5em .5em .5em 0;
+	text-align: right;
+}
+
+.individual-puzzle img {
+	height: 100%;
+	border-radius: 10px;
 }

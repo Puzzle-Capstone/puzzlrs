@@ -26,12 +26,15 @@ interface cleanedPuzzleObjectInterface {
 
 interface PuzzlesContextInterface {
 	puzzles: cleanedPuzzleObjectInterface[] 
+	// filteredPuzzles: object[]
+	// setFilteredPuzzles: React.Dispatch<React.SetStateAction<never[]>>
 }
 
 const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 
 const PuzzleProvider: React.FC = ({children}) => {
 	const [puzzles, setPuzzles] = useState([])
+	// const [filteredPuzzles, setFilteredPuzzles] = useState([])
 
 	const fetchPuzzles = async () => {
     try {
