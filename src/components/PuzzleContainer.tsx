@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
 import { categoryOptions, piecesOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
-
+import { PuzzleContext } from './Context';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
+  const puzzles = useContext(PuzzleContext)
 
 
   const dumbieData = [{ id: 1, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
@@ -18,18 +19,20 @@ const PuzzleContainer = () => {
   { id: 5, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 800, image: 'url' },
   { id: 6, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1500, image: 'url' }]
 
-  const puzzles = dumbieData.map(puzzle =>
 
+
+  const allPuzzles = puzzles.puzzles.map(puzzle =>
     <Puzzle
-      catagory={puzzle.catagory}
-      missingPieces={puzzle.missingPieces}
-      price={puzzle.price}
-      quality={puzzle.quality}
-      size={puzzle.size}
-      image={puzzle.image}
+      category={puzzle.attributes.category}
+      missingPieces={puzzle.attributes.missing_pieces}
+      price={puzzle.attributes.original_price_point}
+      quality={puzzle.attributes.quality}
+      size={puzzle.attributes.piece_count}
+      image={puzzle.attributes.image}
       key={puzzle.id}
       id={puzzle.id}
-    />)
+    />
+  )
 
   return (
     <section className='puzzle-page'>
@@ -69,7 +72,7 @@ const PuzzleContainer = () => {
         </div>
       </div>
       <section className='puzzles-container'>
-        {puzzles}
+        {allPuzzles}
       </section>
     </section>
   )

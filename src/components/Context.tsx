@@ -59,7 +59,6 @@ const PuzzleProvider: React.FC = ({children}) => {
 			setPuzzles(data)
 		}
 		fetchData();
-		console.log('My Log>>>>', puzzles)
 	}, [])
  
 	return (
