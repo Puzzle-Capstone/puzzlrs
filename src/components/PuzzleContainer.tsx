@@ -1,78 +1,100 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
-import { categoryOptions, piecesOptions, qualityOptions, pieceCountOptions } from "../utils";
+import { useState, useContext } from 'react';
+import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
+import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
-import { PuzzleContext } from './Context';
+import { PuzzleContext } from '../Context';
+import { cleanedPuzzleObjectInterface } from '../Context';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  const puzzles = useContext(PuzzleContext)
+  const [filteredPuzzles, setFilteredPuzzles] = useState<cleanedPuzzleObjectInterface[]>([]);
+  const fetchedPuzzles = useContext(PuzzleContext)
 
-
-  const dumbieData = [{ id: 1, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
-  { id: 2, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
-  { id: 3, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1000, image: 'url' },
-  { id: 4, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1200, image: 'url' },
-  { id: 5, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 800, image: 'url' },
-  { id: 6, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1500, image: 'url' }]
-
-
-
-  const allPuzzles = puzzles.puzzles.map(puzzle =>
+  const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
     <Puzzle
-      category={puzzle.attributes.category}
-      missingPieces={puzzle.attributes.missing_pieces}
-      price={puzzle.attributes.original_price_point}
-      quality={puzzle.attributes.quality}
-      size={puzzle.attributes.piece_count}
-      image={puzzle.attributes.image}
       key={puzzle.id}
       id={puzzle.id}
+      pieceCount={puzzle.pieceCount}
+      image={puzzle.image}
+    />
+  )
+
+  const filterPuzzles = (event: SelectChangeEvent<string>) => {
+    console.log(event.target)
+    let filterBy: string = event.target.name
+    switch (filterBy) {
+      case 'category':
+        setCategory(event.target.value)
+        filterBy = 'category'
+        break;
+      case 'pieceCount':
+        setPieceCount(event.target.value)
+        filterBy = 'pieceCount'
+        break;
+      case 'quality':
+        setQuality(event.target.value)
+        console.log(quality)
+        filterBy = 'quality'
+        break;
+    }
+    const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value) : 
+    filteredPuzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value);
+    setFilteredPuzzles(filteredPuzzless)
+  }
+
+  const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
+    <Puzzle
+      key={puzzle.id}
+      id={puzzle.id}
+      pieceCount={puzzle.pieceCount}
+      image={puzzle.image}
     />
   )
 
   return (
     <section className='puzzle-page'>
       <div className='filters'>
-        <h3>Filter Puzzles</h3>
-        <div>
+        {/* <h3>Available Puzzles</h3> */}
           <FormControl variant="standard">
-            <InputLabel>Category</InputLabel>
+            <InputLabel className='input-label'>Category</InputLabel>
             <Select
               className='puzzle-grid-dropdown'
+              name='category'
               value={category}
-              onChange={event => setCategory(event.target.value)}
+              onChange={event => filterPuzzles(event)}
             >
               {categoryOptions}
             </Select>
           </FormControl>
           <FormControl variant="standard">
-            <InputLabel>Piece Count</InputLabel>
+            <InputLabel className='input-label'>Piece Count</InputLabel>
             <Select
               className='puzzle-grid-dropdown'
+              name='pieceCount'
               value={pieceCount}
-              onChange={event => setPieceCount(event.target.value)}
+              onChange={event => filterPuzzles(event)}
             >
               {pieceCountOptions}
             </Select>
           </FormControl>
           <FormControl variant="standard">
-            <InputLabel>Quality</InputLabel>
+            <InputLabel className='input-label'>Quality</InputLabel>
             <Select
               className='puzzle-grid-dropdown'
+              name='quality'
               value={quality}
-              onChange={event => setQuality(event.target.value)}
+              onChange={event => filterPuzzles(event)}
             >
               {qualityOptions}
             </Select>
           </FormControl>
-        </div>
       </div>
       <section className='puzzles-container'>
-        {allPuzzles}
+        {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
+        {/* {allPuzzles} */}
       </section>
     </section>
   )
