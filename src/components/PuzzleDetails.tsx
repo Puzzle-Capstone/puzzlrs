@@ -20,7 +20,7 @@ const PuzzleDetails: React.FC<puzzleDetailsComponent> = ({ closeModal, id, piece
       <p>{id}</p>
       <p>{pieceCount}</p>
       <p>{quality}</p>
-      <p>{image}</p>
+      <img className='puzzle-detail-image' src={image}/>
       <p>{category}</p>
       <p>{price}</p>
       <p>{missingPieces}</p>

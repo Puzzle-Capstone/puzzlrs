@@ -36,6 +36,8 @@ const Puzzle: React.FC<puzzleProps> = ({ id, pieceCount, image, category, qualit
       </div>
       <h4 className='piece-count'>{pieceCount} pieces</h4>
       <Modal 
+        className='Modal'
+        overlayClassName="Overlay"
         isOpen={modalOpen}
         contentLabel="Puzzle Modal">
         <PuzzleDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
