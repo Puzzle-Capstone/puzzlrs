@@ -6,7 +6,7 @@ import UserProfile from './UserProfile';
 import PuzzleContainer from './PuzzleContainer';
 import AddPuzzleForm from './AddPuzzleForm';
 import '../css/App.css';
-import { PuzzleProvider } from './Context';
+import { PuzzleProvider } from '../Context';
 
 function App() {
   return (

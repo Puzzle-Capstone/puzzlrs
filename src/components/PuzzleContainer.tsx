@@ -1,36 +1,22 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
-import { categoryOptions, piecesOptions, qualityOptions, pieceCountOptions } from "../utils";
+import { useState, useContext } from 'react';
+import { Select, InputLabel, FormControl } from "@mui/material";
+import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
-import { PuzzleContext } from './Context';
+import { PuzzleContext } from '../Context';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  const puzzles = useContext(PuzzleContext)
+  const fetchedPuzzles = useContext(PuzzleContext)
 
-
-  const dumbieData = [{ id: 1, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
-  { id: 2, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 500, image: 'url' },
-  { id: 3, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1000, image: 'url' },
-  { id: 4, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1200, image: 'url' },
-  { id: 5, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 800, image: 'url' },
-  { id: 6, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1500, image: 'url' }]
-
-
-
-  const allPuzzles = puzzles.puzzles.map(puzzle =>
+  const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
     <Puzzle
-      category={puzzle.attributes.category}
-      missingPieces={puzzle.attributes.missing_pieces}
-      price={puzzle.attributes.original_price_point}
-      quality={puzzle.attributes.quality}
-      size={puzzle.attributes.piece_count}
-      image={puzzle.attributes.image}
       key={puzzle.id}
       id={puzzle.id}
+      pieceCount={puzzle.pieceCount}
+      image={puzzle.image}
     />
   )
 
