@@ -19,6 +19,10 @@ const PuzzleContainer = () => {
       id={puzzle.id}
       pieceCount={puzzle.pieceCount}
       image={puzzle.image}
+      missingPieces={puzzle.missingPieces}
+      category={puzzle.category}
+      price={puzzle.price}
+      quality={puzzle.quality}
     />
   )
 
@@ -51,6 +55,10 @@ const PuzzleContainer = () => {
       id={puzzle.id}
       pieceCount={puzzle.pieceCount}
       image={puzzle.image}
+      missingPieces={puzzle.missingPieces}
+      category={puzzle.category}
+      price={puzzle.price}
+      quality={puzzle.quality}
     />
   )
 
