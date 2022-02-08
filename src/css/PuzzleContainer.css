@@ -1,9 +1,9 @@
 .puzzles-container {
 	padding: 35px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(190px, auto));
   justify-items: center;
-  gap: 1% 2%;
+  gap: 1% 3%;
 }
 
 .puzzle-page {
@@ -14,20 +14,14 @@
 	flex-direction: column;
 	justify-content: center;
 	border-radius: 10px;
-	box-shadow: 0 3px 9px -3px rgba(0, 0, 0, .3);
+	/* box-shadow: 0 3px 9px -3px rgba(0, 0, 0, .3); */
 }
 
 .filters {
 	text-align: center;
-}
-
-.filters h3 {
-	margin: 1em;
-}
-
-.filters div {
 	display: flex;
 	justify-content: space-evenly;
+	padding: 1em 0;
 }
 
 .puzzle-grid-dropdown {
