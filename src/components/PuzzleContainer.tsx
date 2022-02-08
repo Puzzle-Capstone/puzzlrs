@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Select, InputLabel, FormControl, TextField, Input, InputAdornment } from "@mui/material";
 import { categoryOptions, piecesOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
+import { PuzzleContext } from './Context';
+
+
 
 
 const PuzzleContainer = () => {
+  const fetchedPuzzles = useContext(PuzzleContext) 
+  if (fetchedPuzzles.puzzles.length) {
+    console.log(fetchedPuzzles.puzzles)
+  }
+
+
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
@@ -18,10 +27,10 @@ const PuzzleContainer = () => {
   { id: 5, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 800, image: 'url' },
   { id: 6, catagory: 'easy', missingPieces: 1, price: 15, quality: 'good', size: 1500, image: 'url' }]
 
-  const puzzles = dumbieData.map(puzzle =>
+  const createdPuzzles = fetchedPuzzles.puzzles.map(puzzle =>
 
     <Puzzle
-      catagory={puzzle.catagory}
+      catagory={puzzle.category}
       missingPieces={puzzle.missingPieces}
       price={puzzle.price}
       quality={puzzle.quality}
@@ -69,7 +78,7 @@ const PuzzleContainer = () => {
         </div>
       </div>
       <section className='puzzles-container'>
-        {puzzles}
+        {createdPuzzles}
       </section>
     </section>
   )

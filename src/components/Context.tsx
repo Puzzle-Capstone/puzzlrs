@@ -17,16 +17,16 @@ interface PuzzleObjectInterface {
 	}
 }
 
-const PuzzleContext = createContext<PuzzlesContextInterface | null>(null);
+const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 
-const PuzzleProvider: React.FC = ({children}) => {
+const PuzzleProvider: React.FC = props => {
 	const [puzzles, setPuzzles] = useState([])
 
 	const fetchPuzzles = async () => {
     try {
       const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
-      const { puzzles } = await puzzleData.json()
-      setPuzzles(puzzles.map((puzzle: PuzzleObjectInterface) => {
+      const { data } = await puzzleData.json()
+      setPuzzles(data.map((puzzle: PuzzleObjectInterface) => {
         return {
           id: puzzle.id,
 					image: puzzle.attributes.image,
@@ -45,13 +45,13 @@ const PuzzleProvider: React.FC = ({children}) => {
 
 	useEffect(() => {
 		fetchPuzzles()
-		console.log(puzzles)
+
 	}, [])
- 
+
 
 	return (
 		<PuzzleContext.Provider value={{ puzzles }}>
-			{children}
+			{props.children}
 		</PuzzleContext.Provider>
 	)
 }
