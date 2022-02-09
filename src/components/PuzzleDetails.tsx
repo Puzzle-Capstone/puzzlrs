@@ -32,7 +32,7 @@ const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, imag
        </div>
       </div>
       <div className='button-icon-flex'>
-        <IoClose size={70} onClick={event => closeModal?.(event)}/>
+        <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)}/>
         <button className='submit-button'>Request Puzzle</button>
       </div>
     </section>

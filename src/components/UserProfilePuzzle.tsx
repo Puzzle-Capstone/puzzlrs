@@ -9,11 +9,11 @@ Modal.setAppElement('#root');
 interface UserPuzzleImage {
   image: string
   category: string
-  missingPieces: string
-  price: string
+  missingPieces: string 
+  price: string 
   pieceCount: string
   quality: string
-  id: number
+  id: number | string
 }
 
 const UserProfilePuzzle: React.FC<UserPuzzleImage> = ({ image, category, missingPieces, price, pieceCount, quality, id }) => {

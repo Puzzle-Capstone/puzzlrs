@@ -25,7 +25,7 @@ interface UserObjectInterface {
 		receivedRequests: Requests[]
 }
 
-interface UserPuzzles {
+export interface UserPuzzles {
 	id: number 
 	user_id: number
 	image: string

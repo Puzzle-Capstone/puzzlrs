@@ -2,6 +2,7 @@ import UserProfilePuzzle from './UserProfilePuzzle';
 import '../css/UserProfile.css';
 import { useContext } from 'react'
 import { PuzzleContext } from '../Context';
+import { UserPuzzles } from '../Context'
 
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
@@ -22,11 +23,22 @@ const UserProfile = () => {
     />
   })
 
+  const findPuzzleImage = (puzzleId: number) => {
+    return puzzles.find(puzzle =>  puzzle.id === puzzleId.toString())
+   }
+
   // const displaySentRequests = 
   //   user.sentRequests.length && user.sentRequests.map(request => {
-  //   const image = findPuzzleImage(request.id.toString())
-  //     <UserProfilePuzzle 
-  //       image={image}
+  //   const foundPuzzle: UserPuzzles = findPuzzleImage(request.id)
+  //     return <UserProfilePuzzle 
+  //       id={foundPuzzle.id}
+  //       image={foundPuzzle.image}
+  //       key={foundPuzzle.id}
+  //       category={foundPuzzle.category}
+  //       missingPieces={foundPuzzle.missing_pieces}
+  //       price={foundPuzzle.original_price_point}
+  //       pieceCount={foundPuzzle.piece_count}
+  //       quality={foundPuzzle.quality}
   //     />
   //   })
   
@@ -37,9 +49,7 @@ const UserProfile = () => {
   //     />
   //   })
 
-    // const findPuzzleImage = (puzzleId: string) => {
-    //   return puzzles.find(puzzle =>  puzzle.id === puzzleId)
-    //  }
+  
   
 
   return (
