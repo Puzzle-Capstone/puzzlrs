@@ -87,7 +87,6 @@ const PuzzleProvider: React.FC = ({children}) => {
 
 	const logIn = (userId: string) => {
 		fetchUser(userId)
-		user && console.log(user)
 		setLoggedIn(true)
 	}
 

@@ -19,6 +19,9 @@ a {
   padding: .2em .7em;
 }
 
+.login-dropdown {
+  width: 8em;
+}
 
 @media only screen and (max-width: 650px) {
   .link {

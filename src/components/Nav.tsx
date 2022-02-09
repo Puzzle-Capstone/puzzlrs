@@ -19,6 +19,7 @@ const Nav = () => {
     <FormControl variant="standard">
       <InputLabel>Log In</InputLabel>
       <Select
+      className='login-dropdown'
         name='Log In'
         value={userId}
         onChange={event => handleLogIn(event.target.value)}
