@@ -38,7 +38,7 @@ const UserProfile = () => {
 
   return (
     <section className='user-profile'>
-      <h2>Hi, Kyra!</h2>
+      <h2>{'Hi, '+ user.username + '!'}</h2>
       <div className='profile-column-container'>
         <section className='profile-column'>
           <p>Your Puzzles</p>

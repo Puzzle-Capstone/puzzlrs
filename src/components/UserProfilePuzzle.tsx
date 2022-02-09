@@ -7,7 +7,7 @@ interface UserPuzzleImage {
 const UserProfilePuzzle: React.FC<UserPuzzleImage> = ({ image }) => {
   return (
     <section className='puzzle-image'>
-      <img src={image}/>
+      <img className='user-puzzles' src={image}/>
     </section>
   )
 }
