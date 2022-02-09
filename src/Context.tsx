@@ -14,6 +14,14 @@ interface PuzzleObjectInterface {
 	}
 }
 
+interface UserObjectInterface {
+		id: string,
+		username: string,
+		puzzles: object[],
+		sentRequests: object[],
+		receivedRequests:object[]
+}
+
 export interface cleanedPuzzleObjectInterface {
 	id: string
 	image: string
@@ -37,7 +45,7 @@ const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 const PuzzleProvider: React.FC = ({children}) => {
 	const [puzzles, setPuzzles] = useState([])
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState('')
+	const [user, setUser] = useState({})
 
 	const fetchPuzzles = async () => {
     try {
@@ -60,8 +68,26 @@ const PuzzleProvider: React.FC = ({children}) => {
     }
   }
 
-	const logIn = (user: string) => {
-		setUser(user)
+	const fetchUser = async (id: string) => {
+    try {
+      const userData = await fetch(`https://puzzlrs.herokuapp.com/api/v1/users/${id}`)
+      const { data } = await userData.json()
+			const userDetails: UserObjectInterface = {
+				id: data.id,
+				username: data.attributes.username,
+				puzzles: data.attributes.puzzles,
+				sentRequests: data.attributes.sent_requests,
+				receivedRequests: data.attributes.received_requests
+			}
+			setUser(userDetails)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+	const logIn = (userId: string) => {
+		fetchUser(userId)
+		user && console.log(user)
 		setLoggedIn(true)
 	}
 

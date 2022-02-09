@@ -10,9 +10,9 @@ const Nav = () => {
   const [userId, setUserId] = useState('')
   const { loggedIn, logIn } = useContext(PuzzleContext)
 
-  const handleLogIn = (value: string) => {
-    setUserId(value)
-    logIn(value)
+  const handleLogIn = (userId: string) => {
+    setUserId(userId)
+    logIn(userId)
   }
 
   const renderNavDisplay = !loggedIn ?
