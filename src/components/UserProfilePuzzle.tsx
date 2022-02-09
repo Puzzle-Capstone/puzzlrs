@@ -11,9 +11,9 @@ interface UserPuzzleImage {
   category: string
   missingPieces: string 
   price: string 
-  pieceCount: string
+  pieceCount: string 
   quality: string
-  id: number | string
+  id: number | string 
 }
 
 const UserProfilePuzzle: React.FC<UserPuzzleImage> = ({ image, category, missingPieces, price, pieceCount, quality, id }) => {

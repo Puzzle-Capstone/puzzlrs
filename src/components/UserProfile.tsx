@@ -2,7 +2,7 @@ import UserProfilePuzzle from './UserProfilePuzzle';
 import '../css/UserProfile.css';
 import { useContext } from 'react'
 import { PuzzleContext } from '../Context';
-import { UserPuzzles } from '../Context'
+import { UserPuzzles } from '../interfaces'
 
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
@@ -27,27 +27,35 @@ const UserProfile = () => {
     return puzzles.find(puzzle =>  puzzle.id === puzzleId.toString())
    }
 
-  // const displaySentRequests = 
-  //   user.sentRequests.length && user.sentRequests.map(request => {
-  //   const foundPuzzle: UserPuzzles = findPuzzleImage(request.id)
-  //     return <UserProfilePuzzle 
-  //       id={foundPuzzle.id}
-  //       image={foundPuzzle.image}
-  //       key={foundPuzzle.id}
-  //       category={foundPuzzle.category}
-  //       missingPieces={foundPuzzle.missing_pieces}
-  //       price={foundPuzzle.original_price_point}
-  //       pieceCount={foundPuzzle.piece_count}
-  //       quality={foundPuzzle.quality}
-  //     />
-  //   })
+  const displaySentRequests = 
+    user.sentRequests.length && user.sentRequests.map(request => {
+    const foundPuzzle = findPuzzleImage(request.id)
+      return foundPuzzle && <UserProfilePuzzle 
+        id={foundPuzzle.id}
+        image={foundPuzzle.image}
+        key={foundPuzzle.id}
+        category={foundPuzzle.category}
+        missingPieces={foundPuzzle.missingPieces}
+        price={foundPuzzle.price}
+        pieceCount={foundPuzzle.pieceCount}
+        quality={foundPuzzle.quality}
+      />
+    })
   
-  // const displayReceivedRequests = 
-  //    user.receivedRequests.map(request => {
-  //     <UserProfilePuzzle 
-  //       image={request.image}
-  //     />
-  //   })
+  const displayReceivedRequests = 
+     user.receivedRequests.map(request => {
+      const foundPuzzle = findPuzzleImage(request.id)
+      return foundPuzzle && <UserProfilePuzzle 
+        id={foundPuzzle.id}
+        image={foundPuzzle.image}
+        key={foundPuzzle.id}
+        category={foundPuzzle.category}
+        missingPieces={foundPuzzle.missingPieces}
+        price={foundPuzzle.price}
+        pieceCount={foundPuzzle.pieceCount}
+        quality={foundPuzzle.quality}
+      />
+    })
 
   
   
@@ -65,13 +73,13 @@ const UserProfile = () => {
         <section className='profile-column center'>
           <p>Sent Requests</p>
           <div className='user-puzzle-container'>
-           {/* {displaySentRequests} */}
+           {displaySentRequests}
           </div>
         </section>
         <section className='profile-column'>
           <p>Received Requests</p>
           <div className='user-puzzle-container'>
-            {/* {displayReceivedRequests} */}
+            {displayReceivedRequests}
           </div>
         </section>
       </div>

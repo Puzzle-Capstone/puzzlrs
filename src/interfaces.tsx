@@ -14,9 +14,9 @@ export interface PuzzleObjectInterface {
 export interface UserObjectInterface {
 		id: string,
 		username: string,
-		puzzles: object[],
-		sentRequests: object[],
-		receivedRequests:object[]
+		puzzles: UserPuzzles[],
+		sentRequests: Requests[],
+		receivedRequests: Requests[]
 }
 
 export interface cleanedPuzzleObjectInterface {
@@ -28,19 +28,20 @@ export interface cleanedPuzzleObjectInterface {
 	availability: boolean
 	quality: string
 	price: string
-	[key: string]: string | boolean
+	// [key: string]: string | boolean
   // can remove line 31 if no switch statement
 }
 
 export interface PuzzlesContextInterface {
 	puzzles: cleanedPuzzleObjectInterface[] 
 	loggedIn: boolean
+	user: UserObjectInterface
 	logIn: (user: string) => void
 }
 
 export interface puzzleProps {
   closeModal?: (event: React.MouseEvent) => void
-  id: string
+  id: string | number 
   pieceCount: string
   image: string
   category: string
@@ -57,4 +58,27 @@ export interface UserPuzzleImage {
   pieceCount: string
   quality: string
   id: number | string
+}
+
+export interface UserPuzzles {
+	id: number 
+	user_id: number
+	image: string
+	category: string
+	quality: string
+	piece_count: string
+	missing_pieces: string
+	original_price_point: string
+	created_at: string
+	updated_at: string 
+	availability: boolean 
+}
+
+export interface Requests {
+	id: number
+	user_id: number
+	puzzle_id: number 
+	status: string 
+	created_at: string
+	updated_at: string 
 }
