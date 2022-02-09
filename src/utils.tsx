@@ -4,10 +4,17 @@ const categories = ['Art', 'Animals', 'Food', 'Holidays', 'Miscellaneous', 'Myth
 const missingPieces = ['1', '2', '3', '4', '5+'];
 const conditions = ['Poor', 'Fair', 'Good', 'Excellent']
 const pieceCount = ['0-99', '100-499', '500-999', '1000-1499', '1500+']
+const userIds = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 
 export const categoryOptions = categories.map(category => {
   return (
     <MenuItem value={category} key={category}>{category}</MenuItem>
+  )
+})
+
+export const userIdOptions = userIds.map(id => {
+  return (
+    <MenuItem value={id} key={id}>{id}</MenuItem>
   )
 })
 
