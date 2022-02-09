@@ -1,5 +1,6 @@
 import React from "react";
 import '../css/PuzzleDetails.css';
+import { IoClose } from "react-icons/io5";
 
 interface puzzleDetailsComponent {
   closeModal: (event: React.MouseEvent) => void
@@ -17,14 +18,34 @@ const PuzzleDetails: React.FC<puzzleDetailsComponent> = ({ closeModal, id, piece
 
   return (
     <section className='puzzle-details'>
-      <p>{id}</p>
-      <p>{pieceCount}</p>
-      <p>{quality}</p>
-      <img className='puzzle-detail-image' src={image}/>
-      <p>{category}</p>
-      <p>{price}</p>
-      <p>{missingPieces}</p>
-      <button onClick={event => closeModal(event)}>I am a button</button>
+      <div className='individual-puzzle-details'>
+        <div className='puzzle-image-pieces'>
+          <img className='puzzle-detail-image' src={image}/>
+          <h4>{pieceCount} pieces</h4>
+        </div>
+        <div>
+        <div className='paragraphs'>
+          <p className='bold'>Quality: </p> 
+          <p>{quality}</p>
+        </div>
+        <div className='paragraphs'>
+          <p className='bold'>Category: </p> 
+          <p>{category}</p>
+        </div>
+        <div className='paragraphs'>
+          <p className='bold'>Original Price Point: </p> 
+          <p>{price}</p>
+        </div>
+        <div className='paragraphs'>
+          <p className='bold'>Missing Pieces: </p> 
+          <p>{missingPieces}</p>
+        </div>
+       </div>
+      </div>
+      <div className='button-icon-flex'>
+        <IoClose size={70} onClick={event => closeModal(event)}/>
+        <button className='submit-button'>Request Puzzle</button>
+      </div>
     </section>
   )
 }
