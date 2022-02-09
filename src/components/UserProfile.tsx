@@ -11,8 +11,14 @@ const UserProfile = () => {
   const displayUserPuzzles =
   user.puzzles.map(puzzle => {
     return <UserProfilePuzzle 
+      id={puzzle.id}
       image={puzzle.image}
       key={puzzle.id}
+      category={puzzle.category}
+      missingPieces={puzzle.missing_pieces}
+      price={puzzle.original_price_point}
+      pieceCount={puzzle.piece_count}
+      quality={puzzle.quality}
     />
   })
 

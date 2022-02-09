@@ -1,6 +1,72 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { setSourceMapRange } from 'typescript';
+<<<<<<< HEAD
 import { PuzzleObjectInterface, UserObjectInterface, PuzzlesContextInterface } from './interfaces'
+=======
+
+interface PuzzleObjectInterface {
+	id: string 
+	attributes: {
+		image: string
+		category: string
+		piece_count: string
+		missing_pieces: string
+		availability: boolean
+		quality: string
+		original_price_point: string
+	}
+}
+
+interface UserObjectInterface {
+		id: string,
+		username: string,
+		puzzles: UserPuzzles[],
+		sentRequests: Requests[],
+		receivedRequests: Requests[]
+}
+
+interface UserPuzzles {
+	id: number 
+	user_id: number
+	image: string
+	category: string
+	quality: string
+	piece_count: string
+	missing_pieces: string
+	original_price_point: string
+	created_at: string
+	updated_at: string 
+	availability: boolean 
+}
+
+interface Requests {
+	id: number
+	user_id: number
+	puzzle_id: number 
+	status: string 
+	created_at: string
+	updated_at: string 
+}
+
+export interface cleanedPuzzleObjectInterface {
+	id: string
+	image: string
+	category: string
+	pieceCount: string
+	missingPieces: string
+	availability: boolean
+	quality: string
+	price: string
+	[key: string]: string | boolean
+}
+
+interface PuzzlesContextInterface {
+	puzzles: cleanedPuzzleObjectInterface[] 
+	loggedIn: boolean
+	user: UserObjectInterface 
+	logIn: (user: string) => void
+}
+>>>>>>> 2993b30 (Add puzzle details to module on user page puzzles click)
 
 const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 

@@ -4,7 +4,6 @@ import { IoClose } from "react-icons/io5";
 import { puzzleProps } from '../interfaces'
 
 const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
-  console.log('puzzledetails')
 
   return (
     <section className='puzzle-details'>
