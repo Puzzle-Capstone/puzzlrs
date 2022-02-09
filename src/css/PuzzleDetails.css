@@ -27,6 +27,7 @@
 
 .x-icon {
 	height: 10%;
+	cursor: pointer;
 }
 
 p {
