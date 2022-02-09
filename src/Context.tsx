@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { setSourceMapRange } from 'typescript';
 
 interface PuzzleObjectInterface {
 	id: string 
@@ -11,6 +12,14 @@ interface PuzzleObjectInterface {
 		quality: string
 		original_price_point: string
 	}
+}
+
+interface UserObjectInterface {
+		id: string,
+		username: string,
+		puzzles: object[],
+		sentRequests: object[],
+		receivedRequests:object[]
 }
 
 export interface cleanedPuzzleObjectInterface {
@@ -27,15 +36,16 @@ export interface cleanedPuzzleObjectInterface {
 
 interface PuzzlesContextInterface {
 	puzzles: cleanedPuzzleObjectInterface[] 
-	// filteredPuzzles: object[]
-	// setFilteredPuzzles: React.Dispatch<React.SetStateAction<never[]>>
+	loggedIn: boolean
+	logIn: (user: string) => void
 }
 
 const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 
 const PuzzleProvider: React.FC = ({children}) => {
 	const [puzzles, setPuzzles] = useState([])
-	// const [filteredPuzzles, setFilteredPuzzles] = useState([])
+	const [loggedIn, setLoggedIn] = useState(false)
+	const [user, setUser] = useState({})
 
 	const fetchPuzzles = async () => {
     try {
@@ -58,12 +68,34 @@ const PuzzleProvider: React.FC = ({children}) => {
     }
   }
 
+	const fetchUser = async (id: string) => {
+    try {
+      const userData = await fetch(`https://puzzlrs.herokuapp.com/api/v1/users/${id}`)
+      const { data } = await userData.json()
+			const userDetails: UserObjectInterface = {
+				id: data.id,
+				username: data.attributes.username,
+				puzzles: data.attributes.puzzles,
+				sentRequests: data.attributes.sent_requests,
+				receivedRequests: data.attributes.received_requests
+			}
+			setUser(userDetails)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+	const logIn = (userId: string) => {
+		fetchUser(userId)
+		setLoggedIn(true)
+	}
+
 	useEffect(() => {
 		fetchPuzzles();
 	}, [])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn }}>
 			{children}
 		</PuzzleContext.Provider>
 	)
