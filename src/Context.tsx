@@ -7,7 +7,7 @@ const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 const PuzzleProvider: React.FC = ({children}) => {
 	const [puzzles, setPuzzles] = useState([])
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState({})
+	const [user, setUser] = useState<UserObjectInterface>(null!)
 
 	const fetchPuzzles = async () => {
     try {
@@ -57,7 +57,7 @@ const PuzzleProvider: React.FC = ({children}) => {
 	}, [])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user }}>
 			{children}
 		</PuzzleContext.Provider>
 	)

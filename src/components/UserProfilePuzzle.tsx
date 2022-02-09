@@ -1,9 +1,13 @@
 import '../css/UserProfilePuzzle.css';
 
-const UserProfilePuzzle = () => {
+interface UserPuzzleImage {
+  image: string
+}
+
+const UserProfilePuzzle: React.FC<UserPuzzleImage> = ({ image }) => {
   return (
     <section className='puzzle-image'>
-
+      <img src={image}/>
     </section>
   )
 }
