@@ -1,5 +1,5 @@
 .individual-puzzle {
-	background: #5D736B;
+	/* background: #5D736B; */
 	height: 220px;
 	cursor: pointer;
 }
@@ -18,3 +18,26 @@
 	height: 100%;
 	border-radius: 10px;
 }
+
+.Modal {
+	position: absolute;
+	top: 130px;
+	left: 130px;
+	right: 130px;
+	bottom: 130px;
+	background-color: #F2EEEA;
+	border-radius: 10px;
+	outline: 0;
+}
+
+.Overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4)
+}
+
+
+
