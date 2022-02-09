@@ -1,44 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { setSourceMapRange } from 'typescript';
-
-interface PuzzleObjectInterface {
-	id: string 
-	attributes: {
-		image: string
-		category: string
-		piece_count: string
-		missing_pieces: string
-		availability: boolean
-		quality: string
-		original_price_point: string
-	}
-}
-
-interface UserObjectInterface {
-		id: string,
-		username: string,
-		puzzles: object[],
-		sentRequests: object[],
-		receivedRequests:object[]
-}
-
-export interface cleanedPuzzleObjectInterface {
-	id: string
-	image: string
-	category: string
-	pieceCount: string
-	missingPieces: string
-	availability: boolean
-	quality: string
-	price: string
-	[key: string]: string | boolean
-}
-
-interface PuzzlesContextInterface {
-	puzzles: cleanedPuzzleObjectInterface[] 
-	loggedIn: boolean
-	logIn: (user: string) => void
-}
+import { PuzzleObjectInterface, UserObjectInterface, PuzzlesContextInterface } from './interfaces'
 
 const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
 
