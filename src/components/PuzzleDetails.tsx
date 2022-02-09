@@ -1,19 +1,9 @@
 import React from "react";
 import '../css/PuzzleDetails.css';
 import { IoClose } from "react-icons/io5";
+import { puzzleProps } from '../interfaces'
 
-interface puzzleDetailsComponent {
-  closeModal: (event: React.MouseEvent) => void
-  id: string
-  pieceCount: string
-  image: string
-  category: string
-  missingPieces: string
-  price: string 
-  quality: string
-}
-
-const PuzzleDetails: React.FC<puzzleDetailsComponent> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
+const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
   console.log('puzzledetails')
 
   return (
@@ -43,7 +33,7 @@ const PuzzleDetails: React.FC<puzzleDetailsComponent> = ({ closeModal, id, piece
        </div>
       </div>
       <div className='button-icon-flex'>
-        <IoClose size={70} onClick={event => closeModal(event)}/>
+        <IoClose size={70} onClick={event => closeModal?.(event)}/>
         <button className='submit-button'>Request Puzzle</button>
       </div>
     </section>

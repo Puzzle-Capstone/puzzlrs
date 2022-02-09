@@ -4,7 +4,7 @@ import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
-import { cleanedPuzzleObjectInterface } from '../Context';
+import { cleanedPuzzleObjectInterface } from '../interfaces';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');

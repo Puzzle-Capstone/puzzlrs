@@ -3,18 +3,9 @@ import Modal from 'react-modal';
 import { useState } from 'react'
 import React from 'react'
 import PuzzleDetails from './PuzzleDetails'
+import { puzzleProps } from '../interfaces'
 
 Modal.setAppElement('#root');
-
-interface puzzleProps {
-  id: string
-  pieceCount: string
-  image: string
-  category: string
-  missingPieces: string
-  price: string 
-  quality: string
-}
 
 const Puzzle: React.FC<puzzleProps> = ({ id, pieceCount, image, category, quality, missingPieces, price }) => {
   const [modalOpen, setModalOpen] = useState(false)
