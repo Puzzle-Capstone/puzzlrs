@@ -1,10 +1,9 @@
 import React from "react";
 import '../css/PuzzleDetails.css';
 import { IoClose } from "react-icons/io5";
-import { puzzleProps } from '../interfaces'
+import { IPuzzleProps } from '../interfaces'
 
-const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
-  console.log('puzzledetails')
+const PuzzleDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
 
   return (
     <section className='puzzle-details'>
@@ -33,7 +32,7 @@ const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, imag
        </div>
       </div>
       <div className='button-icon-flex'>
-        <IoClose size={70} onClick={event => closeModal?.(event)}/>
+        <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)}/>
         <button className='submit-button'>Request Puzzle</button>
       </div>
     </section>

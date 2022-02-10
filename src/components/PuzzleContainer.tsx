@@ -4,13 +4,13 @@ import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
-import { cleanedPuzzleObjectInterface } from '../interfaces';
+import { ICleanedPuzzleObject } from '../interfaces';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  const [filteredPuzzles, setFilteredPuzzles] = useState<cleanedPuzzleObjectInterface[]>([]);
+  const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
@@ -26,28 +26,28 @@ const PuzzleContainer = () => {
     />
   )
 
-  const filterPuzzles = (event: SelectChangeEvent<string>) => {
-    console.log(event.target)
-    let filterBy: string = event.target.name
-    switch (filterBy) {
-      case 'category':
-        setCategory(event.target.value)
-        filterBy = 'category'
-        break;
-      case 'pieceCount':
-        setPieceCount(event.target.value)
-        filterBy = 'pieceCount'
-        break;
-      case 'quality':
-        setQuality(event.target.value)
-        console.log(quality)
-        filterBy = 'quality'
-        break;
-    }
-    const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value) : 
-    filteredPuzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value);
-    setFilteredPuzzles(filteredPuzzless)
-  }
+  // const filterPuzzles = (event: SelectChangeEvent<string>) => {
+  //   console.log(event.target)
+  //   let filterBy: string = event.target.name
+  //   switch (filterBy) {
+  //     case 'category':
+  //       setCategory(event.target.value)
+  //       filterBy = 'category'
+  //       break;
+  //     case 'pieceCount':
+  //       setPieceCount(event.target.value)
+  //       filterBy = 'pieceCount'
+  //       break;
+  //     case 'quality':
+  //       setQuality(event.target.value)
+  //       console.log(quality)
+  //       filterBy = 'quality'
+  //       break;
+  //   }
+  //   const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle[filterBy] === event.target.value) : 
+  //   filteredPuzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle[filterBy] === event.target.value);
+  //   setFilteredPuzzles(filteredPuzzless)
+  // }
 
   const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
     <Puzzle
@@ -72,7 +72,7 @@ const PuzzleContainer = () => {
               className='puzzle-grid-dropdown'
               name='category'
               value={category}
-              onChange={event => filterPuzzles(event)}
+              // onChange={event => filterPuzzles(event)}
             >
               {categoryOptions}
             </Select>
@@ -83,7 +83,7 @@ const PuzzleContainer = () => {
               className='puzzle-grid-dropdown'
               name='pieceCount'
               value={pieceCount}
-              onChange={event => filterPuzzles(event)}
+              // onChange={event => filterPuzzles(event)}
             >
               {pieceCountOptions}
             </Select>
@@ -94,7 +94,7 @@ const PuzzleContainer = () => {
               className='puzzle-grid-dropdown'
               name='quality'
               value={quality}
-              onChange={event => filterPuzzles(event)}
+              // onChange={event => filterPuzzles(event)}
             >
               {qualityOptions}
             </Select>

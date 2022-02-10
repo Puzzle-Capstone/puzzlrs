@@ -1,19 +1,19 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { setSourceMapRange } from 'typescript';
-import { PuzzleObjectInterface, UserObjectInterface, PuzzlesContextInterface } from './interfaces'
+import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider } from './interfaces'
 
-const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
+const PuzzleContext = createContext({} as IPuzzleContext);
 
-const PuzzleProvider: React.FC = ({children}) => {
+const PuzzleProvider = ({children}: IPuzzleProvider) => {
 	const [puzzles, setPuzzles] = useState([])
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState({})
+	const [user, setUser] = useState({} as IUserObject);
 
 	const fetchPuzzles = async () => {
     try {
       const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
       const { data } = await puzzleData.json()
-			setPuzzles(data.map((puzzle: PuzzleObjectInterface) => {
+			setPuzzles(data.map((puzzle: IPuzzleObject) => {
 				return {
 					id: puzzle.id,
 					image: puzzle.attributes.image,
@@ -34,7 +34,7 @@ const PuzzleProvider: React.FC = ({children}) => {
     try {
       const userData = await fetch(`https://puzzlrs.herokuapp.com/api/v1/users/${id}`)
       const { data } = await userData.json()
-			const userDetails: UserObjectInterface = {
+			const userDetails: IUserObject = {
 				id: data.id,
 				username: data.attributes.username,
 				puzzles: data.attributes.puzzles,
@@ -57,7 +57,7 @@ const PuzzleProvider: React.FC = ({children}) => {
 	}, [])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user }}>
 			{children}
 		</PuzzleContext.Provider>
 	)

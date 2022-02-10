@@ -1,4 +1,4 @@
-export interface PuzzleObjectInterface {
+export interface IPuzzleObject {
 	id: string 
 	attributes: {
 		image: string
@@ -11,15 +11,15 @@ export interface PuzzleObjectInterface {
 	}
 }
 
-export interface UserObjectInterface {
+export interface IUserObject {
 		id: string,
 		username: string,
-		puzzles: object[],
-		sentRequests: object[],
-		receivedRequests:object[]
+		puzzles: IUserPuzzles[],
+		sentRequests: IRequests[],
+		receivedRequests: IRequests[]
 }
 
-export interface cleanedPuzzleObjectInterface {
+export interface ICleanedPuzzleObject {
 	id: string
 	image: string
 	category: string
@@ -28,19 +28,20 @@ export interface cleanedPuzzleObjectInterface {
 	availability: boolean
 	quality: string
 	price: string
-	[key: string]: string | boolean
+	// [key: string]: string | boolean
   // can remove line 31 if no switch statement
 }
 
-export interface PuzzlesContextInterface {
-	puzzles: cleanedPuzzleObjectInterface[] 
+export interface IPuzzleContext {
+	puzzles: ICleanedPuzzleObject[] 
 	loggedIn: boolean
+	user: IUserObject
 	logIn: (user: string) => void
 }
 
-export interface puzzleProps {
+export interface IPuzzleProps {
   closeModal?: (event: React.MouseEvent) => void
-  id: string
+  id: string | number 
   pieceCount: string
   image: string
   category: string
@@ -49,7 +50,7 @@ export interface puzzleProps {
   quality: string
 }
 
-export interface UserPuzzleImage {
+export interface IUserPuzzleImage {
   image: string
   category: string
   missingPieces: string 
@@ -57,4 +58,31 @@ export interface UserPuzzleImage {
   pieceCount: string
   quality: string
   id: number | string
+}
+
+export interface IUserPuzzles {
+	id: number 
+	user_id: number
+	image: string
+	category: string
+	quality: string
+	piece_count: string
+	missing_pieces: string
+	original_price_point: string
+	created_at: string
+	updated_at: string 
+	availability: boolean 
+}
+
+export interface IRequests {
+	id: number
+	user_id: number
+	puzzle_id: number 
+	status: string 
+	created_at: string
+	updated_at: string 
+}
+
+export interface IPuzzleProvider {
+  children: React.ReactNode
 }
