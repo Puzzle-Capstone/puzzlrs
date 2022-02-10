@@ -3,7 +3,7 @@ import '../css/PuzzleDetails.css';
 import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
 
-const PuzzleDetails: React.FC<IPuzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
+const PuzzleDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
 
   return (
     <section className='puzzle-details'>

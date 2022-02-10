@@ -1,7 +1,8 @@
+import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
 import PuzzleDetails from './PuzzleDetails'
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 
 
 Modal.setAppElement('#root');
@@ -16,16 +17,16 @@ interface IUserPuzzleImage {
   id: number | string 
 }
 
-const UserProfilePuzzle: React.FC<IUserPuzzleImage> = ({ image, category, missingPieces, price, pieceCount, quality, id }) => {
+const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id }: IUserPuzzleImage) => {
 
   const [modalOpen, setModalOpen] = useState(false)
 
-  const openModal = (event: React.MouseEvent) => {
+  const openModal = (event: MouseEvent) => {
     event.preventDefault()
     setModalOpen(true)
   }
 
-  const closeModal = (event: React.MouseEvent) => {
+  const closeModal = (event: MouseEvent) => {
     event.preventDefault()
     setModalOpen(false)
   }

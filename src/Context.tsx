@@ -1,13 +1,13 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { setSourceMapRange } from 'typescript';
-import { IPuzzleObject, IUserObject, IPuzzleContext } from './interfaces'
+import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider } from './interfaces'
 
-const PuzzleContext = createContext<IPuzzleContext>(null!);
+const PuzzleContext = createContext({} as IPuzzleContext);
 
-const PuzzleProvider: React.FC = ({children}) => {
+const PuzzleProvider = ({children}: IPuzzleProvider) => {
 	const [puzzles, setPuzzles] = useState([])
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState<IUserObject>(null!)
+	const [user, setUser] = useState({} as IUserObject);
 
 	const fetchPuzzles = async () => {
     try {

@@ -2,7 +2,6 @@ import UserProfilePuzzle from './UserProfilePuzzle';
 import '../css/UserProfile.css';
 import { useContext } from 'react'
 import { PuzzleContext } from '../Context';
-import { IUserPuzzles } from '../interfaces'
 
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
@@ -28,7 +27,7 @@ const UserProfile = () => {
    }
 
   const displaySentRequests = 
-    user.sentRequests.length && user.sentRequests.map(request => {
+    user.sentRequests.map(request => {
     const foundPuzzle = findPuzzleImage(request.id)
       return foundPuzzle && <UserProfilePuzzle 
         id={foundPuzzle.id}
@@ -62,7 +61,8 @@ const UserProfile = () => {
 
   return (
     <section className='user-profile'>
-      <h2>{'Hi, '+ user.username + '!'}</h2>
+      {/* <h2>{'Hi, '+ user.username + '!'}</h2> */}
+      <h2>{`Hi, ${user.username}!`}</h2>
       <div className='profile-column-container'>
         <section className='profile-column'>
           <p>Your Puzzles</p>
