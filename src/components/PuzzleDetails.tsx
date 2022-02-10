@@ -1,9 +1,9 @@
 import React from "react";
 import '../css/PuzzleDetails.css';
 import { IoClose } from "react-icons/io5";
-import { puzzleProps } from '../interfaces'
+import { IPuzzleProps } from '../interfaces'
 
-const PuzzleDetails: React.FC<puzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
+const PuzzleDetails: React.FC<IPuzzleProps> = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }) => {
 
   return (
     <section className='puzzle-details'>

@@ -2,14 +2,14 @@ import UserProfilePuzzle from './UserProfilePuzzle';
 import '../css/UserProfile.css';
 import { useContext } from 'react'
 import { PuzzleContext } from '../Context';
-import { UserPuzzles } from '../interfaces'
+import { IUserPuzzles } from '../interfaces'
 
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
   console.log(user)
   console.log(puzzles)
 
-  const displayUserPuzzles =
+  const displayIUserPuzzles =
   user.puzzles.map(puzzle => {
     return <UserProfilePuzzle 
       id={puzzle.id}
@@ -67,7 +67,7 @@ const UserProfile = () => {
         <section className='profile-column'>
           <p>Your Puzzles</p>
           <div className='user-puzzle-container'>
-            {displayUserPuzzles}
+            {displayIUserPuzzles}
           </div>
         </section>
         <section className='profile-column center'>

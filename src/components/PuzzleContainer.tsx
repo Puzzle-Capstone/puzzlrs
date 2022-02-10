@@ -4,13 +4,13 @@ import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
-import { cleanedPuzzleObjectInterface } from '../interfaces';
+import { ICleanedPuzzleObject } from '../interfaces';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  const [filteredPuzzles, setFilteredPuzzles] = useState<cleanedPuzzleObjectInterface[]>([]);
+  const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
@@ -44,8 +44,8 @@ const PuzzleContainer = () => {
   //       filterBy = 'quality'
   //       break;
   //   }
-  //   const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value) : 
-  //   filteredPuzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value);
+  //   const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle[filterBy] === event.target.value) : 
+  //   filteredPuzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle[filterBy] === event.target.value);
   //   setFilteredPuzzles(filteredPuzzless)
   // }
 

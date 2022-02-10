@@ -1,4 +1,4 @@
-export interface PuzzleObjectInterface {
+export interface IPuzzleObject {
 	id: string 
 	attributes: {
 		image: string
@@ -11,15 +11,15 @@ export interface PuzzleObjectInterface {
 	}
 }
 
-export interface UserObjectInterface {
+export interface IUserObject {
 		id: string,
 		username: string,
-		puzzles: UserPuzzles[],
-		sentRequests: Requests[],
-		receivedRequests: Requests[]
+		puzzles: IUserPuzzles[],
+		sentRequests: IRequests[],
+		receivedRequests: IRequests[]
 }
 
-export interface cleanedPuzzleObjectInterface {
+export interface ICleanedPuzzleObject {
 	id: string
 	image: string
 	category: string
@@ -32,14 +32,14 @@ export interface cleanedPuzzleObjectInterface {
   // can remove line 31 if no switch statement
 }
 
-export interface PuzzlesContextInterface {
-	puzzles: cleanedPuzzleObjectInterface[] 
+export interface IPuzzleContext {
+	puzzles: ICleanedPuzzleObject[] 
 	loggedIn: boolean
-	user: UserObjectInterface
+	user: IUserObject
 	logIn: (user: string) => void
 }
 
-export interface puzzleProps {
+export interface IPuzzleProps {
   closeModal?: (event: React.MouseEvent) => void
   id: string | number 
   pieceCount: string
@@ -50,7 +50,7 @@ export interface puzzleProps {
   quality: string
 }
 
-export interface UserPuzzleImage {
+export interface IUserPuzzleImage {
   image: string
   category: string
   missingPieces: string 
@@ -60,7 +60,7 @@ export interface UserPuzzleImage {
   id: number | string
 }
 
-export interface UserPuzzles {
+export interface IUserPuzzles {
 	id: number 
 	user_id: number
 	image: string
@@ -74,7 +74,7 @@ export interface UserPuzzles {
 	availability: boolean 
 }
 
-export interface Requests {
+export interface IRequests {
 	id: number
 	user_id: number
 	puzzle_id: number 

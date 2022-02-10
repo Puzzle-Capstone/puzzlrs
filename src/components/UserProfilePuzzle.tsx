@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 Modal.setAppElement('#root');
 
-interface UserPuzzleImage {
+interface IUserPuzzleImage {
   image: string
   category: string
   missingPieces: string 
@@ -16,7 +16,7 @@ interface UserPuzzleImage {
   id: number | string 
 }
 
-const UserProfilePuzzle: React.FC<UserPuzzleImage> = ({ image, category, missingPieces, price, pieceCount, quality, id }) => {
+const UserProfilePuzzle: React.FC<IUserPuzzleImage> = ({ image, category, missingPieces, price, pieceCount, quality, id }) => {
 
   const [modalOpen, setModalOpen] = useState(false)
 
