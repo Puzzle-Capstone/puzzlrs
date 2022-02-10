@@ -26,28 +26,6 @@ const PuzzleContainer = () => {
     />
   )
 
-  // const filterPuzzles = (event: SelectChangeEvent<string>) => {
-  //   console.log(event.target)
-  //   let filterBy: string = event.target.name
-  //   switch (filterBy) {
-  //     case 'category':
-  //       setCategory(event.target.value)
-  //       filterBy = 'category'
-  //       break;
-  //     case 'pieceCount':
-  //       setPieceCount(event.target.value)
-  //       filterBy = 'pieceCount'
-  //       break;
-  //     case 'quality':
-  //       setQuality(event.target.value)
-  //       console.log(quality)
-  //       filterBy = 'quality'
-  //       break;
-  //   }
-    // const filteredPuzzless = !filteredPuzzles.length ? fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value) : 
-    // filteredPuzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle[filterBy] === event.target.value);
-    // setFilteredPuzzles(filteredPuzzless)
-  // }
   const filterCategoryPuzzles = (event: SelectChangeEvent<string>) => {
     setCategory(event.target.value)
     const categoryPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle.category === event.target.value);
@@ -62,62 +40,37 @@ const PuzzleContainer = () => {
     console.log(qualityPuzzles)
   }
 
-  // const parsePieceCount = () => {
-  //   // const parsedPuzzles: cleanedPuzzleObjectInterface[] = []
-  //   const parsedPuzzles = fetchedPuzzles.puzzles.map((puzzle: cleanedPuzzleObjectInterface) => {
-  //     console.log(puzzle.pieceCount);
-  //     parseInt(puzzle.pieceCount);
-  //     console.log(puzzle.pieceCount);
-  //     return parseInt(puzzle.pieceCount);
-  //     // parsedPuzzles.push(puzzle)
-  //   });
-  //   // console.log(parsedPuzzles);
-  //   return parsedPuzzles
-  // }
-
-  // const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
-  //   console.log(event.target.value)
-  //   setPieceCount(event.target.value);
-  //   // const parsedPuzzles = parsePieceCount()
-  //   // console.log('parsedPuzzles>>>>', parsedPuzzles)
-  //   // console.log(event.target.value)
-  // //   const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => {
-  // //     // parseInt(puzzle.pieceCount);
-  // //     let filteredPuzzle: cleanedPuzzleObjectInterface[] = [];
-  // //     if (parseInt(puzzle.pieceCount) < 100) {
-  // //       filteredPuzzle.push(puzzle)
-  // //     }
-  // //     // puzzle.pieceCount === event.target.value
-      
-  // //     return filteredPuzzle
-  // //   });
-  // //   console.log(pieceCountPuzzles)
-  // const pieceCountPuzzles = fetchedPuzzles.puzzles.reduce((list: cleanedPuzzleObjectInterface[], puzzle) => {
-  //   console.log(parseInt(puzzle.pieceCount))
-  //   if (parseInt(puzzle.pieceCount) < 99) {
-  //     list.push(puzzle)
-  //   } else if (parseInt(puzzle.pieceCount) > 99 && parseInt(puzzle.pieceCount) < 500) {
-  //     list.push(puzzle)
-  //   } 
-  //   return list
-  // }, []);
-  // console.log(pieceCountPuzzles)
-  // }
-
-  const getRange = (event: string) => {
-    const ranges = event.split('-') || event.split('+');
+  const getRange = (event: SelectChangeEvent<string>) => {
+    const range = event.target.value
+    const ranges = range.split('-') || range.split('+');
     const mappedRanges = ranges.map(range => parseInt(range));
-    // return mappedNumbers;
+    console.log(mappedRanges)
+    setPieceCount(range)
     setRange(mappedRanges)
   }
 
-  // I want to make the piece count for each puzzle a number
+  const checkIfInRange = () => {
+    return fetchedPuzzles.puzzles.filter(puzzle => {
+      if (parseInt(puzzle.pieceCount) >= range[0] && parseInt(puzzle.pieceCount) <= range[1]) {
+        return puzzle
+      } else if (range.length === 1 && parseInt(puzzle.pieceCount) >= range[0]) {
+        return puzzle
+      }
+    })
+  }
+
   const joinPuzzles = () => {
-    const jointPuzzles = categoryList.concat(qualityList);
+    const inRangePuzzles = checkIfInRange();
+    console.log('inRange>>>', inRangePuzzles)
+    const jointPuzzles = categoryList.concat(qualityList, inRangePuzzles);
     const uniquePuzzles = jointPuzzles.filter((puzzle, index, jointArr) => jointArr.indexOf(puzzle) === index);
     setFilteredPuzzles(uniquePuzzles);
+    setCategoryList([]);
+    setQualityList([]);
+    setRange([]);
     setCategory('');
     setQuality('');
+    setPieceCount('');
     console.log(uniquePuzzles);
   }
 
@@ -153,7 +106,7 @@ const PuzzleContainer = () => {
               name='pieceCount'
               value={pieceCount}
               // onChange={event => filterPuzzles(event)}
-              // onChange={event => filterPieceCountPuzzles(event)}
+              onChange={event => getRange(event)}
             >
               {pieceCountOptions}
             </Select>
