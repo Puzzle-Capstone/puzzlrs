@@ -25,7 +25,7 @@ export interface cleanedPuzzleObjectInterface {
 	[key: string]: string | boolean
 }
 
-interface PuzzlesContextInterface {
+export interface PuzzlesContextInterface {
 	puzzles: cleanedPuzzleObjectInterface[] 
 	// filteredPuzzles: object[]
 	// setFilteredPuzzles: React.Dispatch<React.SetStateAction<never[]>>
