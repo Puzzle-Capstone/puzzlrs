@@ -37,6 +37,7 @@ export interface IPuzzleContext {
 	loggedIn: boolean
 	user: IUserObject
 	logIn: (user: string) => void
+  addPuzzle: (newPuzzle: ICleanedPuzzleObject) => void
 }
 
 export interface IPuzzleProps {

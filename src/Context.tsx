@@ -1,13 +1,14 @@
 import React, { useState, useEffect, createContext } from 'react'
 import { setSourceMapRange } from 'typescript';
-import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider } from './interfaces'
+import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider, ICleanedPuzzleObject } from './interfaces'
 
 const PuzzleContext = createContext({} as IPuzzleContext);
 
 const PuzzleProvider = ({children}: IPuzzleProvider) => {
-	const [puzzles, setPuzzles] = useState([])
+	const [puzzles, setPuzzles] = useState<ICleanedPuzzleObject[]>([])
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [user, setUser] = useState({} as IUserObject);
+	const [newPuzzle, setNewPuzzle] = useState({} as ICleanedPuzzleObject)
 
 	const fetchPuzzles = async () => {
     try {
@@ -52,12 +53,22 @@ const PuzzleProvider = ({children}: IPuzzleProvider) => {
 		setLoggedIn(true)
 	}
 
+	const addPuzzle = (newPuzzle: ICleanedPuzzleObject) => {
+		console.log('newPuzzle>>>>', newPuzzle)
+		setPuzzles([...puzzles, newPuzzle])
+		// setNewPuzzle(newPuzzle);
+	}
+
+	// useEffect(() => {
+
+	// })
+
 	useEffect(() => {
 		fetchPuzzles();
 	}, [])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, addPuzzle }}>
 			{children}
 		</PuzzleContext.Provider>
 	)
