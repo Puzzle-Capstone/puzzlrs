@@ -6,7 +6,7 @@ import { GiPuzzle } from "react-icons/gi";
 const Home = () => {
   return (
     <section className="homepage">
-      <GiPuzzle size={450} className='puzzle-icon'/>
+      <GiPuzzle className='puzzle-icon'/>
       <h2>Tired of your puzzles? Trade with people like you!</h2>
       <Link to='/puzzles'><button>View Puzzles</button></Link>
     </section>
