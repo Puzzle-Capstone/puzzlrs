@@ -1,0 +1,57 @@
+.button-icon-flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin: 2.5em;
+	width: 60%;
+}
+
+.puzzle-details {
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+}
+
+.individual-puzzle-details {
+	display: flex;
+	align-items: center;
+}
+
+.puzzle-detail-image {
+	height: 40vh;
+	margin: 2em;
+	border-radius: 10px;
+	box-shadow: 0 3px 9px -3px rgba(0, 0, 0, .3);
+}
+
+.x-icon {
+	height: 10%;
+	cursor: pointer;
+}
+
+p {
+	font-size: 120%;
+	margin: .6em;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.puzzle-image-pieces {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.puzzle-image-pieces h4 {
+	font-size: 150%;
+	margin-left: 2em;
+}
+
+.paragraphs {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

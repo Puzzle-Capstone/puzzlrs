@@ -1,47 +1,20 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { setSourceMapRange } from 'typescript';
+import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider, ICleanedPuzzleObject } from './interfaces'
 
-interface PuzzleObjectInterface {
-	id: string 
-	attributes: {
-		image: string
-		category: string
-		piece_count: string
-		missing_pieces: string
-		availability: boolean
-		quality: string
-		original_price_point: string
-	}
-}
+const PuzzleContext = createContext({} as IPuzzleContext);
 
-export interface cleanedPuzzleObjectInterface {
-	id: string
-	image: string
-	category: string
-	pieceCount: string
-	missingPieces: string
-	availability: boolean
-	quality: string
-	price: string
-	[key: string]: string | boolean
-}
-
-export interface PuzzlesContextInterface {
-	puzzles: cleanedPuzzleObjectInterface[] 
-	// filteredPuzzles: object[]
-	// setFilteredPuzzles: React.Dispatch<React.SetStateAction<never[]>>
-}
-
-const PuzzleContext = createContext<PuzzlesContextInterface>(null!);
-
-const PuzzleProvider: React.FC = ({children}) => {
-	const [puzzles, setPuzzles] = useState([])
-	// const [filteredPuzzles, setFilteredPuzzles] = useState([])
+const PuzzleProvider = ({children}: IPuzzleProvider) => {
+	const [puzzles, setPuzzles] = useState<ICleanedPuzzleObject[]>([])
+	const [loggedIn, setLoggedIn] = useState(false)
+	const [user, setUser] = useState({} as IUserObject);
+	const [newPuzzle, setNewPuzzle] = useState({} as ICleanedPuzzleObject)
 
 	const fetchPuzzles = async () => {
     try {
       const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
       const { data } = await puzzleData.json()
-			setPuzzles(data.map((puzzle: PuzzleObjectInterface) => {
+			setPuzzles(data.map((puzzle: IPuzzleObject) => {
 				return {
 					id: puzzle.id,
 					image: puzzle.attributes.image,
@@ -58,12 +31,44 @@ const PuzzleProvider: React.FC = ({children}) => {
     }
   }
 
+	const fetchUser = async (id: string) => {
+    try {
+      const userData = await fetch(`https://puzzlrs.herokuapp.com/api/v1/users/${id}`)
+      const { data } = await userData.json()
+			const userDetails: IUserObject = {
+				id: data.id,
+				username: data.attributes.username,
+				puzzles: data.attributes.puzzles,
+				sentRequests: data.attributes.sent_requests,
+				receivedRequests: data.attributes.received_requests
+			}
+			setUser(userDetails)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+	const logIn = (userId: string) => {
+		fetchUser(userId)
+		setLoggedIn(true)
+	}
+
+	const addPuzzle = (newPuzzle: ICleanedPuzzleObject) => {
+		console.log('newPuzzle>>>>', newPuzzle)
+		setPuzzles([...puzzles, newPuzzle])
+		// setNewPuzzle(newPuzzle);
+	}
+
+	// useEffect(() => {
+
+	// })
+
 	useEffect(() => {
 		fetchPuzzles();
 	}, [])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, addPuzzle }}>
 			{children}
 		</PuzzleContext.Provider>
 	)

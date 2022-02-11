@@ -4,13 +4,13 @@ import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
-import { cleanedPuzzleObjectInterface, PuzzlesContextInterface } from '../Context';
+import { ICleanedPuzzleObject } from '../interfaces';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
-  const [filteredPuzzles, setFilteredPuzzles] = useState<cleanedPuzzleObjectInterface[]>([]);
+  const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const [categoryList, setCategoryList] = useState<cleanedPuzzleObjectInterface[]>([]);
@@ -23,6 +23,10 @@ const PuzzleContainer = () => {
       id={puzzle.id}
       pieceCount={puzzle.pieceCount}
       image={puzzle.image}
+      missingPieces={puzzle.missingPieces}
+      category={puzzle.category}
+      price={puzzle.price}
+      quality={puzzle.quality}
     />
   )
 
@@ -40,27 +44,12 @@ const PuzzleContainer = () => {
     console.log(qualityPuzzles, 'quality puzzles')
   }
 
-  const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
+    const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
     setPieceCount(event.target.value)
     const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle.pieceCount === event.target.value);
     setPieceCountList(pieceCountPuzzles)
     console.log(pieceCountPuzzles, 'piece count puzzles')
   }
-
-  // const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
-  //   setPieceCount(event.target.value)
-  //   const pieceCountRange = event.target.value
-  //   const rangeNumbers = pieceCountRange.split('-').map(number => parseInt(number)) || pieceCountRange.split('+').map(number => parseInt(number));
-  //   const pieceCountPuzzles = fetchedPuzzles.puzzles.filter(puzzle => {
-  //     if (parseInt(puzzle.pieceCount) >= rangeNumbers[0] && parseInt(puzzle.pieceCount) <= rangeNumbers[1]) {
-  //       return puzzle
-  //     } else if (rangeNumbers.length === 1 && parseInt(puzzle.pieceCount) >= rangeNumbers[0]) {
-  //       return puzzle
-  //     }
-  //   })
-  //   setPieceCountList(pieceCountPuzzles)
-  //   console.log(pieceCountPuzzles, 'piece count puzzles')
-  // }
 
   const handleSearch = () => {
     const allFilteredPuzzles = categoryList.concat(qualityList, pieceCountList)
@@ -83,31 +72,19 @@ const PuzzleContainer = () => {
     }
     setFilteredPuzzles(comboFiltered)
     }
-
-
-    // const joinPuzzles = () => {
-    //   const inRangePuzzles = checkIfInRange();
-    //   console.log('inRange>>>', inRangePuzzles)
-    //   const jointPuzzles = categoryList.concat(qualityList, inRangePuzzles);
-    //   const uniquePuzzles = jointPuzzles.filter((puzzle, index, jointArr) => jointArr.indexOf(puzzle) === index);
-    //   setFilteredPuzzles(uniquePuzzles);
-    //   setCategoryList([]);
-    //   setQualityList([]);
-    //   setRange([]);
-    //   setCategory('');
-    //   setQuality('');
-    //   setPieceCount('');
-    //   console.log(uniquePuzzles);
-    // }
-
-    const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
-      <Puzzle
-        key={puzzle.id}
-        id={puzzle.id}
-        pieceCount={puzzle.pieceCount}
-        image={puzzle.image}
-      />
-    )
+  
+  const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
+    <Puzzle
+      key={puzzle.id}
+      id={puzzle.id}
+      pieceCount={puzzle.pieceCount}
+      image={puzzle.image}
+      missingPieces={puzzle.missingPieces}
+      category={puzzle.category}
+      price={puzzle.price}
+      quality={puzzle.quality}
+    />
+  )
 
     return (
       <section className='puzzle-page'>
