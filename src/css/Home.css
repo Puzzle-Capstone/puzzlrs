@@ -1,6 +1,6 @@
 .homepage {
   width: 85vw;
-  height: 30em;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,10 +10,44 @@
   margin-bottom: 3em;
 }
 
+.homepage h2 {
+  z-index: 1;
+  position: relative;
+}
+
 .homepage button {
   background-color: #5D736B;
   color: #fff;
   height: 2em;
-  margin: 0 1em;
-  padding: .2em .7em;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 25px;
+  cursor: pointer;
+  margin: .8em;
+  z-index: 1;
+  position: relative;
 }
+
+.homepage button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
+.homepage button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}
+
+.puzzle-icon {
+  z-index: 0;
+  position: absolute;
+  top: 154px;
+  bottom: 0;
+  left: 181px;
+  right: 0;
+  color: #E3AB96;
+  opacity: .8;
+  font-size: 40vw;
+}
+

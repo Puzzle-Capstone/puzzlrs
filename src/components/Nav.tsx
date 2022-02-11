@@ -16,6 +16,7 @@ const Nav = () => {
   }
 
   const renderNavDisplay = !loggedIn ?
+    <div>
     <FormControl variant="standard">
       <InputLabel>Log In</InputLabel>
       <Select
@@ -26,12 +27,14 @@ const Nav = () => {
       >
         {userIdOptions}
       </Select>
-    </FormControl> :
-    <>
-      <Link to='/user-profile' className='link'><button>userProfile</button></Link>
+    </FormControl> 
+    </div> :
+    <div>
+      <Link to='/puzzles' className='link'><button>View Puzzles</button></Link>
       <Link to='/add-puzzle' className='link'><button>Add Puzzle</button></Link>
+      <Link to='/user-profile' className='link'><button>User Profile</button></Link>
       <Hamburger />
-    </>
+    </div>
 
   return (
     <header>

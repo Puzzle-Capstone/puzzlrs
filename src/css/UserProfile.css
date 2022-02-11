@@ -1,27 +1,32 @@
+.profile-column p {
+  font-weight: bold;
+}
+
 .user-profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* width: 85vw; */
-  /* height: 30em; */
+  /* height: 100vh; */
   margin-bottom: 3em;
 }
 
 .user-profile h2 {
-  padding: .5em 0;
+  padding: 0.5em 0;
+  margin: 0.5em 1.5em;
+  font-size: 2.5em;
 }
 
 .profile-column-container {
   display: flex;
   justify-content: space-around;
-  height: 100%;
   margin: 0 3em;
 }
 
 .profile-column {
   background-color: #F2EEEA;
-  width: 25em;
-  height: 28em;
+  width: 30vw;
+  height: 65vh;
   border-radius: 10px;
   display: flex;
   align-items: center;

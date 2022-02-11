@@ -67,7 +67,7 @@ div .nav-item {
 	margin: 30px;
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 713px) {
   .hamburger {
     display: block;
   }

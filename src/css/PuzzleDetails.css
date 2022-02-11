@@ -55,3 +55,25 @@ p {
 	align-items: center;
 	justify-content: space-between;
 }
+
+.request-button {
+	margin: 15px 0 5px 0;
+  background: #5D736B;
+  border: none;
+  border-radius: 10px;
+  padding: 17px;
+  color: white;
+  width: 150%;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.request-button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
+.request-button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}

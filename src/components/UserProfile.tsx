@@ -5,8 +5,6 @@ import { PuzzleContext } from '../Context';
 
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
-  console.log(user)
-  console.log(puzzles)
 
   const displayIUserPuzzles =
   user.puzzles.map(puzzle => {
@@ -56,12 +54,8 @@ const UserProfile = () => {
       />
     })
 
-  
-  
-
   return (
     <section className='user-profile'>
-      {/* <h2>{'Hi, '+ user.username + '!'}</h2> */}
       <h2>{`Hi, ${user.username}!`}</h2>
       <div className='profile-column-container'>
         <section className='profile-column'>
