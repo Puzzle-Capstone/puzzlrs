@@ -52,6 +52,10 @@ const PuzzleProvider = ({children}: IPuzzleProvider) => {
 		setLoggedIn(true)
 	}
 
+	// const addPuzzle = (puzzle) => {
+
+	// }
+
 	useEffect(() => {
 		fetchPuzzles();
 	}, [])
