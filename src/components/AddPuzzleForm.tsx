@@ -1,10 +1,12 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useContext } from 'react';
 import { Select, InputLabel, FormControl, TextField, Input, InputAdornment, FormHelperText } from '@mui/material';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
 import { ICleanedPuzzleObject } from '../interfaces';
+import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
 
 const AddPuzzleForm = () => {
+  const { addPuzzle } = useContext(PuzzleContext)
 
   const [category, setCategory] = useState('');
   const [missingPieceCount, setMissingPieceCount] = useState('');
@@ -22,9 +24,10 @@ const AddPuzzleForm = () => {
     event.preventDefault();
     checkIfErrors();
     if(category !== '' && missingPieceCount !== '' && price !== '' && quality !== '' && pieceCount !== '') {
-      const newPuzzle = {
+      const newPuzzle: ICleanedPuzzleObject = {
+        id: Date.now().toString(),
         category: category,
-        missingPieceCount: missingPieceCount,
+        missingPieces: missingPieceCount,
         pieceCount: pieceCount,
         quality: quality,
         availability: true,
@@ -32,10 +35,9 @@ const AddPuzzleForm = () => {
         image: 'https://img.buzzfeed.com/buzzfeed-static/static/2020-04/28/14/asset/1593bcadc012/sub-buzz-488-1588084568-26.jpg'
       }
       clearInputs();
+      addPuzzle(newPuzzle);
       console.log(newPuzzle)
-    } else {
-      console.log('this is working!!!')
-    }
+    } 
   }
 
   const checkIfErrors = () => {
