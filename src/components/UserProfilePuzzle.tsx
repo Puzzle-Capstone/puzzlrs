@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
-import PuzzleDetails from './PuzzleDetails'
+import RequestDetails from './RequestDetails'
 import { useState, MouseEvent } from 'react'
 
 
@@ -39,10 +39,10 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
         overlayClassName="Overlay"
         isOpen={modalOpen}
         contentLabel="Puzzle Modal">
-        <PuzzleDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
+        <RequestDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
       </Modal>
     </section>
   )
 }
 
-export default UserProfilePuzzle
+export default UserProfilePuzzle;
