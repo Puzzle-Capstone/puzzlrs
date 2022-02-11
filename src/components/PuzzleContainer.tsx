@@ -13,9 +13,9 @@ const PuzzleContainer = () => {
   const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
   const fetchedPuzzles = useContext(PuzzleContext)
 
-  const [categoryList, setCategoryList] = useState<cleanedPuzzleObjectInterface[]>([]);
-  const [qualityList, setQualityList] = useState<cleanedPuzzleObjectInterface[]>([]);
-  const [pieceCountList, setPieceCountList] = useState<cleanedPuzzleObjectInterface[]>([]);
+  const [categoryList, setCategoryList] = useState<ICleanedPuzzleObject[]>([]);
+  const [qualityList, setQualityList] = useState<ICleanedPuzzleObject[]>([]);
+  const [pieceCountList, setPieceCountList] = useState<ICleanedPuzzleObject[]>([]);
 
   const allPuzzles = fetchedPuzzles.puzzles.length && fetchedPuzzles.puzzles.map(puzzle =>
     <Puzzle
@@ -32,21 +32,21 @@ const PuzzleContainer = () => {
 
   const filterCategoryPuzzles = (event: SelectChangeEvent<string>) => {
     setCategory(event.target.value)
-    const categoryPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle.category === event.target.value);
+    const categoryPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.category === event.target.value);
     setCategoryList(categoryPuzzles)
     console.log(categoryPuzzles, 'category puzzles')
   }
 
   const filterQualityPuzzles = (event: SelectChangeEvent<string>) => {
     setQuality(event.target.value)
-    const qualityPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle.quality === event.target.value);
+    const qualityPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.quality === event.target.value);
     setQualityList(qualityPuzzles)
     console.log(qualityPuzzles, 'quality puzzles')
   }
 
     const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
     setPieceCount(event.target.value)
-    const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: cleanedPuzzleObjectInterface) => puzzle.pieceCount === event.target.value);
+    const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.pieceCount === event.target.value);
     setPieceCountList(pieceCountPuzzles)
     console.log(pieceCountPuzzles, 'piece count puzzles')
   }
