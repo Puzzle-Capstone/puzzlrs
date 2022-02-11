@@ -1,9 +1,18 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, Input, InputAdornment, FormHelperText } from '@mui/material';
+import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar } from '@mui/material';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
 import { ICleanedPuzzleObject } from '../interfaces';
 import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
+
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const AddPuzzleForm = () => {
   const { addPuzzle } = useContext(PuzzleContext)
@@ -19,6 +28,8 @@ const AddPuzzleForm = () => {
   const [qualityHasError, setQualityHasError] = useState(false);
   const [priceHasError, setPriceHasError] = useState(false);
   const [pieceCountHasError, setPieceCountHasError] = useState(false);
+
+  const [openSuccessMessage, setOpenSuccessMessage] = useState(false);
 
   const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
@@ -36,6 +47,7 @@ const AddPuzzleForm = () => {
       }
       clearInputs();
       addPuzzle(newPuzzle);
+      showMessage();
       console.log(newPuzzle)
     } 
   }
@@ -65,6 +77,18 @@ const AddPuzzleForm = () => {
     setPrice('');
     setPieceCount('');
   }
+
+  const showMessage = () => {
+    setOpenSuccessMessage(true);
+  };
+
+  const closeMessage = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSuccessMessage(false);
+  };
+
 
   return (
     <section className='form-container'>
@@ -153,6 +177,11 @@ const AddPuzzleForm = () => {
         </FormControl> */}
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
+      <Snackbar open={openSuccessMessage} autoHideDuration={3000} onClose={closeMessage}>
+        <Alert onClose={closeMessage} severity="success" sx={{ width: '100%' }}>
+          Your puzzle was uploaded!
+        </Alert>
+      </Snackbar>
     </section>
   )
 }
