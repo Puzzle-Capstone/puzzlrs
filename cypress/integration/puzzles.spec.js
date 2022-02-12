@@ -10,10 +10,7 @@ describe('Puzzle grid tests', () => {
   })
 
   // how to test that clicking opens modal???
-  // filter dropdowns should update with user interaction
-  // filtering by category should just do category
-  // filtering by pieceCount should just do pieceCont
-  // '' by quality just quality
+
   // test all three 2 selection pairings
   // all 3 should filter by all 3
 
@@ -78,4 +75,75 @@ describe('Puzzle grid tests', () => {
     .get('[data-value="Poor"]').click()
     .contains('Poor')
   })
+
+  it('filters by category if just category is input', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-category').click()
+    .get('[data-value="Animals"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    //change number once intercept is working
+    .get(':nth-child(4) > .individual-puzzle').should('not.exist');
+  })
+
+  it('filters by piece count if just piece count is input', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-pieceCount').click()
+    .get('[data-value="500"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    //change number once intercept is working
+    .get(':nth-child(11) > .individual-puzzle').should('not.exist');
+  })
+
+  it('filters by quality if just quality is input', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-quality').click()
+    .get('[data-value="Poor"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    //change number once intercept is working
+    .get(':nth-child(9) > .individual-puzzle').should('not.exist');
+  })
+
+  it('filters by category and piece count if just those two are selected', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-category').click()
+    .get('[data-value="Animals"]').click()
+    .get('#mui-component-select-quality').click()
+    .get('[data-value="Poor"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+  })
+
+  it('filters by piece count and quality if just those two are selected', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-pieceCount').click()
+    .get('[data-value="500"]').click()
+    .get('#mui-component-select-quality').click()
+    .get('[data-value="Poor"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    .get(':nth-child(5) > .individual-puzzle').should('not.exist');
+  })
+
+
+  it.only('filters by category and quality if just those two are selected', () => {
+    cy.get('button').click()
+    .get('#mui-component-select-category').click()
+    .get('[data-value="Animals"]').click()
+    .get('#mui-component-select-quality').click()
+    .get('[data-value="Poor"]').click()
+    .get('button').click()
+
+    .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
+    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+  })
+  
 })

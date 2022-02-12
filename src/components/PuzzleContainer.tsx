@@ -66,7 +66,7 @@ const PuzzleContainer = () => {
     } else if (category && pieceCount && !quality) {
       comboFiltered = uniquePuzzles.filter(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount)
     } else if (pieceCount && quality && !category) {
-      comboFiltered = uniquePuzzles.filter(puzzle => puzzle.category === category && puzzle.quality === quality)
+      comboFiltered = uniquePuzzles.filter(puzzle => puzzle.pieceCount === pieceCount && puzzle.quality === quality)
     } else {
       comboFiltered = uniquePuzzles.filter(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount && puzzle.quality === quality )
     }
