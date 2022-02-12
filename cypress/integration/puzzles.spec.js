@@ -11,9 +11,6 @@ describe('Puzzle grid tests', () => {
 
   // how to test that clicking opens modal???
 
-  // test all three 2 selection pairings
-  // all 3 should filter by all 3
-
   // Implementation not yet written:
   // clear button to view all puzzles again
   // displays 0 results message if 0 results
@@ -30,15 +27,22 @@ describe('Puzzle grid tests', () => {
       .get('.MuiFormControl-root').contains('Log In')
   })
 
-  // it('shows header with Log In dropdown that updates with user interaction', () => {
-  //   cy.get('button').click()
-  //   .get('h1').contains('Puzzlrs')
-  //   .get("[name='Log In']").type({enter})
-  // })
+  it('shows header with Log In dropdown that updates & logs in with user interaction', () => {
+    cy.get('button').click()
+    .get('h1').contains('Puzzlrs')
+    .get('#mui-component-select-login').click()
+    .get('[data-value="1"]').click()
+  })
 
   it('shows header with nav buttons once logged in', () => {
-    cy.get('h1').contains('Puzzlrs')
-    // log in actions & nav buttons!
+    cy.get('button').click()
+    .get('h1').contains('Puzzlrs')
+    .get('#mui-component-select-login').click()
+    .get('[data-value="1"]').click()
+
+    .get(':nth-child(1) > button').contains('View Puzzles')
+    .get(':nth-child(2) > button').contains('Add Puzzle')
+    .get(':nth-child(3) > button').contains('User Profile')
   })
 
   it('has 3 filter dropdowns and a search button', () => {
@@ -60,6 +64,14 @@ describe('Puzzle grid tests', () => {
     .get(':nth-child(3) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/5280376.PT02_1800x1800.jpg?v=1638228991')
     .get('.piece-count').contains('500 pieces')
   })
+
+  // it.only('displays modal with all correct details when individual puzzle is clicked', () => {
+  //   cy.get('button').click()
+  //   .get(':nth-child(1) > .individual-puzzle').click()
+  //   .get('.puzzle-details')
+
+    
+  // })
 
   it('updates filter dropdowns with user interaction', () => {
     cy.get('button').click()
@@ -134,7 +146,7 @@ describe('Puzzle grid tests', () => {
   })
 
 
-  it.only('filters by category and quality if just those two are selected', () => {
+  it('filters by category and quality if just those two are selected', () => {
     cy.get('button').click()
     .get('#mui-component-select-category').click()
     .get('[data-value="Animals"]').click()
