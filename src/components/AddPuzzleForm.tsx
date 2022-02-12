@@ -1,5 +1,7 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar } from '@mui/material';
+import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar, styled, Button} from '@mui/material';
+// import Button, { ButtonProps } from '@mui/material/Button';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
 import { ICleanedPuzzleObject } from '../interfaces';
@@ -12,6 +14,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   ref,
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+const Input = styled('input')({
+  display: 'none',
 });
 
 const AddPuzzleForm = () => {
@@ -30,11 +36,13 @@ const AddPuzzleForm = () => {
   const [pieceCountHasError, setPieceCountHasError] = useState(false);
 
   const [openSuccessMessage, setOpenSuccessMessage] = useState(false);
+  const [image, setImage] = useState('');
+  const [isSuccessful, setIsSuccessful] = useState(false);
 
   const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
     checkIfErrors();
-    if(category !== '' && missingPieceCount !== '' && price !== '' && quality !== '' && pieceCount !== '') {
+    if(category  && missingPieceCount  && price  && quality  && pieceCount && image) {
       const newPuzzle: ICleanedPuzzleObject = {
         id: Date.now().toString(),
         category: category,
@@ -43,30 +51,36 @@ const AddPuzzleForm = () => {
         quality: quality,
         availability: true,
         price: price,
-        image: 'https://img.buzzfeed.com/buzzfeed-static/static/2020-04/28/14/asset/1593bcadc012/sub-buzz-488-1588084568-26.jpg'
+        image: image
       }
       clearInputs();
       addPuzzle(newPuzzle);
+      setIsSuccessful(true)
       showMessage();
       console.log(newPuzzle)
     } 
   }
 
   const checkIfErrors = () => {
-      if(category === '' && !categoryHasError) {
+      if(!category && !categoryHasError) {
         setCategoryHasError(true)
       }
-      if(missingPieceCount === '' && !missingPiecesHasError) {
+      if(!missingPieceCount && !missingPiecesHasError) {
         setMissingPiecesHasError(true)
       }
-      if(quality === '' && !qualityHasError) {
+      if(!quality && !qualityHasError) {
         setQualityHasError(true)
       }
-      if(price === '' && !priceHasError) {
+      if(!price && !priceHasError) {
         setPriceHasError(true)
       }
-      if(pieceCount === '' && !pieceCountHasError) {
+      if(!pieceCount && !pieceCountHasError) {
         setPieceCountHasError(true)
+      }
+      if(!image) {
+        console.log('no image!!!!')
+        setIsSuccessful(false);
+        setOpenSuccessMessage(true);
       }
   }
 
@@ -89,11 +103,17 @@ const AddPuzzleForm = () => {
     setOpenSuccessMessage(false);
   };
 
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const pic = e.target.files![0]
+    const fullPic = URL.createObjectURL(pic)
+    setImage(fullPic)
+    console.log(fullPic)
+  }
 
   return (
     <section className='form-container'>
       <form>
-        <h3>Submit your puzzle</h3>
+        <h3 className='form-title'>Submit your puzzle</h3>
         <FormControl variant='standard' error={categoryHasError}>
           <InputLabel>Category</InputLabel>
           <Select
@@ -107,11 +127,12 @@ const AddPuzzleForm = () => {
           >
             {categoryOptions}
           </Select>
-          {/* {categoryHasError && <FormHelperText>This is required!</FormHelperText>} */}
+          {categoryHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         <FormControl variant='standard' error={missingPiecesHasError}>
           <InputLabel>Missing Pieces</InputLabel>
           <Select
+            // sx={{width: '100%'}}
             className='dropdown'
             value={missingPieceCount}
             onChange={event => {
@@ -121,7 +142,7 @@ const AddPuzzleForm = () => {
             >
             {piecesOptions}
           </Select>
-            {/* {missingPiecesHasError && <FormHelperText>This is required!</FormHelperText>} */}
+            {missingPiecesHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         <FormControl variant='standard' error={qualityHasError}>
           <InputLabel>Quality</InputLabel>
@@ -135,7 +156,7 @@ const AddPuzzleForm = () => {
             >
             {qualityOptions}
           </Select>
-            {/* {qualityHasError && <FormHelperText>This is required!</FormHelperText>} */}
+            {qualityHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         {/* <FormControl error={priceHasError}> */}
           
@@ -165,22 +186,30 @@ const AddPuzzleForm = () => {
             setPieceCount(event.target.value);
           }}
         />
-        {/* <FormControl variant='standard'>
-          <InputLabel>Upload Image</InputLabel>
-          <Select
-            className='dropdown'
-            value={missingPieceCount}
-            onChange={event => setMissingPieceCount(event.target.value)}
-          >
-            {piecesOptions}
-          </Select>
-        </FormControl> */}
+        <label htmlFor='upload-photo'>
+          <Input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)}/>
+          <Button
+            sx={{color: 'white', backgroundColor: '#5D736B', '&:hover': {backgroundColor: '#474E4A'}}}
+            className='add-photo'
+            component='span'
+            aria-label='add-photo'
+            variant='contained'
+            size='large'
+            color='inherit'
+            startIcon={<AddAPhotoIcon />}
+            >
+            Upload photo
+          </Button>
+          {/* <button >{<div><AddAPhotoIcon /> <Input accept="image/*" id="upload-photo" multiple type="file" /></div>} Upload Photo</button> */}
+        </label>
+          {/* <div>
+            {image && <p>{image}</p>}
+          </div> */}
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
-      <Snackbar open={openSuccessMessage} autoHideDuration={3000} onClose={closeMessage}>
-        <Alert onClose={closeMessage} severity="success" sx={{ width: '100%' }}>
-          Your puzzle was uploaded!
-        </Alert>
+      <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
+        { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>Your puzzle was uploaded!</Alert> :
+        <Alert onClose={closeMessage} severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
     </section>
   )
