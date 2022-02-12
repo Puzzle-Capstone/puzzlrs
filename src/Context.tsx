@@ -8,7 +8,8 @@ const PuzzleProvider = ({children}: IPuzzleProvider) => {
 	const [puzzles, setPuzzles] = useState<ICleanedPuzzleObject[]>([])
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [user, setUser] = useState({} as IUserObject);
-	const [newPuzzle, setNewPuzzle] = useState({} as ICleanedPuzzleObject)
+	const [newPuzzle, setNewPuzzle] = useState({});
+	const [userID, setuserID] = useState('');
 
 	const fetchPuzzles = async () => {
     try {
@@ -49,26 +50,21 @@ const PuzzleProvider = ({children}: IPuzzleProvider) => {
   }
 
 	const logIn = (userId: string) => {
+		setuserID(userId)
 		fetchUser(userId)
 		setLoggedIn(true)
 	}
 
-	const addPuzzle = (newPuzzle: ICleanedPuzzleObject) => {
-		console.log('newPuzzle>>>>', newPuzzle)
-		setPuzzles([...puzzles, newPuzzle])
-		// setNewPuzzle(newPuzzle);
+	const addPuzzle = (newPuzzle: IPuzzleObject) => {
+		setNewPuzzle(newPuzzle);
 	}
-
-	// useEffect(() => {
-
-	// })
 
 	useEffect(() => {
 		fetchPuzzles();
-	}, [])
+	}, [newPuzzle])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, addPuzzle }}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, userID, addPuzzle}}>
 			{children}
 		</PuzzleContext.Provider>
 	)
