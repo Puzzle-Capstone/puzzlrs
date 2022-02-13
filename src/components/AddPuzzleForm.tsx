@@ -88,7 +88,6 @@ const AddPuzzleForm = () => {
         setPieceCountHasError(true)
       }
       if(!image) {
-        console.log('no image!!!!')
         setIsSuccessful(false);
         setOpenSuccessMessage(true);
       }
@@ -100,6 +99,7 @@ const AddPuzzleForm = () => {
     setQuality('');
     setPrice('');
     setPieceCount('');
+    setImage('');
   }
 
   const showMessage = () => {
