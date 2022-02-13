@@ -219,15 +219,11 @@ const AddPuzzleForm = () => {
             >
             Upload photo
           </Button>
-          {/* <button >{<div><AddAPhotoIcon /> <Input accept="image/*" id="upload-photo" multiple type="file" /></div>} Upload Photo</button> */}
         </label>
-          {/* <div>
-            {image && <p>{image}</p>}
-          </div> */}
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
       <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
-        { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>Your puzzle was uploaded!</Alert> :
+        { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>{message}</Alert> :
         <Alert onClose={closeMessage} severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
     </section>
