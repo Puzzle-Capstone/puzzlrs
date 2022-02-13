@@ -1,10 +1,8 @@
 import React, { useState, MouseEvent, useContext } from 'react';
 import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar, styled, Button} from '@mui/material';
-// import Button, { ButtonProps } from '@mui/material/Button';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
-import { ICleanedPuzzleObject } from '../interfaces';
 import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
 
@@ -21,7 +19,7 @@ const Input = styled('input')({
 });
 
 const AddPuzzleForm = () => {
-  const { addPuzzle } = useContext(PuzzleContext)
+  const { userID, addPuzzle } = useContext(PuzzleContext);
 
   const [category, setCategory] = useState('');
   const [missingPieceCount, setMissingPieceCount] = useState('');
@@ -35,30 +33,42 @@ const AddPuzzleForm = () => {
   const [priceHasError, setPriceHasError] = useState(false);
   const [pieceCountHasError, setPieceCountHasError] = useState(false);
 
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const [openSuccessMessage, setOpenSuccessMessage] = useState(false);
   const [image, setImage] = useState('');
-  const [isSuccessful, setIsSuccessful] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
     checkIfErrors();
     if(category  && missingPieceCount  && price  && quality  && pieceCount && image) {
-      const newPuzzle: ICleanedPuzzleObject = {
-        id: Date.now().toString(),
+      postPuzzle();
+      clearInputs();
+      setIsSuccessful(true)
+      setMessage('Your puzzle was uploaded!')
+      showMessage();
+    } 
+  }
+
+  const postPuzzle = async () => {
+    const res = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: Number(userID),
         category: category,
-        missingPieces: missingPieceCount,
-        pieceCount: pieceCount,
+        missing_pieces: missingPieceCount,
+        piece_count: pieceCount,
         quality: quality,
         availability: true,
-        price: price,
+        original_price_point: price,
         image: image
-      }
-      clearInputs();
-      addPuzzle(newPuzzle);
-      setIsSuccessful(true)
-      showMessage();
-      console.log(newPuzzle)
-    } 
+      })
+    })
+    const { data } = await res.json()
+    addPuzzle(data);
   }
 
   const checkIfErrors = () => {
