@@ -18,15 +18,20 @@ it('should visit the home page upon log in and show log in dropdown and the info
 
 it('should be able to click the log in dropdown and see users', () => {
 	cy.get('.MuiInput-root').click()
-	cy.get('[data-value="8"]').click()
+	cy.get('[data-value="6"]').click()
 })
 
-it.only('should be able to click a user in the dropdown and then see the nav buttons populate', () => {
+it('should be able to click a user in the dropdown and then see the nav buttons populate', () => {
 	cy.get('.MuiInput-root').click()
-	cy.get('[data-value="8"]').click()
+	cy.get('[data-value="6"]').click()
 	cy.get(':nth-child(1) > button').contains('View Puzzles')
 	cy.get(':nth-child(2) > button').contains('Add Puzzle')
 	cy.get('.nav-buttons > :nth-child(1) > :nth-child(3) > button').contains('User Profile')
+})
+
+it('should be able to click the view puzzles button and see the puzzles', () => {
+	cy.get('button').click()
+	cy.get(':nth-child(1) > .individual-puzzle > img').should('be.visible');
 })
 
 })
