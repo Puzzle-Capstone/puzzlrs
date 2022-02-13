@@ -113,11 +113,20 @@ const AddPuzzleForm = () => {
     setOpenSuccessMessage(false);
   };
 
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const pic = e.target.files![0]
-    const fullPic = URL.createObjectURL(pic)
-    setImage(fullPic)
-    console.log(fullPic)
+  const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files!;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'puzzlrs');
+    const res = await fetch('https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
+      method: 'POST',
+      body: data
+    })
+    const file = await res.json()
+    setImage(file.secure_url)
+    setIsSuccessful(true)
+    setMessage('Your photo was uploaded!')
+    showMessage();
   }
 
   return (
