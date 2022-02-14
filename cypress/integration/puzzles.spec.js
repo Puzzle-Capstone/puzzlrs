@@ -1,15 +1,13 @@
 describe('Puzzle grid tests', () => {
-  beforeEach(() => {
-    // cy.fixture('./puzzles.json').then((allPuzzles) => {
-    //   cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
-    //     statusCode: 200,
-    //     body: allPuzzles
-    //   })
-    // })
+	beforeEach(() => {
+		cy.fixture('./puzzles.json').then((allPuzzles) => {
+      cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+        statusCode: 200,
+        body: allPuzzles
+      })
     cy.visit('http://localhost:3000/');
+	})
   })
-
-  // how to test that clicking opens modal???
 
   // Implementation not yet written:
   // clear button to view all puzzles again
