@@ -11,36 +11,42 @@ describe('home page', () => {
 
 	it('should visit the home page on load and show log in dropdown and the information on the site', () => {
 		cy.get('h1').contains('Puzzlrs')
-		cy.get('h2').contains('Tired of your puzzles? Trade with people like you!')
-		cy.get('button').contains('View Puzzles')
-		cy.get('.MuiFormControl-root').contains('Log In')
+		.get('h2').contains('Tired of your puzzles? Trade with people like you!')
+		.get('button').contains('View Puzzles')
+		.get('.MuiFormControl-root').contains('Log In')
 	})
 
 	it('should be able to click the log in dropdown and see users', () => {
 		cy.get('.MuiInput-root').click()
-		cy.get('[data-value="6"]').click()
+		.get('[data-value="6"]').click()
 	})
 
 	it('should be able to click a user in the dropdown and then see the nav buttons populate', () => {
 		cy.get('.MuiInput-root').click()
-		cy.get('[data-value="6"]').click()
-		cy.get(':nth-child(1) > button').contains('View Puzzles')
-		cy.get(':nth-child(2) > button').contains('Add Puzzle')
-		cy.get('.nav-buttons > :nth-child(1) > :nth-child(3) > button').contains('User Profile')
+		.get('[data-value="6"]').click()
+		.get(':nth-child(1) > button').contains('View Puzzles')
+		.get(':nth-child(2) > button').contains('Add Puzzle')
+		.get('.nav-buttons > :nth-child(1) > :nth-child(3) > button').contains('User Profile')
 	})
 
 	it('should be able to click the view puzzles button and see the puzzles', () => {
 		cy.get('button').click()
-		cy.get(':nth-child(1) > .individual-puzzle > img').should('be.visible');
+		.get(':nth-child(1) > .individual-puzzle > img').should('be.visible');
 	})
 
 	it('should be able to click the add puzzle button and see the add puzzle form', () => {
 		cy.get('.MuiInput-root').click()
-		cy.get('[data-value="6"]').click()
-		cy.get('button').click()
-		cy.get(':nth-child(1) > .individual-puzzle > img').should('be.visible');
+		.get('[data-value="6"]').click()
+		.get(':nth-child(2) > button').click()
+		.url().should('include', 'add-puzzle')
+		.get('form').should('be.visible')
 	})
 
+	it('should redirect to homepage by clicking the header', () => {
+		cy.get('button').click()
+		.get('h1').click()
+		.get('.homepage').should('be.visible')
+	})
 
 	// it.only('should be able to click user profile button and see the user profile', () => {
 	// 	cy.get('.MuiInput-root').click()
@@ -51,6 +57,3 @@ describe('home page', () => {
 	// })
 
 })
-
-// test other nav buttons
-// test that h1 leads to homepage
