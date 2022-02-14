@@ -37,6 +37,7 @@ export interface IPuzzleContext {
 	user: IUserObject
 	logIn: (user: string) => void
 	userID: number | string
+	requestPuzzle: (id: string | number) => void
   // addPuzzle: (newPuzzle: IPuzzleObject) => void
 }
 

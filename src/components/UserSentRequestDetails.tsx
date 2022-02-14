@@ -16,11 +16,7 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
     .then(res => console.log(res))
     .catch(err => console.log(err, 'error message'))
   }
-
-  const refetchUserInformation = () => {
-
-  }
-
+  
   const handlePuzzleDelete = (event: MouseEvent) => {
     deletePuzzle()
     closeModal?.(event)

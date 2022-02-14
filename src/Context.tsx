@@ -62,7 +62,21 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	// 	setNewPuzzle(newPuzzle);
 	// }
 
-	// const puzzleData = useMemo(() => fetchPuzzles(), [puzzles])
+	const requestPuzzle = async (puzzleId: string | number) => {
+		const res = await fetch('https://puzzlrs.herokuapp.com/api/v1/requests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: user.id,
+				puzzle_id: puzzleId
+      })
+    })
+    const { data } = await res.json()
+		console.log(data)
+  
+	}
 
 	useEffect(() => {
 		fetchPuzzles()
@@ -73,7 +87,7 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	}, [])
 
 	return (
-		<PuzzleContext.Provider value={{ fetchPuzzles, puzzles, loggedIn, logIn, user, userID }}>
+		<PuzzleContext.Provider value={{ fetchPuzzles, puzzles, loggedIn, logIn, user, userID, requestPuzzle }}>
 			{children}
 		</PuzzleContext.Provider>
 	)
