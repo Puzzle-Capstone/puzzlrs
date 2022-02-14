@@ -17,17 +17,17 @@ const Nav = () => {
 
   const renderNavDisplay = !loggedIn ?
     <div>
-    <FormControl variant="standard">
-      <InputLabel>Log In</InputLabel>
-      <Select
-      className='login-dropdown'
-        name='Log In'
-        value={userId}
-        onChange={event => handleLogIn(event.target.value)}
-      >
-        {userIdOptions}
-      </Select>
-    </FormControl> 
+      <FormControl variant="standard">
+        <InputLabel>Log In</InputLabel>
+        <Select
+          className='login-dropdown'
+          name='login'
+          value={userId}
+          onChange={event => handleLogIn(event.target.value)}
+        >
+          {userIdOptions}
+        </Select>
+      </FormControl>
     </div> :
     <div>
       <Link to='/puzzles' className='link'><button>View Puzzles</button></Link>

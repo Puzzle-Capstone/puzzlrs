@@ -60,13 +60,40 @@ form {
   cursor: pointer;
 }
 
+.upload-photo-button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
 .submit-button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}
+
+.upload-photo-button:active {
   background-color: #474E4A;
   transform: translateY(2px);
 }
 
 .dropdown {
   width: 30vw;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-photo-button {
+  background: #5c726a;
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  width: 42%;
+  justify-content: space-evenly;
+  height: 8%;
+  margin-top: 4%;
 }
 
 @media only screen and (max-width: 600px) {
