@@ -1,8 +1,8 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar } from '@mui/material';
+import { Select, InputLabel, FormControl, TextField, FormHelperText, Stack, Snackbar, styled, Button} from '@mui/material';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
-import { ICleanedPuzzleObject } from '../interfaces';
 import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
 
@@ -14,8 +14,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+const Input = styled('input')({
+  display: 'none',
+});
+
 const AddPuzzleForm = () => {
-  const { addPuzzle } = useContext(PuzzleContext)
+  const { userID, addPuzzle } = useContext(PuzzleContext);
 
   const [category, setCategory] = useState('');
   const [missingPieceCount, setMissingPieceCount] = useState('');
@@ -29,44 +33,63 @@ const AddPuzzleForm = () => {
   const [priceHasError, setPriceHasError] = useState(false);
   const [pieceCountHasError, setPieceCountHasError] = useState(false);
 
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const [openSuccessMessage, setOpenSuccessMessage] = useState(false);
+  const [image, setImage] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (event: MouseEvent) => {
     event.preventDefault();
     checkIfErrors();
-    if(category !== '' && missingPieceCount !== '' && price !== '' && quality !== '' && pieceCount !== '') {
-      const newPuzzle: ICleanedPuzzleObject = {
-        id: Date.now().toString(),
-        category: category,
-        missingPieces: missingPieceCount,
-        pieceCount: pieceCount,
-        quality: quality,
-        availability: true,
-        price: price,
-        image: 'https://img.buzzfeed.com/buzzfeed-static/static/2020-04/28/14/asset/1593bcadc012/sub-buzz-488-1588084568-26.jpg'
-      }
+    if(category  && missingPieceCount  && price  && quality  && pieceCount && image) {
+      postPuzzle();
       clearInputs();
-      addPuzzle(newPuzzle);
+      setIsSuccessful(true)
+      setMessage('Your puzzle was uploaded!')
       showMessage();
-      console.log(newPuzzle)
     } 
   }
 
+  const postPuzzle = async () => {
+    const res = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: Number(userID),
+        category: category,
+        missing_pieces: missingPieceCount,
+        piece_count: pieceCount,
+        quality: quality,
+        availability: true,
+        original_price_point: price,
+        image: image
+      })
+    })
+    const { data } = await res.json()
+    addPuzzle(data);
+  }
+
   const checkIfErrors = () => {
-      if(category === '' && !categoryHasError) {
+      if(!category && !categoryHasError) {
         setCategoryHasError(true)
       }
-      if(missingPieceCount === '' && !missingPiecesHasError) {
+      if(!missingPieceCount && !missingPiecesHasError) {
         setMissingPiecesHasError(true)
       }
-      if(quality === '' && !qualityHasError) {
+      if(!quality && !qualityHasError) {
         setQualityHasError(true)
       }
-      if(price === '' && !priceHasError) {
+      if(!price && !priceHasError) {
         setPriceHasError(true)
       }
-      if(pieceCount === '' && !pieceCountHasError) {
+      if(!pieceCount && !pieceCountHasError) {
         setPieceCountHasError(true)
+      }
+      if(!image) {
+        setIsSuccessful(false);
+        setOpenSuccessMessage(true);
       }
   }
 
@@ -76,6 +99,7 @@ const AddPuzzleForm = () => {
     setQuality('');
     setPrice('');
     setPieceCount('');
+    setImage('');
   }
 
   const showMessage = () => {
@@ -89,11 +113,26 @@ const AddPuzzleForm = () => {
     setOpenSuccessMessage(false);
   };
 
+  const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files!;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'puzzlrs');
+    const res = await fetch('https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
+      method: 'POST',
+      body: data
+    })
+    const file = await res.json()
+    setImage(file.secure_url)
+    setIsSuccessful(true)
+    setMessage('Your photo was uploaded!')
+    showMessage();
+  }
 
   return (
     <section className='form-container'>
       <form>
-        <h3>Submit your puzzle</h3>
+        <h3 className='form-title'>Submit your puzzle</h3>
         <FormControl variant='standard' error={categoryHasError}>
           <InputLabel>Category</InputLabel>
           <Select
@@ -107,11 +146,12 @@ const AddPuzzleForm = () => {
           >
             {categoryOptions}
           </Select>
-          {/* {categoryHasError && <FormHelperText>This is required!</FormHelperText>} */}
+          {categoryHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         <FormControl variant='standard' error={missingPiecesHasError}>
           <InputLabel>Missing Pieces</InputLabel>
           <Select
+            // sx={{width: '100%'}}
             className='dropdown'
             value={missingPieceCount}
             onChange={event => {
@@ -121,7 +161,7 @@ const AddPuzzleForm = () => {
             >
             {piecesOptions}
           </Select>
-            {/* {missingPiecesHasError && <FormHelperText>This is required!</FormHelperText>} */}
+            {missingPiecesHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         <FormControl variant='standard' error={qualityHasError}>
           <InputLabel>Quality</InputLabel>
@@ -135,7 +175,7 @@ const AddPuzzleForm = () => {
             >
             {qualityOptions}
           </Select>
-            {/* {qualityHasError && <FormHelperText>This is required!</FormHelperText>} */}
+            {qualityHasError && <FormHelperText>This is required!</FormHelperText>}
         </FormControl>
         {/* <FormControl error={priceHasError}> */}
           
@@ -165,22 +205,26 @@ const AddPuzzleForm = () => {
             setPieceCount(event.target.value);
           }}
         />
-        {/* <FormControl variant='standard'>
-          <InputLabel>Upload Image</InputLabel>
-          <Select
-            className='dropdown'
-            value={missingPieceCount}
-            onChange={event => setMissingPieceCount(event.target.value)}
-          >
-            {piecesOptions}
-          </Select>
-        </FormControl> */}
+        <label htmlFor='upload-photo'>
+          <Input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)}/>
+          <Button
+            sx={{color: 'white', backgroundColor: '#5D736B', '&:hover': {backgroundColor: '#474E4A'}}}
+            className='add-photo'
+            component='span'
+            aria-label='add-photo'
+            variant='contained'
+            size='large'
+            color='inherit'
+            startIcon={<AddAPhotoIcon />}
+            >
+            Upload photo
+          </Button>
+        </label>
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
-      <Snackbar open={openSuccessMessage} autoHideDuration={3000} onClose={closeMessage}>
-        <Alert onClose={closeMessage} severity="success" sx={{ width: '100%' }}>
-          Your puzzle was uploaded!
-        </Alert>
+      <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
+        { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>{message}</Alert> :
+        <Alert onClose={closeMessage} severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
     </section>
   )

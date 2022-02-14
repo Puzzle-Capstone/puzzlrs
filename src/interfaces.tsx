@@ -28,8 +28,6 @@ export interface ICleanedPuzzleObject {
 	availability: boolean
 	quality: string
 	price: string
-	// [key: string]: string | boolean
-  // can remove line 31 if no switch statement
 }
 
 export interface IPuzzleContext {
@@ -37,7 +35,8 @@ export interface IPuzzleContext {
 	loggedIn: boolean
 	user: IUserObject
 	logIn: (user: string) => void
-  addPuzzle: (newPuzzle: ICleanedPuzzleObject) => void
+	userID: number | string
+  addPuzzle: (newPuzzle: IPuzzleObject) => void
 }
 
 export interface IPuzzleProps {

@@ -1,4 +1,4 @@
-h3 {
+.form-title {
   font-size: 30px;
   color: #585c5b;
   margin: 0;
@@ -66,14 +66,46 @@ form {
 }
 
 .dropdown {
-  width: 25em;
+  width: 30vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-title {
+    font-size: 25px;
+  }
+
+  .submit-button {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .form-title {
+    font-size: 21px;
+  }
+  
+  .submit-button {
+    width: 55%;
+    height: 7%;
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
   form {
     width: 60%;
   }
-  /* .MuiFormControl-root {
-    width: 60%;
-  } */
+  
+}
+
+@media only screen and (max-width: 1500px) {
+  .dropdown {
+    width: 35vw;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .dropdown {
+    width: 25vw;
+  }
 }
