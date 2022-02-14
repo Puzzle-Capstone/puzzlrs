@@ -123,6 +123,7 @@ const AddPuzzleForm = () => {
       body: data
     })
     const file = await res.json()
+    console.log(file.secure_url)
     setImage(file.secure_url)
     setIsSuccessful(true)
     setMessage('Your photo was uploaded!')
@@ -137,6 +138,7 @@ const AddPuzzleForm = () => {
           <InputLabel>Category</InputLabel>
           <Select
             className='dropdown'
+            id='category'
             label='Category *'
             value={category}
             onChange={event => {
@@ -152,6 +154,7 @@ const AddPuzzleForm = () => {
           <InputLabel>Missing Pieces</InputLabel>
           <Select
             // sx={{width: '100%'}}
+            id='missingPieces'
             className='dropdown'
             value={missingPieceCount}
             onChange={event => {
@@ -166,6 +169,7 @@ const AddPuzzleForm = () => {
         <FormControl variant='standard' error={qualityHasError}>
           <InputLabel>Quality</InputLabel>
           <Select
+            id='quality'
             className='dropdown'
             value={quality}
             onChange={event => {
@@ -183,6 +187,7 @@ const AddPuzzleForm = () => {
           error={priceHasError}
           className='dropdown'
           label='Original Price Point'
+          id='price'
           type='number'
           variant='standard'
           value={price}
@@ -197,6 +202,7 @@ const AddPuzzleForm = () => {
           error={pieceCountHasError}
           className='dropdown'
           label='Piece Count'
+          id='pieceCount'
           type='number'
           variant='standard'
           value={pieceCount}
@@ -205,12 +211,13 @@ const AddPuzzleForm = () => {
             setPieceCount(event.target.value);
           }}
         />
-        <label htmlFor='upload-photo'>
-          <Input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)}/>
+        {/* <label htmlFor='upload-photo'> */}
+          {/* <Input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)}/>
           <Button
             sx={{color: 'white', backgroundColor: '#5D736B', '&:hover': {backgroundColor: '#474E4A'}}}
             className='add-photo'
             component='span'
+            id='upload-photo-button'
             aria-label='add-photo'
             variant='contained'
             size='large'
@@ -218,13 +225,18 @@ const AddPuzzleForm = () => {
             startIcon={<AddAPhotoIcon />}
             >
             Upload photo
-          </Button>
-        </label>
+          </Button> */}
+          <label className='upload-photo-button' id='uploadPhotoButton'>
+              upload photo
+              <input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)}/>
+              <AddAPhotoIcon />
+          </label>
+        {/* </label> */}
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
       <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
         { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>{message}</Alert> :
-        <Alert onClose={closeMessage} severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
+        <Alert onClose={closeMessage} id='errorAlert' severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
     </section>
   )
