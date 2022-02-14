@@ -48,12 +48,4 @@ describe('home page', () => {
 		.get('.homepage').should('be.visible')
 	})
 
-	// it.only('should be able to click user profile button and see the user profile', () => {
-	// 	cy.get('.MuiInput-root').click()
-	// 	cy.get('[data-value="6"]').click()
-	// 	cy.get('.nav-buttons > :nth-child(1) > :nth-child(3) > button').click()
-		// cy.get('button').click()
-		// .url().should('include', 'puzzles')
-	// })
-
 })

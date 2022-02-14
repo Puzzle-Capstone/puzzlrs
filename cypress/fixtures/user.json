@@ -6,9 +6,7 @@
 		"username": "Micha",
 		"puzzles": [
 			{
-				"id": "1",
-				"type": "puzzle",
-				"attributes": {
+				"id": 1,
 				"user_id": 6,
 				"image": "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053",
 				"category": "Animals",
@@ -16,13 +14,12 @@
 				"missing_pieces": "2",
 				"availability": true,
 				"quality": "Poor",
-				"original_price_point": "32.99"
-			}
+				"original_price_point": "32.99",
+				"created_at": "2022-02-09T18:07:40.162Z",
+				"updated_at": "2022-02-09T18:07:40.162Z"
 			},
 			{
-				"id": "2",
-				"type": "puzzle",
-				"attributes": {
+				"id": 2,
 				"user_id": 6,
 				"image": "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-listfield-rainbow_5274224_4_1800x1800.jpg?v=1638228235",
 				"category": "People",
@@ -30,13 +27,12 @@
 				"missing_pieces": "2",
 				"availability": true,
 				"quality": "Good",
-				"original_price_point": "33.99"
-				}
+				"original_price_point": "33.99",
+				"created_at": "2022-02-09T18:07:40.170Z",
+				"updated_at": "2022-02-09T18:07:40.170Z"
 			},
 			{
-				"id": "3",
-				"type": "puzzle",
-				"attributes": {
+				"id": 3,
 				"user_id": 6,
 				"image": "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/5280376.PT02_1800x1800.jpg?v=1638228991",
 				"category": "Art",
@@ -44,9 +40,11 @@
 				"missing_pieces": "1",
 				"availability": true,
 				"quality": "Excellent",
-				"original_price_point": "34.99"
-				}
-			}],
+				"original_price_point": "34.99",
+				"created_at": "2022-02-09T18:07:40.176Z",
+				"updated_at": "2022-02-09T18:07:40.176Z"
+			}
+		],
 			"sent_requests": [
 				{
 				"id": 1,

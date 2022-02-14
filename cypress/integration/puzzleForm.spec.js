@@ -36,9 +36,13 @@ describe('Add puzzle form page', () => {
     cy.get('#errorAlert').contains('Please upload a photo!');
   })
 
-  it('should be able to fill out the form', () => {
+  it.only('should be able to fill out the form', () => {
     cy.fixture('./newPuzzle.json').then((puzzle) => {
       const filePath = 'images/structuresPuzzle.jpg'
+      cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
+        statusCode: 201,
+        body: filePath
+      }).as('photoUpload');
       cy.get('#category').click();
       cy.get(`[data-value=${puzzle.category}]`).click();
       cy.get('#missingPieces').click();
@@ -49,12 +53,8 @@ describe('Add puzzle form page', () => {
       cy.get('#pieceCount').click().type(`${puzzle.piece_count}`);
       cy.get('#uploadPhotoButton').click()
       cy.get('input[type="file"]').attachFile(filePath)
-      // cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
-      //   statusCode: 201,
-      //   body: filePath
-      // }).as('photoUpload');
-      // cy.wait('@photoUpload')
-      cy.wait(4000).get('#successAlert').contains('Your photo was uploaded!')
+      // cy.wait('@photoUpload').get('#successAlert').contains('Your photo was uploaded!')
+      // cy.wait(4000).get('#successAlert').contains('Your photo was uploaded!')
     })
   })
 

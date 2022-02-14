@@ -94,7 +94,7 @@ describe('Puzzle grid tests', () => {
 
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
     //change number once intercept is working
-    .get(':nth-child(4) > .individual-puzzle').should('not.exist');
+    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
   })
 
   it('filters by piece count if just piece count is input', () => {
@@ -105,7 +105,7 @@ describe('Puzzle grid tests', () => {
 
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
     //change number once intercept is working
-    .get(':nth-child(11) > .individual-puzzle').should('not.exist');
+    .get(':nth-child(4) > .individual-puzzle').should('not.exist');
   })
 
   it('filters by quality if just quality is input', () => {
@@ -116,7 +116,7 @@ describe('Puzzle grid tests', () => {
 
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
     //change number once intercept is working
-    .get(':nth-child(9) > .individual-puzzle').should('not.exist');
+    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
   })
 
   it('filters by category and piece count if just those two are selected', () => {
@@ -140,7 +140,7 @@ describe('Puzzle grid tests', () => {
     .get('button').click()
 
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    .get(':nth-child(5) > .individual-puzzle').should('not.exist');
+    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
   })
 
 
