@@ -78,16 +78,23 @@ p {
   transform: translateY(2px);
 }
 
-@media screen and (max-width: 1017px) {
+@media screen and (max-width: 940px) {
   .individual-puzzle-details {
-		display: block;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-left: 2em;
 	}
 
 	.puzzle-detail-image {
-		height: 26vh;
+		height: 30vh;
 	}
 
 	p {
-		font-size: 100%;
+		font-size: 120%;
 	}
-}
+
+	.puzzle-image-pieces {
+		padding-bottom: 2em;
+	}
+} 
