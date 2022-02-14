@@ -235,7 +235,7 @@ const AddPuzzleForm = () => {
         <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
       </form>
       <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
-        { isSuccessful ? <Alert onClose={closeMessage} severity='success' sx={{ width: '100%' }}>{message}</Alert> :
+        { isSuccessful ? <Alert onClose={closeMessage} id='successAlert' severity='success' sx={{ width: '100%' }}>{message}</Alert> :
         <Alert onClose={closeMessage} id='errorAlert' severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
     </section>
