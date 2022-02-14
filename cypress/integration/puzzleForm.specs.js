@@ -16,7 +16,6 @@ describe('Add puzzle form page', () => {
     //   }
     // })
     cy.fixture('./user.json').then((user) => {
-			// console.log(user)
       cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/6', {
         statusCode: 200,
         body: user
@@ -58,5 +57,9 @@ describe('Add puzzle form page', () => {
       cy.wait(4000).get('#successAlert').contains('Your photo was uploaded!')
     })
   })
+
+  /*
+    still need to intercept the request to post a new puzzle
+  */
 
 })
