@@ -39,7 +39,7 @@ describe('Add puzzle form page', () => {
 
   it('should be able to fill out the form', () => {
     cy.fixture('./newPuzzle.json').then((puzzle) => {
-      console.log(puzzle)
+      const filePath = 'images/structuresPuzzle.jpg'
       cy.get('#category').click();
       cy.get(`[data-value=${puzzle.category}]`).click();
       cy.get('#missingPieces').click();
@@ -48,17 +48,15 @@ describe('Add puzzle form page', () => {
       cy.get(`[data-value=${puzzle.quality}]`).click();
       cy.get('#price').click().type(`${puzzle.original_price_point}`);
       cy.get('#pieceCount').click().type(`${puzzle.piece_count}`);
-      // cy.get('#upload-photo-button').click();
-      // cy.get('#uploadPhotoButton').click()
-      cy.get('input[type="file"]').focus().click({ force: true})
-      cy.wait(5000)
-      // cy.get('input[type="file"]').then(function($input) {
-      //   const blob = Cypress.Blob.base64StringToBlob(this.logo, 'image/png')
-      //   $input.fileupload('add', {files: blob})
-      // })
+      cy.get('#uploadPhotoButton').click()
+      cy.get('input[type="file"]').attachFile(filePath)
+      // cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
+      //   statusCode: 201,
+      //   body: filePath
+      // }).as('photoUpload');
+      // cy.wait('@photoUpload')
+      cy.wait(4000).get('#successAlert').contains('Your photo was uploaded!')
     })
-    // cy.get('#upload-photo').click()
-    // need to get back to this
   })
 
 })
