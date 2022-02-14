@@ -20,10 +20,10 @@
 
 .Modal {
 	position: absolute;
-	top: 130px;
-	left: 130px;
-	right: 130px;
-	bottom: 130px;
+	top: 10%;
+	left: 10%;
+	right: 10%;
+	bottom: 10%;
 	background-color: #F2EEEA;
 	border-radius: 10px;
 	outline: 0;
