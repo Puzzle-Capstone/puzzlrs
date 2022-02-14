@@ -7,6 +7,7 @@ import { PuzzleContext } from "../Context";
 
 const PuzzleDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
   const { requestPuzzle } = useContext(PuzzleContext);
+  console.log(id)
 
   const handleRequestPuzzle = (event: MouseEvent) => {
     requestPuzzle(id)
