@@ -2,6 +2,8 @@ import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
 import RequestDetails from './RequestDetails'
+import PuzzleDetails from './PuzzleDetails'
+import UserSentRequestDetails from './UserSentRequestDetails'
 import { useState, MouseEvent } from 'react'
 
 
@@ -15,9 +17,10 @@ interface IUserPuzzleImage {
   pieceCount: string 
   quality: string
   id: number | string 
+  type: string
 }
 
-const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id }: IUserPuzzleImage) => {
+const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id, type }: IUserPuzzleImage) => {
 
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -31,6 +34,32 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
     setModalOpen(false)
   }
 
+  const findCorrectModal = () => {
+    if (type === 'user-puzzles' || type === 'sent-requests') {
+      return <UserSentRequestDetails 
+        closeModal={closeModal} 
+        id={id} 
+        pieceCount={pieceCount}
+        image={image} 
+        category={category} 
+        quality={quality} 
+        missingPieces={missingPieces} 
+        price={price}
+      />
+    } else if (type === 'received-requests') {
+        return <RequestDetails 
+          closeModal={closeModal} 
+          id={id} 
+          pieceCount={pieceCount}
+          image={image} 
+          category={category} 
+          quality={quality} 
+          missingPieces={missingPieces} 
+          price={price}
+        />
+      } 
+  }
+
   return (
     <section className='puzzle-image'>
       <img className='user-puzzles' src={image} onClick={event => openModal(event)}/>
@@ -39,7 +68,7 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
         overlayClassName="Overlay"
         isOpen={modalOpen}
         contentLabel="Puzzle Modal">
-        <RequestDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
+        {findCorrectModal()}
       </Modal>
     </section>
   )

@@ -17,6 +17,7 @@ const UserProfile = () => {
       price={puzzle.original_price_point}
       pieceCount={puzzle.piece_count}
       quality={puzzle.quality}
+      type='user-puzzles'
     />
   })
 
@@ -36,6 +37,7 @@ const UserProfile = () => {
         price={foundPuzzle.price}
         pieceCount={foundPuzzle.pieceCount}
         quality={foundPuzzle.quality}
+        type='sent-requests'
       />
     })
   
@@ -51,6 +53,7 @@ const UserProfile = () => {
         price={foundPuzzle.price}
         pieceCount={foundPuzzle.pieceCount}
         quality={foundPuzzle.quality}
+        type='received-requests'
       />
     })
 
@@ -65,7 +68,7 @@ const UserProfile = () => {
           </div>
         </section>
         <section className='profile-column center'>
-          <p>Sent Requests</p>
+          <p>Your Sent Requests</p>
           <div className='user-puzzle-container'>
            {displaySentRequests}
           </div>
