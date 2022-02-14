@@ -19,7 +19,7 @@ const Input = styled('input')({
 });
 
 const AddPuzzleForm = () => {
-  const { userID, addPuzzle } = useContext(PuzzleContext);
+  const { userID } = useContext(PuzzleContext);
 
   const [category, setCategory] = useState('');
   const [missingPieceCount, setMissingPieceCount] = useState('');
@@ -68,7 +68,7 @@ const AddPuzzleForm = () => {
       })
     })
     const { data } = await res.json()
-    addPuzzle(data);
+    // addPuzzle(data);
   }
 
   const checkIfErrors = () => {

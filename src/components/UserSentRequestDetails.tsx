@@ -1,7 +1,28 @@
 import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
+import { MouseEvent, useEffect } from 'react'
 
 const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
+
+  
+  const deletePuzzle = () => {
+    fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles/' + id, {
+      method: 'DELETE',
+    })
+    .then(res => res.json()) 
+    .then(res => console.log(res))
+    .catch(err => console.log(err, 'error message'))
+  }
+
+  const refetchUserInformation = () => {
+
+  }
+
+  const handlePuzzleDelete = (event: MouseEvent) => {
+    deletePuzzle()
+    closeModal?.(event)
+
+  }
 
   return (
     <section className='puzzle-details'>
@@ -32,7 +53,7 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)}/>
 				<div className='request-buttons'>
-					<button className='request-button'>Delete</button>
+					<button className='request-button' onClick={event => handlePuzzleDelete(event)}>Delete</button>
 				</div>
       </div>
     </section>

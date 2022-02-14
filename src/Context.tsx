@@ -55,16 +55,20 @@ const PuzzleProvider = ({children}: IPuzzleProvider) => {
 		setLoggedIn(true)
 	}
 
-	const addPuzzle = (newPuzzle: IPuzzleObject) => {
-		setNewPuzzle(newPuzzle);
-	}
+	// const addPuzzle = (newPuzzle: IPuzzleObject) => {
+	// 	setNewPuzzle(newPuzzle);
+	// }
 
 	useEffect(() => {
 		fetchPuzzles();
-	}, [newPuzzle])
+	}, [puzzles])
+
+	useEffect(() => {
+		fetchUser(user.id)
+	}, [user])
  
 	return (
-		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, userID, addPuzzle}}>
+		<PuzzleContext.Provider value={{ puzzles, loggedIn, logIn, user, userID }}>
 			{children}
 		</PuzzleContext.Provider>
 	)
