@@ -22,7 +22,7 @@ const Puzzle = ({ id, pieceCount, image, category, quality, missingPieces, price
 
   return (
     <section>
-      <div className='individual-puzzle' onClick={event => openModal(event)}>
+      <div className='individual-puzzle' onClick={(event) => openModal(event)}>
         <img src={image} />
       </div>
       <h4 className='piece-count'>{pieceCount} pieces</h4>

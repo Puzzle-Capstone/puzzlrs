@@ -5,7 +5,7 @@ import { IPuzzleProps } from '../interfaces'
 
 const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
 
-	console.log('hi')
+	console.log({ closeModal, id, pieceCount, image, category, missingPieces, price, quality })
   return (
     <section className='puzzle-details'>
       <div className='individual-puzzle-details'>

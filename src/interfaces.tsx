@@ -31,6 +31,7 @@ export interface ICleanedPuzzleObject {
 }
 
 export interface IPuzzleContext {
+	fetchPuzzles: () => void
 	puzzles: ICleanedPuzzleObject[] 
 	loggedIn: boolean
 	user: IUserObject
