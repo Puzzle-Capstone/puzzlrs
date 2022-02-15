@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
 
 const PuzzleDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
-
+  console.log('puzzle details')
   return (
     <section className='puzzle-details'>
       <div className='individual-puzzle-details'>

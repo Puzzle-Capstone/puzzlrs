@@ -24,6 +24,7 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
 
   }
 
+  console.log('sent request modal')
   return (
     <section className='puzzle-details'>
       <div className='individual-puzzle-details'>

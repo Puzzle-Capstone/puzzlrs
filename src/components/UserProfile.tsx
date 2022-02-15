@@ -6,32 +6,32 @@ import { PuzzleContext } from '../Context';
 const UserProfile = () => {
   const { user, puzzles } = useContext(PuzzleContext)
 
-  const displayIUserPuzzles =
-  user.puzzles.map(puzzle => {
-    return <UserProfilePuzzle 
-      id={puzzle.id}
-      image={puzzle.image}
-      key={puzzle.id}
-      category={puzzle.category}
-      missingPieces={puzzle.missing_pieces}
-      price={puzzle.original_price_point}
-      pieceCount={puzzle.piece_count}
-      quality={puzzle.quality}
-      type='user-puzzles'
-    />
-  })
+  const displayUserPuzzles =
+    user.puzzles.map(puzzle => {
+      return <UserProfilePuzzle
+        id={puzzle.id}
+        image={puzzle.image}
+        key={puzzle.id}
+        category={puzzle.category}
+        missingPieces={puzzle.missing_pieces}
+        price={puzzle.original_price_point}
+        pieceCount={puzzle.piece_count}
+        quality={puzzle.quality}
+        type='user-puzzles'
+      />
+    })
 
   const findPuzzleImage = (puzzleId: number) => {
-    return puzzles.find(puzzle =>  puzzle.id === puzzleId.toString())
-   }
+    return puzzles.find(puzzle => puzzle.id === puzzleId.toString())
+  }
 
-  const displaySentRequests = 
-    user.sentRequests.map(request => {
-    const foundPuzzle = findPuzzleImage(request.id)
-      return foundPuzzle && <UserProfilePuzzle 
+  const displaySentRequests =
+    user.sentRequests.map((request, index) => {
+      const foundPuzzle = findPuzzleImage(request.puzzle_id)
+      return foundPuzzle && <UserProfilePuzzle
         id={foundPuzzle.id}
         image={foundPuzzle.image}
-        key={foundPuzzle.id}
+        key={index}
         category={foundPuzzle.category}
         missingPieces={foundPuzzle.missingPieces}
         price={foundPuzzle.price}
@@ -40,14 +40,14 @@ const UserProfile = () => {
         type='sent-requests'
       />
     })
-  
-  const displayReceivedRequests = 
-     user.receivedRequests.map(request => {
-      const foundPuzzle = findPuzzleImage(request.id)
-      return foundPuzzle && <UserProfilePuzzle 
+
+  const displayReceivedRequests =
+    user.receivedRequests.map((request, index) => {
+      const foundPuzzle = findPuzzleImage(request.puzzle_id)
+      return foundPuzzle && <UserProfilePuzzle
         id={foundPuzzle.id}
         image={foundPuzzle.image}
-        key={foundPuzzle.id}
+        key={index}
         category={foundPuzzle.category}
         missingPieces={foundPuzzle.missingPieces}
         price={foundPuzzle.price}
@@ -64,13 +64,13 @@ const UserProfile = () => {
         <section className='profile-column'>
           <p>Your Puzzles</p>
           <div className='user-puzzle-container'>
-            {displayIUserPuzzles}
+            {displayUserPuzzles}
           </div>
         </section>
         <section className='profile-column center'>
           <p>Your Sent Requests</p>
           <div className='user-puzzle-container'>
-           {displaySentRequests}
+            {displaySentRequests}
           </div>
         </section>
         <section className='profile-column'>
