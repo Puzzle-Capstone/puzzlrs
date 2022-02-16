@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
-import RequestDetails from './RequestDetails'
-import UserSentRequestDetails from './UserSentRequestDetails'
+import UserReceivedRequestModal from './UserReceivedRequestModal'
+import UserSentRequestModal from './UserSentRequestModal'
 import UserPuzzleModal from './UserPuzzleModal'
 import { useState, MouseEvent } from 'react'
 import { IUserPuzzleImage } from '../interfaces';
@@ -36,7 +36,7 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
         price={price}
       />
     } else if (type === 'sent-requests') {
-      return <UserSentRequestDetails
+      return <UserSentRequestModal
         closeModal={closeModal}
         id={id}
         requestID={requestID}
@@ -48,7 +48,7 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
         price={price}
       />
     } else if (type === 'received-requests') {
-      return <RequestDetails
+      return <UserReceivedRequestModal
         closeModal={closeModal}
         id={id}
         requestID={requestID}

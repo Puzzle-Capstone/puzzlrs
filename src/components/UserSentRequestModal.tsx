@@ -1,19 +1,26 @@
-import { useContext, MouseEvent } from "react";
-import '../css/RequestDetails.css';
 import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
-import { PuzzleContext } from "../Context";
+import { MouseEvent, useContext } from 'react'
+import { PuzzleContext } from '../Context';
 
-const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
+const UserSentRequestModal = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
 
-  const { updatePuzzleStatus } = useContext(PuzzleContext);
+  const { refreshData, user } = useContext(PuzzleContext)
 
-  const handleAcceptRequest = (event: MouseEvent) => {
-    updatePuzzleStatus('accepted', requestID)
-    closeModal?.(event)
+  const deleteRequest = async () => {
+    try {
+      const deletedPuzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/requests/' + requestID, {
+        method: 'DELETE'
+      })
+      const { data } = await deletedPuzzleData.json()
+      refreshData(user.id)
+    } catch(err) {
+      console.log(err)
+    }
   }
-  const handleDenyRequest = (event: MouseEvent) => {
-    updatePuzzleStatus('declined', requestID)
+
+  const handleRequestDelete = (event: MouseEvent) => {
+    deleteRequest()
     closeModal?.(event)
   }
 
@@ -46,12 +53,11 @@ const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPi
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
         <div className='request-buttons'>
-          <button className='request-button' onClick={event => handleAcceptRequest(event)}>Accept</button>
-          <button className='request-button' onClick={event => handleDenyRequest(event)}>Deny</button>
+          <button className='request-button' onClick={event => handleRequestDelete(event)}>Delete Request</button>
         </div>
       </div>
     </section>
   )
 }
 
-export default RequestDetails;
+export default UserSentRequestModal;

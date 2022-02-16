@@ -2,7 +2,7 @@ import '../css/Puzzle.css';
 import Modal from 'react-modal';
 import { useState } from 'react'
 import React from 'react'
-import PuzzleDetails from './PuzzleDetails'
+import PuzzleGridModal from './PuzzleGridModal'
 import { IPuzzleProps } from '../interfaces'
 
 Modal.setAppElement('#root');
@@ -31,7 +31,7 @@ const Puzzle = ({ id, pieceCount, image, category, quality, missingPieces, price
         overlayClassName="Overlay"
         isOpen={modalOpen}
         contentLabel="Puzzle Modal">
-        <PuzzleDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
+        <PuzzleGridModal closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
       </Modal>
     </section>
   )
