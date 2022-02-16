@@ -30,8 +30,9 @@ const UserPuzzleModal = ({ closeModal, id, pieceCount, image, category, missingP
         <div className='puzzle-image-pieces'>
           <img className='puzzle-detail-image' src={image} alt={category + 'puzzle'} />
           <h4>{pieceCount} pieces</h4>
+          <button className='request-button' onClick={event => handlePuzzleDelete(event)}>Delete</button>
         </div>
-        <div>
+        <div className='puzzle-details-modal'>
           <div className='paragraphs'>
             <p className='bold'>Quality: </p>
             <p>{quality}</p>
@@ -52,9 +53,6 @@ const UserPuzzleModal = ({ closeModal, id, pieceCount, image, category, missingP
       </div>
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
-        <div className='request-buttons'>
-          <button className='request-button' onClick={event => handlePuzzleDelete(event)}>Delete</button>
-        </div>
       </div>
     </section>
   )
