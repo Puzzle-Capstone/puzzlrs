@@ -64,9 +64,22 @@ h1:hover {
     display: none;
   }
 
-  header {
+ .not-logged-in {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 3em
   }
+
+  .logged-in {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-buttons div {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
 }

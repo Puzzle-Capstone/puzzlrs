@@ -50,12 +50,19 @@ const Nav = () => {
     </div>
 
   return (
-    <header>
+    !loggedIn ? 
+    <header className='not-logged-in'>
       <Link to='/'><h1>puzzlrs</h1></Link>
       <div className='nav-buttons'>
         {renderNavDisplay}
       </div>
-    </header>
+    </header> : 
+    <header className='logged-in'>
+    <Link to='/'><h1>puzzlrs</h1></Link>
+    <div className='nav-buttons'>
+      {renderNavDisplay}
+    </div>
+  </header>
   )
 }
 
