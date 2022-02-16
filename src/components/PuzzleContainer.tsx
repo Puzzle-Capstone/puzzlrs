@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react';
-import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
-import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
-import '../css/PuzzleContainer.css';
-import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
 import { ICleanedPuzzleObject } from '../interfaces';
+import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
+import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
+import Puzzle from './Puzzle';
+import '../css/PuzzleContainer.css';
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
@@ -34,21 +34,18 @@ const PuzzleContainer = () => {
     setCategory(event.target.value)
     const categoryPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.category === event.target.value);
     setCategoryList(categoryPuzzles)
-    console.log(categoryPuzzles, 'category puzzles')
   }
 
   const filterQualityPuzzles = (event: SelectChangeEvent<string>) => {
     setQuality(event.target.value)
     const qualityPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.quality === event.target.value);
     setQualityList(qualityPuzzles)
-    console.log(qualityPuzzles, 'quality puzzles')
   }
 
     const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
     setPieceCount(event.target.value)
     const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.pieceCount === event.target.value);
     setPieceCountList(pieceCountPuzzles)
-    console.log(pieceCountPuzzles, 'piece count puzzles')
   }
 
   const handleSearch = () => {
@@ -89,7 +86,6 @@ const PuzzleContainer = () => {
     return (
       <section className='puzzle-page'>
         <div className='filters'>
-          {/* <h3>Available Puzzles</h3> */}
           <FormControl variant="standard">
             <InputLabel className='input-label'>Category</InputLabel>
             <Select
@@ -127,7 +123,6 @@ const PuzzleContainer = () => {
         </div>
         <section className='puzzles-container'>
           {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
-          {/* {allPuzzles} */}
         </section>
       </section>
     )

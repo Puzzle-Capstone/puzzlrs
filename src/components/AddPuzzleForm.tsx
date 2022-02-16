@@ -1,9 +1,9 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, Snackbar, styled } from '@mui/material';
+import { PuzzleContext } from '../Context';
+import { Select, InputLabel, FormControl, TextField, Snackbar } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
-import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -122,7 +122,6 @@ const AddPuzzleForm = () => {
       body: data
     })
     const file = await res.json()
-    console.log(file.secure_url)
     setImage(file.secure_url)
     setIsSuccessful(true)
     setMessage('Your photo was uploaded!')

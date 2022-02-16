@@ -90,3 +90,7 @@ export interface IRequests {
 export interface IPuzzleProvider {
   children: React.ReactNode
 }
+
+export interface IErrorPage {
+  message: string
+}

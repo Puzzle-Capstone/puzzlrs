@@ -5,7 +5,7 @@ import ErrorPage from './ErrorPage';
 import '../css/UserProfile.css';
 
 const UserProfile = () => {
-  const { user, puzzles, loggedIn } = useContext(PuzzleContext)
+  const { user, puzzles } = useContext(PuzzleContext)
 
   const findPuzzleImage = (puzzleId: number) => {
     return puzzles.find(puzzle => puzzle.id === puzzleId.toString())

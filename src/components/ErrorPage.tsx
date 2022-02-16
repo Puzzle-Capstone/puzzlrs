@@ -1,9 +1,6 @@
 import { Link } from 'react-router-dom';
+import { IErrorPage } from '../interfaces';
 import { GiPuzzle } from "react-icons/gi";
-
-interface IErrorPage {
-  message: string
-}
 
 const ErrorPage = ({ message }: IErrorPage) => {
   return(

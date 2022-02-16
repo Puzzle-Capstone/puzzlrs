@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import '../css/Home.css';
 import { GiPuzzle } from "react-icons/gi";
+import '../css/Home.css';
 
 const Home = () => {
   return (

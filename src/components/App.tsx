@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import { PuzzleProvider } from '../Context';
 import Nav from './Nav';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import PuzzleContainer from './PuzzleContainer';
 import AddPuzzleForm from './AddPuzzleForm';
 import ErrorPage from './ErrorPage';
-import { PuzzleProvider } from '../Context';
 import '../css/App.css';
 
 function App() {

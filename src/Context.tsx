@@ -102,11 +102,6 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 		refreshData(user.id)
 	}, [])
 
-	// useEffect(() => {
-	// 		localStorage.setItem("savedUser", JSON.stringify(user))
-	// }, [user])
-
-
 	return (
 		<PuzzleContext.Provider value={{ refreshData, puzzles, loggedIn, logIn, user, requestPuzzle, updatePuzzleStatus }}>
 			{children}

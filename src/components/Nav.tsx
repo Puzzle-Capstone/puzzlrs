@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
+import { PuzzleContext } from '../Context';
+import { Select, InputLabel, FormControl } from "@mui/material";
 import { usernameOptions, usernames } from "../utils";
 import Hamburger from "./Hamburger";
-import { PuzzleContext } from '../Context';
 import '../css/Nav.css';
 
 const Nav = () => {

@@ -1,9 +1,8 @@
-import '../css/Puzzle.css';
 import Modal from 'react-modal';
-import { useState } from 'react'
-import React from 'react'
-import PuzzleGridModal from './PuzzleGridModal'
-import { IPuzzleProps } from '../interfaces'
+import { useState } from 'react';
+import { IPuzzleProps } from '../interfaces';
+import PuzzleGridModal from './PuzzleGridModal';
+import '../css/Puzzle.css';
 
 Modal.setAppElement('#root');
 

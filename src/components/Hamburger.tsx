@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import '../css/Hamburger.css'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import '../css/Hamburger.css'
 
 const Hamburger = () => {
 	const [open, setOpen] = useState(false)

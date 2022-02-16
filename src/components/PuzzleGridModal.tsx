@@ -1,9 +1,8 @@
-import React from "react";
-import '../css/PuzzleGridModal.css';
-import { IoClose } from "react-icons/io5";
-import { IPuzzleProps } from '../interfaces'
 import { MouseEvent, useContext } from 'react'
+import { IoClose } from "react-icons/io5";
 import { PuzzleContext } from "../Context";
+import { IPuzzleProps } from '../interfaces'
+import '../css/PuzzleGridModal.css';
 
 const PuzzleGridModal = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
   const { requestPuzzle, refreshData, user } = useContext(PuzzleContext);
