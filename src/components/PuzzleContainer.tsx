@@ -1,11 +1,14 @@
 import { useState, useContext } from 'react';
+import { PuzzleContext } from '../Context';
+import { ICleanedPuzzleObject } from '../interfaces';
 import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
 import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
-import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
 import { ICleanedPuzzleObject } from '../interfaces';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ErrorPage from './ErrorPage';
+import '../css/PuzzleContainer.css';
 
 const theme = createTheme({
 		palette: {
@@ -43,21 +46,18 @@ const PuzzleContainer = () => {
     setCategory(event.target.value)
     const categoryPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.category === event.target.value);
     setCategoryList(categoryPuzzles)
-    console.log(categoryPuzzles, 'category puzzles')
   }
 
   const filterQualityPuzzles = (event: SelectChangeEvent<string>) => {
     setQuality(event.target.value)
     const qualityPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.quality === event.target.value);
     setQualityList(qualityPuzzles)
-    console.log(qualityPuzzles, 'quality puzzles')
   }
 
-    const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
+  const filterPieceCountPuzzles = (event: SelectChangeEvent<string>) => {
     setPieceCount(event.target.value)
     const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.pieceCount === event.target.value);
     setPieceCountList(pieceCountPuzzles)
-    console.log(pieceCountPuzzles, 'piece count puzzles')
   }
 
   const handleSearch = () => {
@@ -77,11 +77,11 @@ const PuzzleContainer = () => {
     } else if (pieceCount && quality && !category) {
       comboFiltered = uniquePuzzles.filter(puzzle => puzzle.pieceCount === pieceCount && puzzle.quality === quality)
     } else {
-      comboFiltered = uniquePuzzles.filter(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount && puzzle.quality === quality )
+      comboFiltered = uniquePuzzles.filter(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount && puzzle.quality === quality)
     }
     setFilteredPuzzles(comboFiltered)
-    }
-  
+  }
+
   const displayFilteredPuzzles = filteredPuzzles.map(puzzle =>
     <Puzzle
       key={puzzle.id}
@@ -95,51 +95,59 @@ const PuzzleContainer = () => {
     />
   )
 
-    return (
-      <section className='puzzle-page'>
-        <div className='filters'>
-          <ThemeProvider theme={theme}>
-            <FormControl variant="standard">
-              <InputLabel className='input-label'>Category</InputLabel>
-              <Select
-                className='puzzle-grid-dropdown'
-                name='category'
-                value={category}
-                onChange={event => filterCategoryPuzzles(event)}
-              >
-                {categoryOptions}
-              </Select>
-            </FormControl>
-            <FormControl variant="standard">
-              <InputLabel className='input-label'>Piece Count</InputLabel>
-              <Select
-                className='puzzle-grid-dropdown'
-                name='pieceCount'
-                value={pieceCount}
-                onChange={event => filterPieceCountPuzzles(event)}
-              >
-                {pieceCountOptions}
-              </Select>
-            </FormControl>
-            <FormControl variant="standard">
-              <InputLabel className='input-label'>Quality</InputLabel>
-              <Select
-                className='puzzle-grid-dropdown'
-                name='quality'
-                value={quality}
-                onChange={event => filterQualityPuzzles(event)}
-              >
-                {qualityOptions}
-              </Select>
-            </FormControl>
-          </ThemeProvider>
-          <button onClick={handleSearch}>Search</button>
-        </div>
-        <section className='puzzles-container'>
-          {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
-        </section>
+  const renderPuzzleGrid = fetchedPuzzles.error ?
+    <div className='flex'>
+      <ErrorPage message="We're having issues loading, try again later!" />
+    </div> :
+    <section className='puzzle-page'>
+      <div className='filters'>
+        <ThemeProvider theme={theme}>
+        <FormControl variant="standard">
+          <InputLabel className='input-label'>Category</InputLabel>
+          <Select
+            className='puzzle-grid-dropdown'
+            name='category'
+            value={category}
+            onChange={event => filterCategoryPuzzles(event)}
+          >
+            {categoryOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel className='input-label'>Piece Count</InputLabel>
+          <Select
+            className='puzzle-grid-dropdown'
+            name='pieceCount'
+            value={pieceCount}
+            onChange={event => filterPieceCountPuzzles(event)}
+          >
+            {pieceCountOptions}
+          </Select>
+        </FormControl>
+        <FormControl variant="standard">
+          <InputLabel className='input-label'>Quality</InputLabel>
+          <Select
+            className='puzzle-grid-dropdown'
+            name='quality'
+            value={quality}
+            onChange={event => filterQualityPuzzles(event)}
+          >
+            {qualityOptions}
+          </Select>
+        </FormControl>
+        </ThemeProvider>
+        <button onClick={handleSearch}>Search</button>
+      </div>
+      <section className='puzzles-container'>
+        {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
       </section>
-    )
-  }
+    </section>
 
-  export default PuzzleContainer;
+  return (
+    <>
+      {renderPuzzleGrid}
+    </>
+  )
+}
+
+export default PuzzleContainer;

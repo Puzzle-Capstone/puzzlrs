@@ -1,9 +1,10 @@
 import React, { useState, MouseEvent, useContext } from 'react';
-import { Select, InputLabel, FormControl, TextField, Snackbar, styled } from '@mui/material';
+import { PuzzleContext } from '../Context';
+import { Select, InputLabel, FormControl, TextField, Snackbar } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import ErrorPage from './ErrorPage';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
-import { PuzzleContext } from '../Context';
 import '../css/AddPuzzleForm.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -24,7 +25,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 
 
 const AddPuzzleForm = () => {
-  const { user, refreshData } = useContext(PuzzleContext);
+  const { user, refreshData, error } = useContext(PuzzleContext);
 
   const [category, setCategory] = useState('');
   const [missingPieceCount, setMissingPieceCount] = useState('');
@@ -132,103 +133,111 @@ const AddPuzzleForm = () => {
       body: data
     })
     const file = await res.json()
-    console.log(file.secure_url)
     setImage(file.secure_url)
     setIsSuccessful(true)
     setMessage('Your photo was uploaded!')
     showMessage();
   }
 
+  const renderForm = error ?
+    <div className='flex'>
+      <ErrorPage message="We're having issues loading, try again later!" />
+    </div> :
+    user.username ?
+      <section className='form-container'>
+        <form>
+          <h3 className='form-title'>Submit your puzzle</h3>
+          <ThemeProvider theme={theme}>
+          <FormControl variant='standard' error={categoryHasError}>
+            <InputLabel>Category</InputLabel>
+            <Select
+              className='dropdown'
+              id='category'
+              label='Category *'
+              value={category}
+              onChange={event => {
+                setCategoryHasError(false);
+                setCategory(event.target.value);
+              }}
+            >
+              {categoryOptions}
+            </Select>
+          </FormControl>
+          <FormControl variant='standard' error={missingPiecesHasError}>
+            <InputLabel>Missing Pieces</InputLabel>
+            <Select
+              id='missingPieces'
+              className='dropdown'
+              value={missingPieceCount}
+              onChange={event => {
+                setMissingPiecesHasError(false);
+                setMissingPieceCount(event.target.value);
+              }}
+            >
+              {piecesOptions}
+            </Select>
+          </FormControl>
+          <FormControl variant='standard' error={qualityHasError}>
+            <InputLabel>Quality</InputLabel>
+            <Select
+              id='quality'
+              className='dropdown'
+              value={quality}
+              onChange={event => {
+                setQualityHasError(false);
+                setQuality(event.target.value);
+              }}
+            >
+              {qualityOptions}
+            </Select>
+          </FormControl>
+          <TextField
+            error={priceHasError}
+            className='dropdown'
+            label='Original Price Point'
+            id='price'
+            type='number'
+            variant='standard'
+            value={price}
+            onChange={event => {
+              setPriceHasError(false);
+              setPrice(event.target.value);
+            }}
+          />
+          <TextField
+            error={pieceCountHasError}
+            className='dropdown'
+            label='Piece Count'
+            id='pieceCount'
+            type='number'
+            variant='standard'
+            value={pieceCount}
+            onChange={event => {
+              setPieceCountHasError(false);
+              setPieceCount(event.target.value);
+            }}
+          />
+          </ThemeProvider>
+          <label className='upload-photo-button' id='uploadPhotoButton'>
+            upload photo
+            <input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)} />
+            <AddAPhotoIcon />
+          </label>
+          <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
+        </form>
+        <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
+          {isSuccessful ? <Alert onClose={closeMessage} id='successAlert' severity='success' sx={{ width: '100%' }}>{message}</Alert> :
+            <Alert onClose={closeMessage} id='errorAlert' severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
+        </Snackbar>
+      </section> :
+      <div className='flex'>
+        <ErrorPage message='You are not logged in! Click above or return home.' />
+      </div>
+
   return (
-    <section className='form-container'>
-      <form>
-        <h3 className='form-title'>Submit your puzzle</h3>
-        <ThemeProvider theme={theme}>
-        <FormControl variant='standard' color='primary' error={categoryHasError}>
-          <InputLabel>Category</InputLabel>
-          <Select
-            className='dropdown'
-            color='primary'
-            id='category'
-            label='Category *'
-            value={category}
-            onChange={event => {
-              setCategoryHasError(false);
-              setCategory(event.target.value);
-            }}
-          >
-            {categoryOptions}
-          </Select>
-        </FormControl>
-        
-        <FormControl variant='standard' error={missingPiecesHasError}>
-          <InputLabel>Missing Pieces</InputLabel>
-          <Select
-            id='missingPieces'
-            className='dropdown'
-            value={missingPieceCount}
-            onChange={event => {
-              setMissingPiecesHasError(false);
-              setMissingPieceCount(event.target.value);
-            }}
-          >
-            {piecesOptions}
-          </Select>
-        </FormControl>
-        <FormControl variant='standard' error={qualityHasError}>
-          <InputLabel>Quality</InputLabel>
-          <Select
-            id='quality'
-            className='dropdown'
-            value={quality}
-            onChange={event => {
-              setQualityHasError(false);
-              setQuality(event.target.value);
-            }}
-          >
-            {qualityOptions}
-          </Select>
-        </FormControl>
-        
-        <TextField
-          error={priceHasError}
-          className='dropdown'
-          label='Original Price Point'
-          id='price'
-          type='number'
-          variant='standard'
-          value={price}
-          onChange={event => {
-            setPriceHasError(false);
-            setPrice(event.target.value);
-          }}
-        />
-        <TextField
-          error={pieceCountHasError}
-          className='dropdown'
-          label='Piece Count'
-          id='pieceCount'
-          type='number'
-          variant='standard'
-          value={pieceCount}
-          onChange={event => {
-            setPieceCountHasError(false);
-            setPieceCount(event.target.value);
-          }}
-        />
-        </ThemeProvider>
-        <label className='upload-photo-button' id='uploadPhotoButton'>
-          upload photo
-          <input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)} />
-          <AddAPhotoIcon />
-        </label>
-        <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
-      </form>
-      <Snackbar open={openSuccessMessage} autoHideDuration={4000} onClose={closeMessage}>
-        {isSuccessful ? <Alert onClose={closeMessage} id='successAlert' severity='success' sx={{ width: '100%' }}>{message}</Alert> :
-          <Alert onClose={closeMessage} id='errorAlert' severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
-      </Snackbar>
-    </section>
+    <>
+      {renderForm}
+    </>
   )
 }
 

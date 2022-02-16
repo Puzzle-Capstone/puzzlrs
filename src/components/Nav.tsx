@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
-import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
+import { PuzzleContext } from '../Context';
+import { Select, InputLabel, FormControl } from "@mui/material";
 import { usernameOptions, usernames } from "../utils";
 import Hamburger from "./Hamburger";
-import { PuzzleContext } from '../Context';
+import ErrorPage from './ErrorPage';
 import '../css/Nav.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -17,12 +18,11 @@ const theme = createTheme({
 
 const Nav = () => {
   const [username, setUsername] = useState('')
-  const { loggedIn, logIn } = useContext(PuzzleContext)
+  const { loggedIn, logIn, error } = useContext(PuzzleContext)
 
   const handleLogIn = (username: string) => {
     setUsername(username)
     const userID = (usernames.indexOf(username) + 1).toString()
-    console.log(userID)
     logIn(userID)
   }
 

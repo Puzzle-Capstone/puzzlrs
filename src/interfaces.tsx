@@ -38,6 +38,7 @@ export interface IPuzzleContext {
 	logIn: (user: string) => void
 	requestPuzzle: (id: string | number) => void
 	updatePuzzleStatus: (status: string, requestID: number | undefined) => void
+	error: boolean
 }
 
 
@@ -97,4 +98,8 @@ export interface IRequests {
 
 export interface IPuzzleProvider {
   children: React.ReactNode
+}
+
+export interface IErrorPage {
+  message: string
 }
