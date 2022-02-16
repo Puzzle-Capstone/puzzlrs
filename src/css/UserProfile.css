@@ -10,16 +10,14 @@
 }
 
 .user-profile h2 {
-  padding: 0.5em 0;
-  margin: 0.5em 2.5em;
+
+  margin: 0.5em;
   font-size: 2.5em;
-  width: 40vw;
 }
 
 .profile-column-container {
   display: flex;
   justify-content: space-around;
-  margin: 0 4em;
 }
 
 .profile-column {
@@ -68,5 +66,9 @@
 
   .center {
     margin: 0 0 3em 0;
+  }
+
+  .profile-column p {
+    font-size: 180%;
   }
 }
