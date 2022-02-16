@@ -1,20 +1,5 @@
-const { cyan } = require("@mui/material/colors")
-
 describe('Add puzzle form page', () => {
   beforeEach(() => {
-    // cy.intercept('POST', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
-    //   statusCode: 200,
-    //   body: {
-    //     user_id: 6,
-    //     category: 'Art',
-    //     missing_pieces: '1',
-    //     piece_count: '1000',
-    //     quality: 'Good',
-    //     availability: true,
-    //     original_price_point: '15.99',
-    //     image: image
-    //   }
-    // })
     cy.fixture('./user.json').then((user) => {
       cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/6', {
         statusCode: 200,
