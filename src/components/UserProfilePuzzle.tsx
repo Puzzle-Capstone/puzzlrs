@@ -2,23 +2,11 @@ import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
 import RequestDetails from './RequestDetails'
-import PuzzleDetails from './PuzzleDetails'
 import UserSentRequestDetails from './UserSentRequestDetails'
 import { useState, MouseEvent } from 'react'
-
+import { IUserPuzzleImage } from '../interfaces';
 
 Modal.setAppElement('#root');
-
-interface IUserPuzzleImage {
-  image: string
-  category: string
-  missingPieces: string
-  price: string
-  pieceCount: string
-  quality: string
-  id: number | string
-  type: string
-}
 
 const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id, type }: IUserPuzzleImage) => {
 

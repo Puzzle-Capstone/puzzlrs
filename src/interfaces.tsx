@@ -59,6 +59,7 @@ export interface IUserPuzzleImage {
   pieceCount: string
   quality: string
   id: number | string
+	type?: string
 }
 
 export interface IUserPuzzles {
