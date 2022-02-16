@@ -42,11 +42,19 @@
 }
 
 .puzzle-icon {
+  height: 60vh;
+  width: 60vw;
   z-index: 0;
   position: absolute;
-  font-size: 3em;
   color: #E3AB96;
-  opacity: .8;
-  font-size: 40vw;
+  opacity: .5;
+  margin: 0;
+}
+
+@media screen and (max-width: 485px) {
+  .puzzle-icon {
+    height: 38vh;
+    width: 90vw;
+  }
 }
 
