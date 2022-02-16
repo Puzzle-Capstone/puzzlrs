@@ -12,6 +12,7 @@
 
 .puzzle-detail-image {
 	height: 40vh;
+	/* width: 30vw; */
 	margin: 2em;
 	border-radius: 10px;
 	box-shadow: 0 3px 9px -3px rgba(0, 0, 0, .3);
@@ -130,5 +131,11 @@ p {
 	.request-error-message {
 		text-align: center;
 		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 497px) {
+	.puzzle-detail-image {
+		height: 20vh;
 	}
 }
