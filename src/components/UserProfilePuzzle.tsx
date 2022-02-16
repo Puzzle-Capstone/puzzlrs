@@ -1,23 +1,15 @@
 import React from 'react';
 import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
-import RequestDetails from './RequestDetails'
+import UserReceivedRequestModal from './UserReceivedRequestModal'
+import UserSentRequestModal from './UserSentRequestModal'
+import UserPuzzleModal from './UserPuzzleModal'
 import { useState, MouseEvent } from 'react'
-
+import { IUserPuzzleImage } from '../interfaces';
 
 Modal.setAppElement('#root');
 
-interface IUserPuzzleImage {
-  image: string
-  category: string
-  missingPieces: string 
-  price: string 
-  pieceCount: string 
-  quality: string
-  id: number | string 
-}
-
-const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id }: IUserPuzzleImage) => {
+const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id, type, requestID }: IUserPuzzleImage) => {
 
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -31,15 +23,54 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
     setModalOpen(false)
   }
 
+  const findCorrectModal = () => {
+    if (type === 'user-puzzles') {
+      return <UserPuzzleModal
+        closeModal={closeModal}
+        id={id}
+        pieceCount={pieceCount}
+        image={image}
+        category={category}
+        quality={quality}
+        missingPieces={missingPieces}
+        price={price}
+      />
+    } else if (type === 'sent-requests') {
+      return <UserSentRequestModal
+        closeModal={closeModal}
+        id={id}
+        requestID={requestID}
+        pieceCount={pieceCount}
+        image={image}
+        category={category}
+        quality={quality}
+        missingPieces={missingPieces}
+        price={price}
+      />
+    } else if (type === 'received-requests') {
+      return <UserReceivedRequestModal
+        closeModal={closeModal}
+        id={id}
+        requestID={requestID}
+        pieceCount={pieceCount}
+        image={image}
+        category={category}
+        quality={quality}
+        missingPieces={missingPieces}
+        price={price}
+      />
+    }
+  }
+
   return (
     <section className='puzzle-image'>
-      <img className='user-puzzles' src={image} onClick={event => openModal(event)}/>
-      <Modal 
+      <img className='user-puzzles' src={image} onClick={event => openModal(event)} />
+      <Modal
         className='Modal'
         overlayClassName="Overlay"
         isOpen={modalOpen}
         contentLabel="Puzzle Modal">
-        <RequestDetails closeModal={closeModal} id={id} pieceCount={pieceCount} image={image} category={category} quality={quality} missingPieces={missingPieces} price={price}/>
+        {findCorrectModal()}
       </Modal>
     </section>
   )

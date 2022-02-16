@@ -77,3 +77,24 @@ p {
   background-color: #474E4A;
   transform: translateY(2px);
 }
+
+@media screen and (max-width: 940px) {
+  .individual-puzzle-details {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-left: 2em;
+	}
+
+	.puzzle-detail-image {
+		height: 30vh;
+	}
+
+	p {
+		font-size: 120%;
+	}
+
+	.puzzle-image-pieces {
+		padding-bottom: 2em;
+	}
+} 
