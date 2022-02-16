@@ -89,7 +89,7 @@ Scroll down for screenshots:
 ## Wins And Challenges 
 
 ### Wins
-- A requirement for this project was that we self-teach and use a technology we had not used before. We decided to implement TypeScript. One key win was our ability to learn TypeScript in a very short period and use it in a complex web app.
+- A requirement for this project was that we self-teach and use a technology we had not used before. We decided to implement TypeScript. One key win was our ability to learn TypeScript in a very short period of time and use it within a complex web application.
 - We also used React' Context API and this made for a fairly streamlined data model.
 - It was a great experience using React's MUI library for beautiful, standardized components.
 
