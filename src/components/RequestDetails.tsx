@@ -1,11 +1,21 @@
-import React from "react";
+import { useContext, MouseEvent } from "react";
 import '../css/RequestDetails.css';
 import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
+import { PuzzleContext } from "../Context";
 
-const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
+const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
 
-  console.log({ closeModal, id, pieceCount, image, category, missingPieces, price, quality })
+  const { updatePuzzleStatus } = useContext(PuzzleContext);
+
+  const handleAcceptRequest = (event: MouseEvent) => {
+    updatePuzzleStatus('accepted', requestID)
+    closeModal?.(event)
+  }
+  const handleDenyRequest = (event: MouseEvent) => {
+    updatePuzzleStatus('declined', requestID)
+    closeModal?.(event)
+  }
 
   return (
     <section className='puzzle-details'>
@@ -36,8 +46,8 @@ const RequestDetails = ({ closeModal, id, pieceCount, image, category, missingPi
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
         <div className='request-buttons'>
-          <button className='request-button'>Accept</button>
-          <button className='request-button'>Deny</button>
+          <button className='request-button' onClick={event => handleAcceptRequest(event)}>Accept</button>
+          <button className='request-button' onClick={event => handleDenyRequest(event)}>Deny</button>
         </div>
       </div>
     </section>

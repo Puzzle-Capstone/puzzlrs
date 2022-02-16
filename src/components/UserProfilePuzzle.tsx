@@ -8,7 +8,7 @@ import { IUserPuzzleImage } from '../interfaces';
 
 Modal.setAppElement('#root');
 
-const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id, type }: IUserPuzzleImage) => {
+const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, quality, id, type, requestID }: IUserPuzzleImage) => {
 
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -27,6 +27,7 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
       return <UserSentRequestDetails
         closeModal={closeModal}
         id={id}
+        // requestID={requestID}
         pieceCount={pieceCount}
         image={image}
         category={category}
@@ -38,6 +39,7 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
       return <RequestDetails
         closeModal={closeModal}
         id={id}
+        requestID={requestID}
         pieceCount={pieceCount}
         image={image}
         category={category}

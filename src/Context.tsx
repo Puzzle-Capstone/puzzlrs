@@ -63,6 +63,25 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 		console.log(data)
 	}
 
+	const updatePuzzleStatus = async (status: string, requestID: number | undefined) => {
+		try {
+			const res = await fetch('https://puzzlrs.herokuapp.com/api/v1/requests/' + requestID, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					status: status
+				})
+			})
+			const { data } = await res.json()
+			console.log(data)
+			refreshData(user.id)
+		} catch(err) {
+			console.log(err)
+		}
+	}
+
 	const logIn = (userId: string) => {
 		fetchUser(userId)
 		setLoggedIn(true)
@@ -79,7 +98,7 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 
 
 	return (
-		<PuzzleContext.Provider value={{ refreshData, puzzles, loggedIn, logIn, user, requestPuzzle }}>
+		<PuzzleContext.Provider value={{ refreshData, puzzles, loggedIn, logIn, user, requestPuzzle, updatePuzzleStatus }}>
 			{children}
 		</PuzzleContext.Provider>
 	)

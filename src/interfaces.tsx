@@ -36,8 +36,8 @@ export interface IPuzzleContext {
 	loggedIn: boolean
 	user: IUserObject
 	logIn: (user: string) => void
-	// userID: number | string
 	requestPuzzle: (id: string | number) => void
+	updatePuzzleStatus: (status: string, requestID: number | undefined) => void
 }
 
 export interface IPuzzleProps {
@@ -49,6 +49,7 @@ export interface IPuzzleProps {
   missingPieces: string
   price: string 
   quality: string
+	requestID?: number
 }
 
 export interface IUserPuzzleImage {
@@ -60,6 +61,7 @@ export interface IUserPuzzleImage {
   quality: string
   id: number | string
 	type?: string
+	requestID: number
 }
 
 export interface IUserPuzzles {

@@ -3,7 +3,7 @@ import { IPuzzleProps } from '../interfaces'
 import { MouseEvent, useContext } from 'react'
 import { PuzzleContext } from '../Context';
 
-const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
+const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
 
   const { refreshData, user } = useContext(PuzzleContext)
 

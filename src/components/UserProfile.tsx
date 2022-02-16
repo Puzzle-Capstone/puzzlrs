@@ -10,6 +10,7 @@ const UserProfile = () => {
     user.puzzles.map(puzzle => {
       return <UserProfilePuzzle
         id={puzzle.id}
+        requestID={puzzle.id}
         image={puzzle.image}
         key={puzzle.id}
         category={puzzle.category}
@@ -31,6 +32,7 @@ const UserProfile = () => {
       return foundPuzzle && <UserProfilePuzzle
         id={foundPuzzle.id}
         image={foundPuzzle.image}
+        requestID={request.id}
         key={index}
         category={foundPuzzle.category}
         missingPieces={foundPuzzle.missingPieces}
@@ -47,6 +49,7 @@ const UserProfile = () => {
       return foundPuzzle && <UserProfilePuzzle
         id={foundPuzzle.id}
         image={foundPuzzle.image}
+        requestID={request.id}
         key={index}
         category={foundPuzzle.category}
         missingPieces={foundPuzzle.missingPieces}
