@@ -1,12 +1,12 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Nav from './Nav';
 import Home from './Home';
 import UserProfile from './UserProfile';
 import PuzzleContainer from './PuzzleContainer';
 import AddPuzzleForm from './AddPuzzleForm';
-import '../css/App.css';
+import ErrorPage from './ErrorPage';
 import { PuzzleProvider } from '../Context';
+import '../css/App.css';
 
 function App() {
   return (
@@ -27,6 +27,11 @@ function App() {
           } />
           <Route path='/add-puzzle' element={
             <AddPuzzleForm />
+          } />
+          <Route path='/:invalid' element={
+            <div className='flex'>
+              <ErrorPage message="Oops! You've made your way to an invalid URL."/>
+            </div>
           } />
         </Routes>
       </div>
