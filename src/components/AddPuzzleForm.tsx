@@ -6,6 +6,15 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import ErrorPage from './ErrorPage';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
 import '../css/AddPuzzleForm.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#5D736B',
+			},
+		},
+	})
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
@@ -13,6 +22,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 ) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
 
 const AddPuzzleForm = () => {
   const { user, refreshData, error } = useContext(PuzzleContext);
@@ -137,6 +147,7 @@ const AddPuzzleForm = () => {
       <section className='form-container'>
         <form>
           <h3 className='form-title'>Submit your puzzle</h3>
+          <ThemeProvider theme={theme}>
           <FormControl variant='standard' error={categoryHasError}>
             <InputLabel>Category</InputLabel>
             <Select
@@ -206,6 +217,7 @@ const AddPuzzleForm = () => {
               setPieceCount(event.target.value);
             }}
           />
+          </ThemeProvider>
           <label className='upload-photo-button' id='uploadPhotoButton'>
             upload photo
             <input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)} />

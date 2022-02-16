@@ -4,8 +4,19 @@ import { ICleanedPuzzleObject } from '../interfaces';
 import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
 import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import Puzzle from './Puzzle';
+import { PuzzleContext } from '../Context';
+import { ICleanedPuzzleObject } from '../interfaces';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ErrorPage from './ErrorPage';
 import '../css/PuzzleContainer.css';
+
+const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#5D736B',
+			},
+		},
+	})
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
@@ -90,6 +101,7 @@ const PuzzleContainer = () => {
     </div> :
     <section className='puzzle-page'>
       <div className='filters'>
+        <ThemeProvider theme={theme}>
         <FormControl variant="standard">
           <InputLabel className='input-label'>Category</InputLabel>
           <Select
@@ -123,6 +135,7 @@ const PuzzleContainer = () => {
             {qualityOptions}
           </Select>
         </FormControl>
+        </ThemeProvider>
         <button onClick={handleSearch}>Search</button>
       </div>
       <section className='puzzles-container'>

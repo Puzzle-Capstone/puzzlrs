@@ -11,7 +11,6 @@
 .hamburger {
 	display: none;
 	cursor: pointer;
-	/* margin: 2em .7em 0 0; */
 }
 
 .hamburger-active {
@@ -22,7 +21,7 @@
   display: block;
   width: 50px;
   height: 4px;
-  margin: 10px auto;
+  margin: 10px 0;
   border-radius: .3em;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -54,13 +53,13 @@
 	position: absolute;
 	right: 0;
 	bottom: 30;
-	z-index: 1;
+	z-index: 2;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
 	min-height: 100vh;
 	width: 100vw;
-	margin-top: 25px;
+	margin-top: 45px;
 }
 
 div .nav-item {
@@ -70,5 +69,6 @@ div .nav-item {
 @media only screen and (max-width: 713px) {
   .hamburger {
     display: block;
+		margin: 4em 0em 1em 2.5em;
   }
 }

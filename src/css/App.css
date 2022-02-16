@@ -3,12 +3,22 @@
   margin: 0;
   padding: 0;
   border: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+
+button:hover {
+    transition: .5s ease-in-out;
+    transform: scale(1.1);
 }
 
 .App {
   background-image: linear-gradient(to left top, #474859, #586272, #6a7d8b, #8098a2, #99b4b8, #a8c1bf, #bacec6, #cddbcf, #d9dccd, #e4dccf, #edddd5, #f1dfde);
   min-height: 100vh;
   width: 100vw;
+  padding: 0 0 5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
  
 .flex {

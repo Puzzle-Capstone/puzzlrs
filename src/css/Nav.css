@@ -14,8 +14,12 @@ a {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 5em;
   color: #5D736B;
+}
+
+h1:hover {
+  color: #474E4A;
 }
 
 .nav-buttons button {
@@ -27,6 +31,7 @@ h1 {
   font-size: 15px;
   cursor: pointer;
   margin: .5em;
+  font-weight: bold;
 }
 
 .nav-buttons button:hover {
@@ -55,13 +60,37 @@ h1 {
 
 
 @media only screen and (max-width: 713px) {
+
+  h1 {
+    margin-top: .3em;
+  }
+
   .link {
     display: none;
   }
 
-  header {
+ .not-logged-in {
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    margin-bottom: 3em
   }
+
+  .logged-in {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5em;
+  }
+
+  .nav-buttons div {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .login-dropdown {
+    width: 15em;
+    margin-right: 1em;
+  }
+
 }

@@ -41,6 +41,14 @@ export interface IPuzzleContext {
 	error: boolean
 }
 
+
+export interface ThemeOptions {
+	status?: {
+		danger?: string;
+	};
+}
+
+
 export interface IPuzzleProps {
   closeModal?: (event: React.MouseEvent) => void
   id: string | number 

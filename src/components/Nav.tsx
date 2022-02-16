@@ -6,6 +6,15 @@ import { usernameOptions, usernames } from "../utils";
 import Hamburger from "./Hamburger";
 import ErrorPage from './ErrorPage';
 import '../css/Nav.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#5D736B',
+			},
+		},
+	})
 
 const Nav = () => {
   const [username, setUsername] = useState('')
@@ -19,17 +28,19 @@ const Nav = () => {
 
   const renderNavDisplay = !loggedIn ?
     <div>
-      <FormControl variant="standard">
-        <InputLabel>Log In</InputLabel>
-        <Select
-          className='login-dropdown'
-          name='login'
-          value={username}
-          onChange={event => handleLogIn(event.target.value)}
-        >
-          {usernameOptions}
-        </Select>
-      </FormControl>
+      <ThemeProvider theme={theme}>
+        <FormControl variant="standard">
+          <InputLabel>Log In</InputLabel>
+          <Select
+            className='login-dropdown'
+            name='login'
+            value={username}
+            onChange={event => handleLogIn(event.target.value)}
+          >
+            {usernameOptions}
+          </Select>
+        </FormControl>
+      </ThemeProvider>
     </div> :
     <div>
       <Link to='/puzzles' className='link'><button>View Puzzles</button></Link>
@@ -39,12 +50,19 @@ const Nav = () => {
     </div>
 
   return (
-    <header>
-      <Link to='/'><h1>Puzzlrs</h1></Link>
+    !loggedIn ? 
+    <header className='not-logged-in'>
+      <Link to='/'><h1>puzzlrs</h1></Link>
       <div className='nav-buttons'>
         {renderNavDisplay}
       </div>
-    </header>
+    </header> : 
+    <header className='logged-in'>
+    <Link to='/'><h1>puzzlrs</h1></Link>
+    <div className='nav-buttons'>
+      {renderNavDisplay}
+    </div>
+  </header>
   )
 }
 

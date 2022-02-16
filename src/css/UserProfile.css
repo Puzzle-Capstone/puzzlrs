@@ -6,25 +6,25 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* width: 85vw; */
-  /* height: 100vh; */
   margin-bottom: 3em;
 }
 
 .user-profile h2 {
   padding: 0.5em 0;
-  margin: 0.5em 1.5em;
+  margin: 0.5em 2.5em;
   font-size: 2.5em;
+  width: 40vw;
 }
 
 .profile-column-container {
   display: flex;
   justify-content: space-around;
-  margin: 0 3em;
+  margin: 0 4em;
 }
 
 .profile-column {
   background-color: #F2EEEA;
+  box-shadow: 0 10px 14px rgb(34 15 15 / 13%), 0 4px 14px rgb(0 0 0 / 11%);
   width: 30vw;
   height: 65vh;
   border-radius: 10px;
@@ -44,28 +44,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  margin-top: 1em;
+  padding-top: 1em;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .profile-column-container {
     flex-direction: column;
     height: fit-content;
   }
 
   .profile-column {
-    width: 100%;
+    width: 90vw;
     margin-bottom: 3em;
     height: fit-content;
   }
 
   .user-puzzle-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+    grid-gap: 1em;
     justify-items: center;
-    padding: 0 1em;
   }
 
   .center {

@@ -9,11 +9,12 @@
 }
 
 .piece-count {
-	margin: .5em .5em .5em 0;
-	text-align: right;
+	margin: .8em .5em .8em 0;
+	text-align: left;
 }
 
 .individual-puzzle img {
+	width: 100%;
 	height: 100%;
 	border-radius: 10px;
 }
