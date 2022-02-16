@@ -3,13 +3,13 @@ import { IPuzzleProps } from '../interfaces'
 import { MouseEvent, useContext } from 'react'
 import { PuzzleContext } from '../Context';
 
-const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
+const UserPuzzleModal = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
 
   const { refreshData, user } = useContext(PuzzleContext)
 
-  const deleteRequest = async () => {
+  const deletePuzzle = async () => {
     try {
-      const deletedPuzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/requests/' + requestID, {
+      const deletedPuzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles/' + id, {
         method: 'DELETE'
       })
       const { data } = await deletedPuzzleData.json()
@@ -19,8 +19,8 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
     }
   }
 
-  const handleRequestDelete = (event: MouseEvent) => {
-    deleteRequest()
+  const handlePuzzleDelete = (event: MouseEvent) => {
+    deletePuzzle()
     closeModal?.(event)
   }
 
@@ -53,11 +53,11 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
         <div className='request-buttons'>
-          <button className='request-button' onClick={event => handleRequestDelete(event)}>Delete Request</button>
+          <button className='request-button' onClick={event => handlePuzzleDelete(event)}>Delete</button>
         </div>
       </div>
     </section>
   )
 }
 
-export default UserSentRequestDetails;
+export default UserPuzzleModal;

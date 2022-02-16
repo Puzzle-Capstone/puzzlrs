@@ -3,6 +3,7 @@ import '../css/UserProfilePuzzle.css';
 import Modal from 'react-modal';
 import RequestDetails from './RequestDetails'
 import UserSentRequestDetails from './UserSentRequestDetails'
+import UserPuzzleModal from './UserPuzzleModal'
 import { useState, MouseEvent } from 'react'
 import { IUserPuzzleImage } from '../interfaces';
 
@@ -23,11 +24,22 @@ const UserProfilePuzzle = ({ image, category, missingPieces, price, pieceCount, 
   }
 
   const findCorrectModal = () => {
-    if (type === 'user-puzzles' || type === 'sent-requests') {
+    if (type === 'user-puzzles') {
+      return <UserPuzzleModal
+        closeModal={closeModal}
+        id={id}
+        pieceCount={pieceCount}
+        image={image}
+        category={category}
+        quality={quality}
+        missingPieces={missingPieces}
+        price={price}
+      />
+    } else if (type === 'sent-requests') {
       return <UserSentRequestDetails
         closeModal={closeModal}
         id={id}
-        // requestID={requestID}
+        requestID={requestID}
         pieceCount={pieceCount}
         image={image}
         category={category}
