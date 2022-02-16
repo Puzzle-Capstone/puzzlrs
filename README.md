@@ -49,7 +49,7 @@ Scroll down for screenshots:
 - [View Puzzles Page](#View-Puzzles-Page)
 - [Add Puzzle Form](#Add-Puzzle-Form)
 - [User Profile](#User-Profile)
-- [Received Emails](#Received Emails)
+- [Received Emails](#Received-Emails)
 - [Error Handling](#Error-Handling)
 - [Responsive Design](#Responsive-Design)
 
