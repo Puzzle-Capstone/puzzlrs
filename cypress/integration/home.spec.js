@@ -7,12 +7,18 @@ describe('home page', () => {
 			})
 			cy.visit('http://localhost:3000/');
 		})
+		cy.fixture('./user.json').then((user) => {
+			cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
+				statusCode: 200,
+				body: user
+			})
+		})
 	})
 	
 	it('should visit the home page on load and show log in dropdown and the information on the site', () => {
-		cy.get('h1').contains('Puzzlrs')
+		cy.get('h1').contains('puzzlrs')
 		.get('h2').contains('Tired of your puzzles? Trade with people like you!')
-		.get('button').contains('View Puzzles')
+		.get('button').contains('View Available Puzzles')
 		.get('.MuiFormControl-root').contains('Log In')
 	})
 	
