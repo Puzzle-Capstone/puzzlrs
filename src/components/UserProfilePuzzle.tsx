@@ -1,11 +1,10 @@
-import React from 'react';
-import '../css/UserProfilePuzzle.css';
+import { useState, MouseEvent } from 'react'
 import Modal from 'react-modal';
+import { IUserPuzzleImage } from '../interfaces';
 import UserReceivedRequestModal from './UserReceivedRequestModal'
 import UserSentRequestModal from './UserSentRequestModal'
 import UserPuzzleModal from './UserPuzzleModal'
-import { useState, MouseEvent } from 'react'
-import { IUserPuzzleImage } from '../interfaces';
+import '../css/UserProfilePuzzle.css';
 
 Modal.setAppElement('#root');
 

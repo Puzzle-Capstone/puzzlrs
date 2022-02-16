@@ -1,17 +1,21 @@
-import React from "react";
-import '../css/PuzzleGridModal.css';
+import { MouseEvent, useContext, useState} from 'react'
 import { IoClose } from "react-icons/io5";
-import { IPuzzleProps } from '../interfaces'
-import { MouseEvent, useContext } from 'react'
 import { PuzzleContext } from "../Context";
+import { IPuzzleProps } from '../interfaces'
+import '../css/PuzzleGridModal.css';
 
 const PuzzleGridModal = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
   const { requestPuzzle, refreshData, user } = useContext(PuzzleContext);
+  const [requestError, setRequestError] = useState('');
 
   const handleRequestPuzzle = (event: MouseEvent) => {
-    requestPuzzle(id)
-    refreshData(user.id)
-    closeModal?.(event)
+    if (user.username) {
+      requestPuzzle(id)
+      refreshData(user.id)
+      closeModal?.(event)
+    } else {
+      setRequestError('You are not logged in! Request failed')
+    }
   }
 
   return (
@@ -43,6 +47,7 @@ const PuzzleGridModal = ({ closeModal, id, pieceCount, image, category, missingP
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
         <button className='submit-button' onClick={event => handleRequestPuzzle(event)}>Request Puzzle</button>
+        <p>{requestError}</p>
       </div>
     </section>
   )

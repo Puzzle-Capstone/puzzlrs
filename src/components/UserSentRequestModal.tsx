@@ -1,7 +1,7 @@
-import { IoClose } from "react-icons/io5";
-import { IPuzzleProps } from '../interfaces'
 import { MouseEvent, useContext } from 'react'
+import { IoClose } from "react-icons/io5";
 import { PuzzleContext } from '../Context';
+import { IPuzzleProps } from '../interfaces'
 
 const UserSentRequestModal = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality, requestID }: IPuzzleProps) => {
 
