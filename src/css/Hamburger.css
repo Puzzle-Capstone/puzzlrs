@@ -59,7 +59,7 @@
 	align-items: flex-end;
 	min-height: 100vh;
 	width: 100vw;
-	margin-top: 25px;
+	margin-top: 45px;
 }
 
 div .nav-item {
@@ -69,6 +69,6 @@ div .nav-item {
 @media only screen and (max-width: 713px) {
   .hamburger {
     display: block;
-		margin: 4em 0em 3em 2.5em;
+		margin: 4em 0em 1em 2.5em;
   }
 }
