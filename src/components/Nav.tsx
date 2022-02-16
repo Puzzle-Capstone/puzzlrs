@@ -43,7 +43,7 @@ const Nav = () => {
 
   return (
     <header>
-      <Link to='/'><h1>Puzzlrs</h1></Link>
+      <Link to='/'><h1>puzzlrs</h1></Link>
       <div className='nav-buttons'>
         {renderNavDisplay}
       </div>

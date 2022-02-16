@@ -25,6 +25,7 @@
 
 .profile-column {
   background-color: #F2EEEA;
+  box-shadow: 0 10px 14px rgb(34 15 15 / 13%), 0 4px 14px rgb(0 0 0 / 11%);
   width: 30vw;
   height: 65vh;
   border-radius: 10px;

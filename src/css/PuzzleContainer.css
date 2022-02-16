@@ -8,6 +8,7 @@
 
 .puzzle-page {
 	background: #F2EEEA;
+	box-shadow: 0 10px 14px rgb(34 15 15 / 13%), 0 4px 14px rgb(0 0 0 / 11%);
 	min-height: 80vh;
 	margin: 0 5em;
 	display: flex;
