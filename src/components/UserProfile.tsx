@@ -5,7 +5,7 @@ import ErrorPage from './ErrorPage';
 import '../css/UserProfile.css';
 
 const UserProfile = () => {
-  const { user, puzzles } = useContext(PuzzleContext)
+  const { user, puzzles, error } = useContext(PuzzleContext)
 
   const findPuzzleImage = (puzzleId: number) => {
     return puzzles.find(puzzle => puzzle.id === puzzleId.toString())
@@ -61,37 +61,41 @@ const UserProfile = () => {
       />
     })
 
-    const renderUserProfile = user.username ? 
-    <section className='user-profile'>
-      <h2>{`Hi, ${user.username}!`}</h2>
-      <div className='profile-column-container'>
-        <section className='profile-column'>
-          <p>Your Puzzles</p>
-          <div className='user-puzzle-container'>
-            {displayUserPuzzles}
-          </div>
-        </section>
-        <section className='profile-column center'>
-          <p>Your Sent Requests</p>
-          <div className='user-puzzle-container'>
-            {displaySentRequests}
-          </div>
-        </section>
-        <section className='profile-column'>
-          <p>Received Requests</p>
-          <div className='user-puzzle-container'>
-            {displayReceivedRequests}
-          </div>
-        </section>
-      </div>
-    </section> : 
+  const renderUserProfile = error ?
     <div className='flex'>
-      <ErrorPage message='You are not logged in! Click above or return home.'/>
-    </div>
+      <ErrorPage message="We're having issues loading, try again later!" />
+    </div> :
+    user.username ?
+      <section className='user-profile'>
+        <h2>{`Hi, ${user.username}!`}</h2>
+        <div className='profile-column-container'>
+          <section className='profile-column'>
+            <p>Your Puzzles</p>
+            <div className='user-puzzle-container'>
+              {displayUserPuzzles}
+            </div>
+          </section>
+          <section className='profile-column center'>
+            <p>Your Sent Requests</p>
+            <div className='user-puzzle-container'>
+              {displaySentRequests}
+            </div>
+          </section>
+          <section className='profile-column'>
+            <p>Received Requests</p>
+            <div className='user-puzzle-container'>
+              {displayReceivedRequests}
+            </div>
+          </section>
+        </div>
+      </section> :
+      <div className='flex'>
+        <ErrorPage message='You are not logged in! Click above or return home.' />
+      </div>
 
   return (
     <>
-    {renderUserProfile}
+      {renderUserProfile}
     </>
   )
 }

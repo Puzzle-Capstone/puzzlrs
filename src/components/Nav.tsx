@@ -4,11 +4,12 @@ import { PuzzleContext } from '../Context';
 import { Select, InputLabel, FormControl } from "@mui/material";
 import { usernameOptions, usernames } from "../utils";
 import Hamburger from "./Hamburger";
+import ErrorPage from './ErrorPage';
 import '../css/Nav.css';
 
 const Nav = () => {
   const [username, setUsername] = useState('')
-  const { loggedIn, logIn } = useContext(PuzzleContext)
+  const { loggedIn, logIn, error } = useContext(PuzzleContext)
 
   const handleLogIn = (username: string) => {
     setUsername(username)

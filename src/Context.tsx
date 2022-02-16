@@ -20,7 +20,6 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	const fetchPuzzles = async () => {
 		try {
 			const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
-			// console.log(puzzleData.ok)
 			if (puzzleData.ok) {
 				const { data } = await puzzleData.json()
 				setPuzzles(data.map((puzzle: IPuzzleObject) => {
@@ -40,8 +39,6 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 			}
 		} catch (err) {
 			setError(true)
-			console.log(error)
-			// <ErrorPage message="Oops! We're having an issue loading, try again later." />
 		}
 	}
 
@@ -49,17 +46,21 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 		if (id) {
 			try {
 				const userData = await fetch(`https://puzzlrs.herokuapp.com/api/v1/users/${id}`)
-				const { data } = await userData.json()
-				const userDetails: IUserObject = {
-					id: data.id,
-					username: data.attributes.username,
-					puzzles: data.attributes.puzzles,
-					sentRequests: data.attributes.sent_requests,
-					receivedRequests: data.attributes.received_requests
+				if (userData.ok) {
+					const { data } = await userData.json()
+					const userDetails: IUserObject = {
+						id: data.id,
+						username: data.attributes.username,
+						puzzles: data.attributes.puzzles,
+						sentRequests: data.attributes.sent_requests,
+						receivedRequests: data.attributes.received_requests
+					}
+					setUser(userDetails)
+				} else {
+					throw new Error('Failed to fetch.')
 				}
-				setUser(userDetails)
 			} catch (err) {
-				console.log(err)
+				setError(true)
 			}
 		}
 	}

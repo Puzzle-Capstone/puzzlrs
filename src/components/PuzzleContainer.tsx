@@ -86,7 +86,7 @@ const PuzzleContainer = () => {
 
   const renderPuzzleGrid = fetchedPuzzles.error ?
     <div className='flex'>
-      <ErrorPage message="We're having an issue loading. Try again later!" />
+      <ErrorPage message="We're having issues loading, try again later!" />
     </div> :
     <section className='puzzle-page'>
       <div className='filters'>

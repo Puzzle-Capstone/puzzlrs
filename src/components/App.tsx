@@ -18,9 +18,9 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={
-            <div className='flex'>
-              <Home />
-            </div>
+              <div className='flex'>
+                <Home />
+              </div>
           } />
           <Route path='/user-profile' element={
             <UserProfile />
