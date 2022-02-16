@@ -20,11 +20,14 @@
   - ![JSX](https://img.shields.io/badge/-jsx-302f2f?logo=javascript&logoColor=9428cb&style=for-the-badge)
   - ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
   - ![Cypress](https://img.shields.io/badge/-cypress-black?logo=cypress&logoColor=white&style=for-the-badge)
+  - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
   - ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+  - ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=material-ui&logoColor=white)
   - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
   - ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
   - ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
   - ![VSCode](https://img.shields.io/badge/-VSCode-2C2C32?logo=visual-studio-code&logoColor=007ACC&style=for-the-badge)
+  - ![CircleCI](https://img.shields.io/badge/circle%20ci-%23161616.svg?style=for-the-badge&logo=circleci&logoColor=white)
 
 ## Deployment
 
