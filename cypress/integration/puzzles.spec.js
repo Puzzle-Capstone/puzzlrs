@@ -29,14 +29,14 @@ describe('Puzzle grid tests', () => {
     cy.get('button').click()
     .get('h1').contains('Puzzlrs')
     .get('#mui-component-select-login').click()
-    .get('[data-value="1"]').click()
+    .get('[data-value="Drew"]').click()
   })
 
   it('shows header with nav buttons once logged in', () => {
     cy.get('button').click()
     .get('h1').contains('Puzzlrs')
     .get('#mui-component-select-login').click()
-    .get('[data-value="1"]').click()
+    .get('[data-value="Drew"]').click()
 
     .get(':nth-child(1) > button').contains('View Puzzles')
     .get(':nth-child(2) > button').contains('Add Puzzle')
