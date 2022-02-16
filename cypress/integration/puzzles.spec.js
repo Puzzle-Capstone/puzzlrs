@@ -6,7 +6,13 @@ describe('Puzzle grid tests', () => {
         body: allPuzzles
       })
     cy.visit('http://localhost:3000/');
-	})
+	  })
+    cy.fixture('./user.json').then((user) => {
+			cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
+				statusCode: 200,
+				body: user
+			})
+		})
   })
 
   // Implementation not yet written:
@@ -27,16 +33,16 @@ describe('Puzzle grid tests', () => {
 
   it('shows header with Log In dropdown that updates & logs in with user interaction', () => {
     cy.get('button').click()
-    .get('h1').contains('Puzzlrs')
+    .get('h1').contains('puzzlrs')
     .get('#mui-component-select-login').click()
-    .get('[data-value="1"]').click()
+    .get('[data-value="Micha"]').click()
   })
 
   it('shows header with nav buttons once logged in', () => {
     cy.get('button').click()
-    .get('h1').contains('Puzzlrs')
+    .get('h1').contains('puzzlrs')
     .get('#mui-component-select-login').click()
-    .get('[data-value="1"]').click()
+    .get('[data-value="Micha"]').click()
 
     .get(':nth-child(1) > button').contains('View Puzzles')
     .get(':nth-child(2) > button').contains('Add Puzzle')
@@ -63,13 +69,17 @@ describe('Puzzle grid tests', () => {
     .get('.piece-count').contains('500 pieces')
   })
 
-  // it.only('displays modal with all correct details when individual puzzle is clicked', () => {
-  //   cy.get('button').click()
-  //   .get(':nth-child(1) > .individual-puzzle').click()
-  //   .get('.puzzle-details')
-
-    
-  // })
+  it('displays modal with all correct details when individual puzzle is clicked', () => {
+    cy.get('button').click()
+    .get(':nth-child(1) > .individual-puzzle').click()
+    .get('.puzzle-details')
+    .get('.individual-puzzle-details > :nth-child(2) > :nth-child(1)').contains('Poor')
+    .get('.individual-puzzle-details > :nth-child(2) > :nth-child(2)').contains('Animals')
+    .get('.individual-puzzle-details > :nth-child(2) > :nth-child(3)').contains('32.99')
+    .get('.individual-puzzle-details > :nth-child(2) > :nth-child(4)').contains('2')
+    .get('.puzzle-image-pieces > h4').contains('500')
+    .get('.submit-button').contains('Request Puzzle')
+  })
 
   it('updates filter dropdowns with user interaction', () => {
     cy.get('button').click()
@@ -91,10 +101,9 @@ describe('Puzzle grid tests', () => {
     .get('#mui-component-select-category').click()
     .get('[data-value="Animals"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    //change number once intercept is working
-    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+    .get('.puzzles-container > section').should('have.length', 1)
+
   })
 
   it('filters by piece count if just piece count is input', () => {
@@ -102,10 +111,9 @@ describe('Puzzle grid tests', () => {
     .get('#mui-component-select-pieceCount').click()
     .get('[data-value="500"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    //change number once intercept is working
-    .get(':nth-child(4) > .individual-puzzle').should('not.exist');
+    .get(':nth-child(2) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/5280376.PT02_1800x1800.jpg?v=1638228991')
+    .get('.puzzles-container > section').should('have.length', 2)
   })
 
   it('filters by quality if just quality is input', () => {
@@ -113,22 +121,19 @@ describe('Puzzle grid tests', () => {
     .get('#mui-component-select-quality').click()
     .get('[data-value="Poor"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    //change number once intercept is working
-    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+    .get('.puzzles-container > section').should('have.length', 1)
   })
 
-  it('filters by category and piece count if just those two are selected', () => {
+  it('filters by category and quality if just those two are selected', () => {
     cy.get('button').click()
     .get('#mui-component-select-category').click()
     .get('[data-value="Animals"]').click()
     .get('#mui-component-select-quality').click()
     .get('[data-value="Poor"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+    .get('.puzzles-container > section').should('have.length', 1)
   })
 
   it('filters by piece count and quality if just those two are selected', () => {
@@ -138,22 +143,20 @@ describe('Puzzle grid tests', () => {
     .get('#mui-component-select-quality').click()
     .get('[data-value="Poor"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+    .get('.puzzles-container > section').should('have.length', 1)
   })
 
 
-  it('filters by category and quality if just those two are selected', () => {
+  it('filters by category and piece count if just those two are selected', () => {
     cy.get('button').click()
     .get('#mui-component-select-category').click()
     .get('[data-value="Animals"]').click()
-    .get('#mui-component-select-quality').click()
-    .get('[data-value="Poor"]').click()
+    .get('#mui-component-select-pieceCount').click()
+    .get('[data-value="500"]').click()
     .get('button').click()
-
     .get(':nth-child(1) > .individual-puzzle > img').should('have.attr', 'src', 'https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053')
-    .get(':nth-child(2) > .individual-puzzle').should('not.exist');
+    .get('.puzzles-container > section').should('have.length', 1)
   })
   
 })

@@ -26,9 +26,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress": "./node_modules/.bin/cypress open"
+    "test": "start-server-and-test start http://localhost:3000 cy:run",
+    "cy:run": "cypress run --key f1ed7f97-9812-43e0-a798-2a4ce27c4979",
+    "cypress": "./node_modules/.bin/cypress open" 
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@types/react-modal": "^3.13.1",
     "cypress": "^9.4.1",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "start-server-and-test": "^1.14.0"
   }
 }
