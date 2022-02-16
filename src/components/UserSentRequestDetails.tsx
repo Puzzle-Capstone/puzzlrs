@@ -1,20 +1,22 @@
 import { IoClose } from "react-icons/io5";
 import { IPuzzleProps } from '../interfaces'
-import { MouseEvent, useEffect, useContext } from 'react'
+import { MouseEvent, useContext } from 'react'
 import { PuzzleContext } from '../Context';
 
 const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, missingPieces, price, quality }: IPuzzleProps) => {
 
-  const { fetchPuzzles } = useContext(PuzzleContext)
+  const { refreshData, user } = useContext(PuzzleContext)
 
-  const deletePuzzle = () => {
-    fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles/' + id, {
-      method: 'DELETE',
-    })
-      .then(res => res.json())
-      .then(() => fetchPuzzles())
-      .then(res => console.log(res))
-      .catch(err => console.log(err, 'error message'))
+  const deletePuzzle = async () => {
+    try {
+      const deletedPuzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles/' + id, {
+        method: 'DELETE'
+      })
+      const { data } = await deletedPuzzleData.json()
+      refreshData(user.id)
+    } catch(err) {
+      console.log(err)
+    }
   }
 
   const handlePuzzleDelete = (event: MouseEvent) => {
@@ -22,7 +24,6 @@ const UserSentRequestDetails = ({ closeModal, id, pieceCount, image, category, m
     closeModal?.(event)
   }
 
-  console.log('sent request modal')
   return (
     <section className='puzzle-details'>
       <div className='individual-puzzle-details'>

@@ -31,14 +31,13 @@ export interface ICleanedPuzzleObject {
 }
 
 export interface IPuzzleContext {
-	fetchPuzzles: () => void
+	refreshData: (id: string) => void
 	puzzles: ICleanedPuzzleObject[] 
 	loggedIn: boolean
 	user: IUserObject
 	logIn: (user: string) => void
-	userID: number | string
+	// userID: number | string
 	requestPuzzle: (id: string | number) => void
-  // addPuzzle: (newPuzzle: IPuzzleObject) => void
 }
 
 export interface IPuzzleProps {
