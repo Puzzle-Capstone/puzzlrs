@@ -24,6 +24,27 @@
 	padding: 1em 0;
 }
 
+.filters button {
+	background: #5D736B;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  margin: .5em;
+}
+
+.filters button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
+.filters button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}
+
 .puzzle-grid-dropdown {
 	min-width: 20vw;
 }

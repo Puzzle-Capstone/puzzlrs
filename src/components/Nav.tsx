@@ -7,13 +7,10 @@ import { PuzzleContext } from '../Context';
 import '../css/Nav.css';
 
 const Nav = () => {
-  // const [userId, setUserId] = useState('')
   const [username, setUsername] = useState('')
   const { loggedIn, logIn } = useContext(PuzzleContext)
 
   const handleLogIn = (username: string) => {
-    // const userID = usernames.indexOf(user) + 1
-    // setUserId(userId)
     setUsername(username)
     const userID = (usernames.indexOf(username) + 1).toString()
     console.log(userID)

@@ -89,7 +89,6 @@ const PuzzleContainer = () => {
     return (
       <section className='puzzle-page'>
         <div className='filters'>
-          {/* <h3>Available Puzzles</h3> */}
           <FormControl variant="standard">
             <InputLabel className='input-label'>Category</InputLabel>
             <Select
@@ -127,7 +126,6 @@ const PuzzleContainer = () => {
         </div>
         <section className='puzzles-container'>
           {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
-          {/* {allPuzzles} */}
         </section>
       </section>
     )
