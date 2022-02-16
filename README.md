@@ -43,10 +43,10 @@
 
 Scroll down for screenshots:
 - [Home Page](#Home-Page)
-- [Add Game Night](#Add-Game-Night)
-- [Add Game and Winner](#Add-Game-And-Winner)
-- [Games Page](#Games-Page)
-- [About Page](#About-Page)
+- [View Puzzles Page](#View-Puzzles-Page)
+- [Add Puzzle Form](#Add-Puzzle-Form)
+- [User Profile](#User-Profile)
+- [Received Emails](#Received Emails)
 - [Error Handling](#Error-Handling)
 - [Responsive Design](#Responsive-Design)
 
@@ -54,19 +54,19 @@ Scroll down for screenshots:
 
 
 
-### Add Game Night 
+### View Puzzles Page  
 
 
 
-### Add Game and Winner 
+### Add Puzzle Form  
 
 
 
-### Games Page 
+### User Profile 
 
 
 
-### About Page 
+### Received Emails 
 
 
 
@@ -98,7 +98,7 @@ Scroll down for screenshots:
     <tr>
         <td> Carly Collums <a href="https://github.com/ccollums">GH</td>
         <td> Kyra Bergsund <a href="https://github.com/kbergsund">GH</td>
-        <td> Ricardo Tover <a href="https://github.com/aburg15">GH</td>
+        <td> Ricardo Tover <a href="https://github.com/JRicardoT">GH</td>
     </tr>
 <td><img src="https://avatars.githubusercontent.com/u/86894344?v=4" alt="Carly Collums"
  width="150" height="auto" /></td>
