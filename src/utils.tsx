@@ -1,10 +1,10 @@
 import { MenuItem } from "@mui/material";
 
 const categories = ['Art', 'Animals', 'Food', 'Holidays', 'Miscellaneous', 'Mythical', 'Nature', 'People', 'Structures', 'Travel'];
-const missingPieces = ['1', '2', '3', '4', '5+'];
+const missingPieces = ['0', '1', '2', '3', '4', '5+'];
 const conditions = ['Poor', 'Fair', 'Good', 'Excellent']
 const pieceCount = ['500', '1000', '2000', '3000', '4000']
-export const usernames = ['Drew', 'Jeni', 'Erika', 'Priscilla', 'Beau', 'Micha', 'Chloe', 'Tovar', 'Kyra', 'Carly']
+export const usernames = ['Micha', 'Chloe', 'Tovar', 'Kyra', 'Carly']
 
 export const categoryOptions = categories.map(category => {
   return (

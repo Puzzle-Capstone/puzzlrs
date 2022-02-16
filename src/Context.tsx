@@ -6,7 +6,13 @@ const PuzzleContext = createContext({} as IPuzzleContext);
 const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	const [puzzles, setPuzzles] = useState<ICleanedPuzzleObject[]>([])
 	const [loggedIn, setLoggedIn] = useState(false)
-	const [user, setUser] = useState({} as IUserObject);
+	const [user, setUser] = useState({
+		id: '',
+		username: '',
+		puzzles: [],
+		sentRequests: [],
+		receivedRequests: []
+	} as IUserObject);
 
 	const fetchPuzzles = async () => {
 		try {
@@ -41,6 +47,7 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 					sentRequests: data.attributes.sent_requests,
 					receivedRequests: data.attributes.received_requests
 				}
+				console.log(userDetails)
 				setUser(userDetails)
 			} catch (err) {
 				console.log(err)
@@ -75,7 +82,6 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 				})
 			})
 			const { data } = await res.json()
-			console.log(data)
 			refreshData(user.id)
 		} catch(err) {
 			console.log(err)
@@ -95,6 +101,10 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	useEffect(() => {
 		refreshData(user.id)
 	}, [])
+
+	// useEffect(() => {
+	// 		localStorage.setItem("savedUser", JSON.stringify(user))
+	// }, [user])
 
 
 	return (

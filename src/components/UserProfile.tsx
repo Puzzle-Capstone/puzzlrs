@@ -1,10 +1,15 @@
-import UserProfilePuzzle from './UserProfilePuzzle';
-import '../css/UserProfile.css';
 import { useContext } from 'react'
 import { PuzzleContext } from '../Context';
+import UserProfilePuzzle from './UserProfilePuzzle';
+import ErrorPage from './ErrorPage';
+import '../css/UserProfile.css';
 
 const UserProfile = () => {
-  const { user, puzzles } = useContext(PuzzleContext)
+  const { user, puzzles, loggedIn } = useContext(PuzzleContext)
+
+  const findPuzzleImage = (puzzleId: number) => {
+    return puzzles.find(puzzle => puzzle.id === puzzleId.toString())
+  }
 
   const displayUserPuzzles =
     user.puzzles.map(puzzle => {
@@ -21,10 +26,6 @@ const UserProfile = () => {
         type='user-puzzles'
       />
     })
-
-  const findPuzzleImage = (puzzleId: number) => {
-    return puzzles.find(puzzle => puzzle.id === puzzleId.toString())
-  }
 
   const displaySentRequests =
     user.sentRequests.map((request, index) => {
@@ -60,7 +61,7 @@ const UserProfile = () => {
       />
     })
 
-  return (
+    const renderUserProfile = user.username ? 
     <section className='user-profile'>
       <h2>{`Hi, ${user.username}!`}</h2>
       <div className='profile-column-container'>
@@ -83,7 +84,15 @@ const UserProfile = () => {
           </div>
         </section>
       </div>
-    </section>
+    </section> : 
+    <div className='flex'>
+      <ErrorPage message='You are not logged in! Click above or return home.'/>
+    </div>
+
+  return (
+    <>
+    {renderUserProfile}
+    </>
   )
 }
 
