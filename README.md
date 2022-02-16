@@ -70,7 +70,11 @@ Scroll down for screenshots:
 
 
 ### Received Emails 
+<img width="700" alt="Screen Shot 2022-02-15 at 7 32 38 PM" src="https://user-images.githubusercontent.com/86894344/154185239-b38f07ac-3cdd-49ba-a327-21e931fd4aac.png">
 
+<img width="700" alt="Screen Shot 2022-02-15 at 7 32 28 PM" src="https://user-images.githubusercontent.com/86894344/154185248-c7006a17-3443-4f40-a3b1-83b5d9e25a4d.png">
+
+<img width="700" alt="Screen Shot 2022-02-15 at 7 32 21 PM" src="https://user-images.githubusercontent.com/86894344/154185251-8e5b0202-6a61-4be1-a7e2-6d1df26cdbfc.png">
 
 
 ### Error Handling 
