@@ -8,17 +8,23 @@ describe('home page', () => {
 			cy.visit('http://localhost:3000/');
 		})
 	})
-
+	
 	it('should visit the home page on load and show log in dropdown and the information on the site', () => {
 		cy.get('h1').contains('Puzzlrs')
 		.get('h2').contains('Tired of your puzzles? Trade with people like you!')
 		.get('button').contains('View Puzzles')
 		.get('.MuiFormControl-root').contains('Log In')
 	})
-
+	
 	it('should be able to click the log in dropdown and see users', () => {
-		cy.get('.MuiInput-root').click()
-		.get('[data-value="Micha"]').click()
+		cy.fixture('./user.json').then((user) => {
+			cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
+				statusCode: 200,
+				body: user
+			})
+			cy.get('.MuiInput-root').click()
+			.get('[data-value="Micha"]').click()
+		})
 	})
 
 	it('should be able to click a user in the dropdown and then see the nav buttons populate', () => {
