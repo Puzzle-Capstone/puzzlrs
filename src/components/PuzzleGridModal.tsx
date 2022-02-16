@@ -24,8 +24,10 @@ const PuzzleGridModal = ({ closeModal, id, pieceCount, image, category, missingP
         <div className='puzzle-image-pieces'>
           <img className='puzzle-detail-image' src={image} alt={category + 'puzzle'} />
           <h4>{pieceCount} pieces</h4>
+          <button className='request-button' onClick={event => handleRequestPuzzle(event)}>Request Puzzle</button>
+          <p className='request-error-message'>{requestError}</p>
         </div>
-        <div>
+        <div className='puzzle-details-modal'>
           <div className='paragraphs'>
             <p className='bold'>Quality: </p>
             <p>{quality}</p>
@@ -44,11 +46,7 @@ const PuzzleGridModal = ({ closeModal, id, pieceCount, image, category, missingP
           </div>
         </div>
       </div>
-      <div className='button-icon-flex'>
-        <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
-        <button className='submit-button' onClick={event => handleRequestPuzzle(event)}>Request Puzzle</button>
-        <p>{requestError}</p>
-      </div>
+      <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
     </section>
   )
 }
