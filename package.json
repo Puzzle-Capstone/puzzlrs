@@ -54,6 +54,7 @@
   "devDependencies": {
     "@types/react-modal": "^3.13.1",
     "cypress": "^9.4.1",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "start-server-and-test": "^1.14.0"
   }
 }
