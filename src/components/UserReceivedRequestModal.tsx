@@ -23,8 +23,12 @@ const UserReceivedRequestModal = ({ closeModal, id, pieceCount, image, category,
         <div className='puzzle-image-pieces'>
           <img className='puzzle-detail-image' src={image} alt={category + 'puzzle'} />
           <h4>{pieceCount} pieces</h4>
+          <div className='request-buttons'>
+            <button className='request-button' onClick={event => handleAcceptRequest(event)}>Accept</button>
+            <button className='request-button' onClick={event => handleDenyRequest(event)}>Deny</button>
+          </div>
         </div>
-        <div>
+        <div className='puzzle-details-modal'>
           <div className='paragraphs'>
             <p className='bold'>Quality: </p>
             <p>{quality}</p>
@@ -45,10 +49,6 @@ const UserReceivedRequestModal = ({ closeModal, id, pieceCount, image, category,
       </div>
       <div className='button-icon-flex'>
         <IoClose className='x-icon' size={70} onClick={event => closeModal?.(event)} />
-        <div className='request-buttons'>
-          <button className='request-button' onClick={event => handleAcceptRequest(event)}>Accept</button>
-          <button className='request-button' onClick={event => handleDenyRequest(event)}>Deny</button>
-        </div>
       </div>
     </section>
   )
