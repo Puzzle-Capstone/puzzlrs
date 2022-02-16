@@ -4,8 +4,6 @@ import { ICleanedPuzzleObject } from '../interfaces';
 import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
 import { categoryOptions, qualityOptions, pieceCountOptions } from "../utils";
 import Puzzle from './Puzzle';
-import { PuzzleContext } from '../Context';
-import { ICleanedPuzzleObject } from '../interfaces';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ErrorPage from './ErrorPage';
 import '../css/PuzzleContainer.css';
