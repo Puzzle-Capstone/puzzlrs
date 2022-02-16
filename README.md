@@ -12,9 +12,9 @@
   - [Authors](#Authors)
 
 ## Introduction 
-Puzzlrs allows people who love puzzles to trade amongst each other. As puzzlers ourselves, we identified a shared experience: who wants to do a puzzle more than once? We all related to having multiple 'gently used' puzzles gathering dust in our homes while we were out buying new every time. We set out to provide an alternative, more sustainable solution. We envisioned a circuit of puzzles being sent around amongst a community of puzzle lovers. It's a win-win: everyone gets to enjoy doing new puzzles and there is less waste. And we all have emptier cabinets.
+Puzzlrs allows people who love puzzles to trade amongst each other. As puzzlrs ourselves, we identified a shared experience: who wants to do a puzzle more than once? We all related to having multiple 'gently used' puzzles gathering dust in our homes while we were out buying new every time. We set out to provide an alternative, more sustainable solution. We envisioned a circuit of puzzles being sent around amongst a community of puzzle lovers. It's a win-win: everyone gets to enjoy doing new puzzles and there is less waste. And we all have emptier cabinets.
 
-With puzzlrs, users can log in and upload their own puzzles available for trade. They can view the full list and filter by metrics like category, piece count, and quality. By clicking any given puzzle, they can request a trade. Whoever's puzzle is being requested then receives an email. Via their user profile, they can see all puzzles they've listed, any requests they've sent, and they can accept or deny and requests they've received. 
+With puzzlrs, users can log in and upload their own puzzles available for trade. They can view the full list and filter by metrics like category, piece count, and quality. By clicking any given puzzle, they can request a trade. Whoever's puzzle is being requested then receives an email. Via their user profile, they can see all puzzles they've listed, any requests they've sent, and they can accept or deny any requests they've received. 
 
 ## Technologies
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
