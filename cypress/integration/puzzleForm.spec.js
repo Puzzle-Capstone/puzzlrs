@@ -22,7 +22,7 @@ describe('Add puzzle form page', () => {
       })
       cy.visit('http://localhost:3000');
       cy.get('.MuiInput-root').click();
-      cy.get('[data-value="6"]').click();
+      cy.get('[data-value="Micha"]').click();
       cy.get('.nav-buttons > :nth-child(1) > :nth-child(2) > button').click();
     })
   })
@@ -32,34 +32,67 @@ describe('Add puzzle form page', () => {
   })
 
   it('should display error messages when trying to submit an empty form', () => {
-    cy.get('button').contains('Submit').click();
-    cy.get('#errorAlert').contains('Please upload a photo!');
+    cy.get('button').contains('Submit').click()
+    .get('#errorAlert').contains('Please upload a photo!')
   })
 
-  it.only('should be able to fill out the form', () => {
+  it('should be able to fill out the form', () => {
     cy.fixture('./newPuzzle.json').then((puzzle) => {
       const filePath = 'images/structuresPuzzle.jpg'
-      cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
-        statusCode: 201,
-        body: filePath
-      }).as('photoUpload');
-      cy.get('#category').click();
-      cy.get(`[data-value=${puzzle.category}]`).click();
-      cy.get('#missingPieces').click();
-      cy.get(`[data-value=${puzzle.missing_pieces}]`).click();
-      cy.get('#quality').click();
-      cy.get(`[data-value=${puzzle.quality}]`).click();
-      cy.get('#price').click().type(`${puzzle.original_price_point}`);
-      cy.get('#pieceCount').click().type(`${puzzle.piece_count}`);
-      cy.get('#uploadPhotoButton').click()
-      cy.get('input[type="file"]').attachFile(filePath)
-      // cy.wait('@photoUpload').get('#successAlert').contains('Your photo was uploaded!')
-      // cy.wait(4000).get('#successAlert').contains('Your photo was uploaded!')
+      console.log(filePath)
+      // cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
+      //   statusCode: 201,
+      //   body: filePath
+      // }).as('photoUpload')
+      cy.get('#category').click()
+      .get(`[data-value=${puzzle.category}]`).click()
+      .get('#missingPieces').click()
+      .get(`[data-value=${puzzle.missing_pieces}]`).click()
+      .get('#quality').click()
+      .get(`[data-value=${puzzle.quality}]`).click()
+      .get('#price').click().type(`${puzzle.original_price_point}`)
+      .get('#pieceCount').click().type(`${puzzle.piece_count}`)
+      .get('#uploadPhotoButton').click()
+      .get('input[type="file"]').attachFile(filePath)
+      .wait(4000).get('#successAlert').contains('Your photo was uploaded!')
+      // .wait('@photoUpload').get('#successAlert').contains('Your photo was uploaded!')
     })
   })
 
-  /*
-    still need to intercept the request to post a new puzzle
-  */
-
+  it('should upload a puzzle after filling out the form', () => {
+    cy.fixture('./newPuzzle.json').then((puzzle) => {
+      const filePath = 'images/structuresPuzzle.jpg'
+      console.log(filePath)
+      cy.intercept('POST', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+        statusCode: 201,
+        body: {
+          id: "51",
+          type: "puzzle",
+          attributes: {
+            availability: true,
+            category: "Mythical",
+            image: "https://res.cloudinary.com/dqgqw1dld/image/upload/v1644990779/puzzlrs/jbqnrdcfbgnzzuos4mpa.jpg",
+            missing_pieces: "1",
+            original_price_point: "15.99",
+            piece_count: "1000",
+            quality: "Good",
+            user_id: 6
+          }
+        }
+      })
+      cy.get('#category').click()
+      .get(`[data-value=${puzzle.category}]`).click()
+      .get('#missingPieces').click()
+      .get(`[data-value=${puzzle.missing_pieces}]`).click()
+      .get('#quality').click()
+      .get(`[data-value=${puzzle.quality}]`).click()
+      .get('#price').click().type(`${puzzle.original_price_point}`)
+      .get('#pieceCount').click().type(`${puzzle.piece_count}`)
+      .get('#uploadPhotoButton').click()
+      .get('input[type="file"]').attachFile(filePath)
+      .wait(4000).get('#successAlert').contains('Your photo was uploaded!')
+      .get('button').contains('Submit').click()
+      .get('#successAlert').contains('Your puzzle was uploaded!')
+    })
+  })
 })
