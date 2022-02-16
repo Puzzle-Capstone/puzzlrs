@@ -1,7 +1,30 @@
 describe('Add puzzle form page', () => {
   beforeEach(() => {
+    cy.fixture('./puzzles.json').then((allPuzzles) => {
+			cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+				statusCode: 200,
+				body: allPuzzles
+			})
+		})
+    cy.intercept('POST', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+      statusCode: 201,
+      body: {
+        id: "51",
+        type: "puzzle",
+        attributes: {
+          availability: true,
+          category: "Mythical",
+          image: "https://res.cloudinary.com/dqgqw1dld/image/upload/v1644990779/puzzlrs/jbqnrdcfbgnzzuos4mpa.jpg",
+          missing_pieces: "1",
+          original_price_point: "15.99",
+          piece_count: "1000",
+          quality: "Good",
+          user_id: 6
+        }
+      }
+    })
     cy.fixture('./user.json').then((user) => {
-      cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/6', {
+      cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
         statusCode: 200,
         body: user
       })
@@ -25,10 +48,6 @@ describe('Add puzzle form page', () => {
     cy.fixture('./newPuzzle.json').then((puzzle) => {
       const filePath = 'images/structuresPuzzle.jpg'
       console.log(filePath)
-      // cy.intercept('POST', 'https://api.cloudinary.com/v1_1/dqgqw1dld/image/upload', {
-      //   statusCode: 201,
-      //   body: filePath
-      // }).as('photoUpload')
       cy.get('#category').click()
       .get(`[data-value=${puzzle.category}]`).click()
       .get('#missingPieces').click()
@@ -40,31 +59,12 @@ describe('Add puzzle form page', () => {
       .get('#uploadPhotoButton').click()
       .get('input[type="file"]').attachFile(filePath)
       .wait(4000).get('#successAlert').contains('Your photo was uploaded!')
-      // .wait('@photoUpload').get('#successAlert').contains('Your photo was uploaded!')
     })
   })
 
   it('should upload a puzzle after filling out the form', () => {
     cy.fixture('./newPuzzle.json').then((puzzle) => {
       const filePath = 'images/structuresPuzzle.jpg'
-      console.log(filePath)
-      cy.intercept('POST', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
-        statusCode: 201,
-        body: {
-          id: "51",
-          type: "puzzle",
-          attributes: {
-            availability: true,
-            category: "Mythical",
-            image: "https://res.cloudinary.com/dqgqw1dld/image/upload/v1644990779/puzzlrs/jbqnrdcfbgnzzuos4mpa.jpg",
-            missing_pieces: "1",
-            original_price_point: "15.99",
-            piece_count: "1000",
-            quality: "Good",
-            user_id: 6
-          }
-        }
-      })
       cy.get('#category').click()
       .get(`[data-value=${puzzle.category}]`).click()
       .get('#missingPieces').click()
