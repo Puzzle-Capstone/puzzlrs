@@ -1,18 +1,23 @@
 import React, { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 import { Select, InputLabel, FormControl, SelectChangeEvent } from "@mui/material";
-import { userIdOptions } from "../utils";
+import { usernameOptions, usernames } from "../utils";
 import Hamburger from "./Hamburger";
 import { PuzzleContext } from '../Context';
 import '../css/Nav.css';
 
 const Nav = () => {
-  const [userId, setUserId] = useState('')
+  // const [userId, setUserId] = useState('')
+  const [username, setUsername] = useState('')
   const { loggedIn, logIn } = useContext(PuzzleContext)
 
-  const handleLogIn = (userId: string) => {
-    setUserId(userId)
-    logIn(userId)
+  const handleLogIn = (username: string) => {
+    // const userID = usernames.indexOf(user) + 1
+    // setUserId(userId)
+    setUsername(username)
+    const userID = (usernames.indexOf(username) + 1).toString()
+    console.log(userID)
+    logIn(userID)
   }
 
   const renderNavDisplay = !loggedIn ?
@@ -22,10 +27,10 @@ const Nav = () => {
         <Select
           className='login-dropdown'
           name='login'
-          value={userId}
+          value={username}
           onChange={event => handleLogIn(event.target.value)}
         >
-          {userIdOptions}
+          {usernameOptions}
         </Select>
       </FormControl>
     </div> :
