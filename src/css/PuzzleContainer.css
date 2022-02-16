@@ -17,6 +17,7 @@
 	flex-direction: column;
 	justify-content: center;
 	border-radius: 10px;
+	width: 90vw;
 }
 
 .filters {
@@ -54,12 +55,28 @@
 }
 
 @media only screen and (max-width: 545px)  {
-	.filters {
-		flex-direction: column;
-		align-items: center;
-	}
-
 	.puzzle-grid-dropdown {
 		min-width: 30vw;
 	}
+}
+
+@media only screen and (max-width: 713px) {
+ .filters button {
+	margin-top: 1.5em;
+	width: 146px;
+ }
+
+ .filters {
+	flex-direction: column;
+	align-items: center;
+}
+
+.puzzle-grid-dropdown {
+	width: 60vw;
+}
+
+.puzzles-container {
+	padding: 0;
+}
+
 }

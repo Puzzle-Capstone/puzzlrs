@@ -16,6 +16,9 @@ button:hover {
   min-height: 100vh;
   width: 100vw;
   padding: 0 0 5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
  
 .flex {
