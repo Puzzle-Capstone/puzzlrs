@@ -1,9 +1,7 @@
-import { get } from "http";
-
 describe('user profile page', () => {
 	beforeEach(() => {
 		cy.fixture('./user.json').then((user) => {
-      cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/6', {
+      cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
         statusCode: 200,
         body: user
       })
@@ -63,32 +61,39 @@ describe('user profile page', () => {
 			// .wait('@denyRequest').then(({response}) => {console.log(response)})
 	})
 		
-		it('should be able to click accept button and see puzzle removed from requests', () => {
-			cy.intercept('PATCH', 'https://puzzlrs.herokuapp.com/api/v1/request/13', {
-				statusCode: 201,
-				body: {
-					"id": 13,
-					"user_id": 9,
-					"puzzle_id": 3,
-					"status": "accepted",
-					"created_at": "2022-02-09T18:07:40.439Z",
-					"updated_at": "2022-02-09T18:07:40.439Z"
-				}
-			}).as('acceptRequest')
-			.get(':nth-child(3) > .user-puzzle-container > .puzzle-image > .user-puzzles').click()
-			.get('.puzzle-details').should('be.visible')
-			.get('.request-buttons > :nth-child(1)').contains('Accept')
-			
-
+	it('should be able to click accept button and see puzzle removed from requests', () => {
+		cy.intercept('PATCH', 'https://puzzlrs.herokuapp.com/api/v1/request/13', {
+			statusCode: 201,
+			body: {
+				status: 'accepted'
+			}
+		}).as('acceptRequest')
+		.get(':nth-child(3) > .user-puzzle-container > .puzzle-image > .user-puzzles').click()
+		.get('.puzzle-details').should('be.visible')
+		.get('.request-buttons > :nth-child(1)').contains('Accept')
 	})
 	
 	it('should be able to click delete button and puzzle will be removed from my puzzles list', () => {
 		cy.intercept('DELETE', 'https://puzzlrs.herokuapp.com/api/v1/request/1', {
-			statusCode: 201
+			statusCode: 200,
+			body: {
+				'id': 1,
+				'type': "puzzle",
+				'attributes': {
+					'availability': false,
+					'category': "Animals",
+					'image': "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053",
+					'missing_pieces': "2",
+					'original_price_point': "32.99",
+					'piece_count': "500",
+					'quality': "poor",
+					'user_id': 6
+				}
+			}
 		})
 		.get(':nth-child(2) > .user-puzzles').click()
 		.get('.puzzle-details').should('be.visible')
-		.get('.request-button').contains('Delete')
+		.get('.request-button').contains('Delete').click()
 	})
 
 	it('should be able to hit the delete request button and puzzle will be removed from my sent requests', () => {
