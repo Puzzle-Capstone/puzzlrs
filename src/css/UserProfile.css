@@ -18,7 +18,7 @@
 .profile-column-container {
   display: flex;
   justify-content: space-around;
-  margin: 0 3em;
+  margin: 0 4em;
 }
 
 .profile-column {
@@ -46,24 +46,23 @@
   padding-top: 1em;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .profile-column-container {
     flex-direction: column;
     height: fit-content;
   }
 
   .profile-column {
-    width: 100%;
+    width: 90vw;
     margin-bottom: 3em;
     height: fit-content;
   }
 
   .user-puzzle-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+    grid-gap: 1em;
     justify-items: center;
-    padding: 0 1em;
   }
 
   .center {

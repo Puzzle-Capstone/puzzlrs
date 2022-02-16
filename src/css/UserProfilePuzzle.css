@@ -1,6 +1,6 @@
 .puzzle-image {
-  width: 8em;
-  min-height: 7em;
+  width: 14em;
+  height: 14em;
   margin-bottom: 2em;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,8 @@
 }
 
 .user-puzzles {
-  height: 10em;
+  width: 14em;
+  height: 14em;
   border-radius: 10px;
 }
 
