@@ -98,7 +98,7 @@ Scroll down for screenshots:
 
   
 ## Future Improvements
-- Implement actual log in functionality. So that user can sign in or create a new account.
+- Implement ability to create an account and use authuntication to log in as a user. Currently this application is set up more as a prototype with preset users, populated from a dropdown. 
 - Refine functionality so that a user cannot request their own puzzle.
 - Add more user-user communication features:
   - Build out request mechanic so that requestor can include a puzzle they are suggesting as a trade
