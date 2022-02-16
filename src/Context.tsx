@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext } from 'react'
 import { IPuzzleObject, IUserObject, IPuzzleContext, IPuzzleProvider, ICleanedPuzzleObject } from './interfaces'
+import ErrorPage from './components/ErrorPage';
+import Puzzle from './components/Puzzle';
 
 const PuzzleContext = createContext({} as IPuzzleContext);
 
@@ -13,25 +15,33 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 		sentRequests: [],
 		receivedRequests: []
 	} as IUserObject);
+	const [error, setError] = useState(false);
 
 	const fetchPuzzles = async () => {
 		try {
 			const puzzleData = await fetch('https://puzzlrs.herokuapp.com/api/v1/puzzles')
-			const { data } = await puzzleData.json()
-			setPuzzles(data.map((puzzle: IPuzzleObject) => {
-				return {
-					id: puzzle.id,
-					image: puzzle.attributes.image,
-					category: puzzle.attributes.category,
-					pieceCount: puzzle.attributes.piece_count,
-					missingPieces: puzzle.attributes.missing_pieces,
-					availability: puzzle.attributes.availability,
-					quality: puzzle.attributes.quality,
-					price: puzzle.attributes.original_price_point
-				}
-			}))
+			// console.log(puzzleData.ok)
+			if (puzzleData.ok) {
+				const { data } = await puzzleData.json()
+				setPuzzles(data.map((puzzle: IPuzzleObject) => {
+					return {
+						id: puzzle.id,
+						image: puzzle.attributes.image,
+						category: puzzle.attributes.category,
+						pieceCount: puzzle.attributes.piece_count,
+						missingPieces: puzzle.attributes.missing_pieces,
+						availability: puzzle.attributes.availability,
+						quality: puzzle.attributes.quality,
+						price: puzzle.attributes.original_price_point
+					}
+				}))
+			} else {
+				throw new Error('Failed to fetch.')
+			}
 		} catch (err) {
-			console.log(err)
+			setError(true)
+			console.log(error)
+			// <ErrorPage message="Oops! We're having an issue loading, try again later." />
 		}
 	}
 
@@ -47,7 +57,6 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 					sentRequests: data.attributes.sent_requests,
 					receivedRequests: data.attributes.received_requests
 				}
-				console.log(userDetails)
 				setUser(userDetails)
 			} catch (err) {
 				console.log(err)
@@ -103,7 +112,7 @@ const PuzzleProvider = ({ children }: IPuzzleProvider) => {
 	}, [])
 
 	return (
-		<PuzzleContext.Provider value={{ refreshData, puzzles, loggedIn, logIn, user, requestPuzzle, updatePuzzleStatus }}>
+		<PuzzleContext.Provider value={{ refreshData, puzzles, loggedIn, logIn, user, requestPuzzle, updatePuzzleStatus, error }}>
 			{children}
 		</PuzzleContext.Provider>
 	)

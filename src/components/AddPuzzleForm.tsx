@@ -3,6 +3,7 @@ import { PuzzleContext } from '../Context';
 import { Select, InputLabel, FormControl, TextField, Snackbar } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import ErrorPage from './ErrorPage';
 import { categoryOptions, piecesOptions, qualityOptions } from '../utils';
 import '../css/AddPuzzleForm.css'
 
@@ -128,7 +129,7 @@ const AddPuzzleForm = () => {
     showMessage();
   }
 
-  return (
+  const renderForm = user.username ?
     <section className='form-container'>
       <form>
         <h3 className='form-title'>Submit your puzzle</h3>
@@ -212,7 +213,15 @@ const AddPuzzleForm = () => {
         {isSuccessful ? <Alert onClose={closeMessage} id='successAlert' severity='success' sx={{ width: '100%' }}>{message}</Alert> :
           <Alert onClose={closeMessage} id='errorAlert' severity='error' sx={{ width: '100%' }}>Please upload a photo!</Alert>}
       </Snackbar>
-    </section>
+    </section> :
+    <div className='flex'>
+      <ErrorPage message='You are not logged in! Click above or return home.' />
+    </div>
+
+  return (
+    <>
+      {renderForm}
+    </>
   )
 }
 

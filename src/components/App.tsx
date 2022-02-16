@@ -1,5 +1,6 @@
+import { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { PuzzleProvider } from '../Context';
+import { PuzzleProvider, PuzzleContext } from '../Context';
 import Nav from './Nav';
 import Home from './Home';
 import UserProfile from './UserProfile';
@@ -9,6 +10,8 @@ import ErrorPage from './ErrorPage';
 import '../css/App.css';
 
 function App() {
+  const { error } = useContext(PuzzleContext)
+
   return (
     <PuzzleProvider>
       <div className='App'>
@@ -30,7 +33,7 @@ function App() {
           } />
           <Route path='/:invalid' element={
             <div className='flex'>
-              <ErrorPage message="Oops! You've made your way to an invalid URL."/>
+              <ErrorPage message="Oops! You've made your way to an invalid URL." />
             </div>
           } />
         </Routes>
