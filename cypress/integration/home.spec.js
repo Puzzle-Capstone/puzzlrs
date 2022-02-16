@@ -18,12 +18,12 @@ describe('home page', () => {
 
 	it('should be able to click the log in dropdown and see users', () => {
 		cy.get('.MuiInput-root').click()
-		.get('[data-value="6"]').click()
+		.get('[data-value="Micha"]').click()
 	})
 
 	it('should be able to click a user in the dropdown and then see the nav buttons populate', () => {
 		cy.get('.MuiInput-root').click()
-		.get('[data-value="6"]').click()
+		.get('[data-value="Micha"]').click()
 		.get(':nth-child(1) > button').contains('View Puzzles')
 		.get(':nth-child(2) > button').contains('Add Puzzle')
 		.get('.nav-buttons > :nth-child(1) > :nth-child(3) > button').contains('User Profile')
@@ -36,7 +36,7 @@ describe('home page', () => {
 
 	it('should be able to click the add puzzle button and see the add puzzle form', () => {
 		cy.get('.MuiInput-root').click()
-		.get('[data-value="6"]').click()
+		.get('[data-value="Micha"]').click()
 		.get(':nth-child(2) > button').click()
 		.url().should('include', 'add-puzzle')
 		.get('form').should('be.visible')
