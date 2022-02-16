@@ -43,7 +43,7 @@ describe('home page', () => {
 
 	it('should be able to click the view puzzles button and see the puzzles', () => {
 		cy.get('button').click()
-		.get(':nth-child(1) > .individual-puzzle > img').should('be.visible');
+		.get('.puzzles-container > section').should('have.length', 4)
 	})
 
 	it('should be able to click the add puzzle button and see the add puzzle form', () => {

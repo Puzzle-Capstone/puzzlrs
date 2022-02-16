@@ -1,5 +1,11 @@
 describe('user profile page', () => {
 	beforeEach(() => {
+		cy.fixture('./puzzles.json').then((allPuzzles) => {
+			cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
+				statusCode: 200,
+				body: allPuzzles
+			})
+		})
 		cy.fixture('./user.json').then((user) => {
       cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/users/1', {
         statusCode: 200,
@@ -20,7 +26,7 @@ describe('user profile page', () => {
 		.get(':nth-child(3) > p').contains('Received Requests')
 		.get(':nth-child(1) > .user-puzzle-container > :nth-child(1) > .user-puzzles').should('be.visible')
 		.get(':nth-child(1) > .user-puzzle-container > :nth-child(2) > .user-puzzles').should('be.visible')
-		.get(':nth-child(1) > .user-puzzle-container > :nth-child(3) > .user-puzzles').should('be.visible')
+		.get(':nth-child(3) > .user-puzzles').should('exist')
 		.get('.center > .user-puzzle-container > .puzzle-image > .user-puzzles').should('be.visible')
 		.get(':nth-child(3) > .user-puzzle-container > .puzzle-image > .user-puzzles').should('be.visible')
 	})
