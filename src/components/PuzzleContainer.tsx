@@ -5,6 +5,15 @@ import '../css/PuzzleContainer.css';
 import Puzzle from './Puzzle';
 import { PuzzleContext } from '../Context';
 import { ICleanedPuzzleObject } from '../interfaces';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+		palette: {
+			primary: {
+				main: '#5D736B',
+			},
+		},
+	})
 
 const PuzzleContainer = () => {
   const [category, setCategory] = useState('');
@@ -89,39 +98,41 @@ const PuzzleContainer = () => {
     return (
       <section className='puzzle-page'>
         <div className='filters'>
-          <FormControl variant="standard">
-            <InputLabel className='input-label'>Category</InputLabel>
-            <Select
-              className='puzzle-grid-dropdown'
-              name='category'
-              value={category}
-              onChange={event => filterCategoryPuzzles(event)}
-            >
-              {categoryOptions}
-            </Select>
-          </FormControl>
-          <FormControl variant="standard">
-            <InputLabel className='input-label'>Piece Count</InputLabel>
-            <Select
-              className='puzzle-grid-dropdown'
-              name='pieceCount'
-              value={pieceCount}
-              onChange={event => filterPieceCountPuzzles(event)}
-            >
-              {pieceCountOptions}
-            </Select>
-          </FormControl>
-          <FormControl variant="standard">
-            <InputLabel className='input-label'>Quality</InputLabel>
-            <Select
-              className='puzzle-grid-dropdown'
-              name='quality'
-              value={quality}
-              onChange={event => filterQualityPuzzles(event)}
-            >
-              {qualityOptions}
-            </Select>
-          </FormControl>
+          <ThemeProvider theme={theme}>
+            <FormControl variant="standard">
+              <InputLabel className='input-label'>Category</InputLabel>
+              <Select
+                className='puzzle-grid-dropdown'
+                name='category'
+                value={category}
+                onChange={event => filterCategoryPuzzles(event)}
+              >
+                {categoryOptions}
+              </Select>
+            </FormControl>
+            <FormControl variant="standard">
+              <InputLabel className='input-label'>Piece Count</InputLabel>
+              <Select
+                className='puzzle-grid-dropdown'
+                name='pieceCount'
+                value={pieceCount}
+                onChange={event => filterPieceCountPuzzles(event)}
+              >
+                {pieceCountOptions}
+              </Select>
+            </FormControl>
+            <FormControl variant="standard">
+              <InputLabel className='input-label'>Quality</InputLabel>
+              <Select
+                className='puzzle-grid-dropdown'
+                name='quality'
+                value={quality}
+                onChange={event => filterQualityPuzzles(event)}
+              >
+                {qualityOptions}
+              </Select>
+            </FormControl>
+          </ThemeProvider>
           <button onClick={handleSearch}>Search</button>
         </div>
         <section className='puzzles-container'>

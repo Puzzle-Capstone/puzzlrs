@@ -40,6 +40,14 @@ export interface IPuzzleContext {
 	updatePuzzleStatus: (status: string, requestID: number | undefined) => void
 }
 
+
+export interface ThemeOptions {
+	status?: {
+		danger?: string;
+	};
+}
+
+
 export interface IPuzzleProps {
   closeModal?: (event: React.MouseEvent) => void
   id: string | number 
