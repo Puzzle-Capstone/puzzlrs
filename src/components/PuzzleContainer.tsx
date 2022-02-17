@@ -21,7 +21,7 @@ const PuzzleContainer = () => {
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
   const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
-  const [searchError, setSearchError] = useState('')
+  const [searchError, setSearchError] = useState(false)
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const [categoryList, setCategoryList] = useState<ICleanedPuzzleObject[]>([]);
@@ -60,10 +60,11 @@ const PuzzleContainer = () => {
   }
 
   const handleNoResults = () => {
-    setSearchError('Oops, nothing matches that search criteria!')
-    setCategory('')
-    setQuality('')
-    setPieceCount('')
+    setSearchError(true)
+    // setCategory('')
+    // setQuality('')
+    // setPieceCount('')
+    // setFilteredPuzzles([])
   }
 
   const clear = () => {
@@ -71,17 +72,34 @@ const PuzzleContainer = () => {
     setQuality('')
     setPieceCount('')
     setFilteredPuzzles([])
+    setSearchError(false)
   }
 
-  const yes = () => {
-    if (!category && !quality && !pieceCount) {
+  const checkForPuzzles = () => {
+    const allFilteredPuzzles = categoryList.concat(qualityList, pieceCountList)
+    const allThreeWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.quality === quality && puzzle.pieceCount === pieceCount)
+    const firstTwoWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount)
+    const lastTwoWrong = allFilteredPuzzles.find(puzzle => puzzle.quality === quality && puzzle.pieceCount === pieceCount)
+    const endsWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.quality === pieceCount)
+    const noCategory = allFilteredPuzzles.find(puzzle => puzzle.category === category )
+    if (category && quality && pieceCount && allThreeWrong === undefined) {
+      handleNoResults()
+    } else if (category && pieceCount && !quality && firstTwoWrong === undefined){
+      handleNoResults()
+    } else if (!category && pieceCount && quality && lastTwoWrong === undefined){
+      handleNoResults()
+    } else if (category && !pieceCount && quality && endsWrong === undefined){
+      handleNoResults()
+    } else if (category && !pieceCount && !quality && noCategory === undefined) {
       handleNoResults()
     } else {
       handleSearch()
     }
   }
 
+
   const handleSearch = () => {
+    setSearchError(false)
     const allFilteredPuzzles = categoryList.concat(qualityList, pieceCountList)
     const uniquePuzzles = allFilteredPuzzles.filter((puzzle, index, jointArr) => jointArr.indexOf(puzzle) === index);
     let comboFiltered;
@@ -157,10 +175,10 @@ const PuzzleContainer = () => {
           </Select>
         </FormControl>
         </ThemeProvider>
-        <button onClick={yes}>Search</button>
+        <button onClick={checkForPuzzles}>Search</button>
         <button onClick={clear}>Clear</button>
       </div>
-      <p>{searchError}</p>
+      {searchError ? <p className='error-message'>Oops, no puzzles match that criteria!</p> : <p style={{ opacity: "0" }}>placeholder</p>}
       <section className='puzzles-container'>
         {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
       </section>
