@@ -83,7 +83,34 @@ Scroll down for screenshots:
 
 
 ### Responsive Design
+ <table>
+ <td><img width="295" alt="Screen Shot 2022-02-16 at 8 30 23 PM" src="https://user-images.githubusercontent.com/86894344/154400109-4ad7ccf3-4d23-4189-8df5-0a4aa1b41d96.png">
+ </td>
 
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 30 41 PM" src="https://user-images.githubusercontent.com/86894344/154400143-894887e9-1fa5-433e-82ac-4634bc740f09.png">
+ </td>
+
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 31 26 PM" src="https://user-images.githubusercontent.com/86894344/154400163-0a12add3-22ad-4d6e-8ebd-4ffc629159bf.png">
+ </td>
+ 
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 31 41 PM" src="https://user-images.githubusercontent.com/86894344/154400174-0a9cac5d-cb7b-46b3-b19e-3eddf2624d9e.png">
+ </td> 
+</table>
+
+ <table>
+ <td><img width="295" alt="Screen Shot 2022-02-16 at 8 32 35 PM" src="https://user-images.githubusercontent.com/86894344/154400201-258354d5-2882-48b0-8b87-6b4a24028508.png">
+  </td>
+
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 31 11 PM" src="https://user-images.githubusercontent.com/86894344/154400230-017c0a79-8693-4d5e-960a-6d388f6afa41.png">
+ </td>
+
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 32 00 PM" src="https://user-images.githubusercontent.com/86894344/154400242-2f224581-0ff8-4228-85fe-59c44be8fd8f.png">
+ </td>
+ 
+<td><img width="295" alt="Screen Shot 2022-02-16 at 8 30 54 PM" src="https://user-images.githubusercontent.com/86894344/154400278-04f0a41b-c101-45da-9c99-0e2dd6a65944.png">
+ </td>
+  
+</table>
 
 
 ## Wins And Challenges 
