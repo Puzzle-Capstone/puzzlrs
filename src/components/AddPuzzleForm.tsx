@@ -221,7 +221,7 @@ const AddPuzzleForm = () => {
           <label className='upload-photo-button' id='uploadPhotoButton'>
             upload photo
             <input accept="image/*" id="upload-photo" type="file" onChange={e => handleImage(e)} />
-            <AddAPhotoIcon />
+            <AddAPhotoIcon className='camera-icon'/>
           </label>
           <button className='submit-button' onClick={e => handleSubmit(e)}>Submit</button>
         </form>

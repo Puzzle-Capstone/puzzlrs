@@ -29,11 +29,11 @@ form {
   background: #5D736B;
   border: none;
   border-radius: 10px;
-  padding: 17px;
   color: white;
   width: 30%;
   font-size: 100%;
   cursor: pointer;
+  height: 7%;
 }
 
 .submit-button:hover {
@@ -71,12 +71,30 @@ input[type="file"] {
   display: flex;
   align-items: center;
   flex-direction: row-reverse;
-  width: 42%;
-  justify-content: space-evenly;
-  height: 8%;
+  width: 30%;
+  justify-content: center;
+  height: 6%;
   margin-top: 4%;
 }
 
+.camera-icon {
+  margin-right: 10px;
+}
+
+
+@media only screen and (max-width: 713px) {
+  .form-container {
+    margin-top: 0;
+  }
+  
+  .dropdown {
+    width: 60vw;
+  }
+  
+  .upload-photo-button {
+    width: 30%;
+  }
+}
 @media only screen and (max-width: 600px) {
   .form-title {
     font-size: 25px;
@@ -85,19 +103,9 @@ input[type="file"] {
   .submit-button {
     width: 45%;
   }
-}
-
-@media only screen and (max-width: 713px) {
-  .form-container {
-   margin-top: 0;
-  }
-
-  .dropdown {
-    width: 60vw;
-  }
 
   .upload-photo-button {
-    width: 50%;
+    width: 45%;
   }
 }
 
