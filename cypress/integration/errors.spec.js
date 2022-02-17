@@ -1,7 +1,7 @@
 describe('error handling', () => {
   it('handles invalid URLs, directs user to homepage', () => {
     cy.visit('http://localhost:3000/banana')
-      .get('h2').contains("Oops! You\'ve made your way to an invalid URL.")
+      .get('h2').contains("Oops! You've made your way to an invalid URL.")
       .get('button').contains('Go Home!').click()
       .get('h2').contains('Tired of your puzzles? Trade with people like you!')
   })
