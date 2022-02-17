@@ -55,19 +55,27 @@ Scroll down for screenshots:
 - [Responsive Design](#Responsive-Design)
 
 ### Home Page 
+<img width="700" alt="Screen Shot 2022-02-16 at 8 38 13 PM" src="https://user-images.githubusercontent.com/86894344/154400766-1e18a850-fb6d-4964-89b6-b1ce30618164.png">
 
 
 
 ### View Puzzles Page  
+<img width="700" alt="Screen Shot 2022-02-16 at 8 38 26 PM" src="https://user-images.githubusercontent.com/86894344/154400803-54c23cb6-3267-4a52-8455-181b79667edc.png">
 
+<img width="700" alt="Screen Shot 2022-02-16 at 8 39 22 PM" src="https://user-images.githubusercontent.com/86894344/154400917-031d12f5-cd63-4ec2-a853-8c2f84463e45.png">
 
 
 ### Add Puzzle Form  
+<img width="700" alt="Screen Shot 2022-02-16 at 8 38 36 PM" src="https://user-images.githubusercontent.com/86894344/154400826-04410f1e-029d-4f62-b4f1-c405e1fb5e4c.png">
 
 
 
 ### User Profile 
+<img width="700" alt="Screen Shot 2022-02-16 at 8 38 47 PM" src="https://user-images.githubusercontent.com/86894344/154400862-3164d54f-00a4-466b-8c72-e8cf279ddfb0.png">
 
+<img width="1432" alt="Screen Shot 2022-02-16 at 8 39 38 PM" src="https://user-images.githubusercontent.com/86894344/154400963-5713a684-8ed5-47ea-a189-6c23a832d976.png">
+
+<img width="1433" alt="Screen Shot 2022-02-16 at 8 39 52 PM" src="https://user-images.githubusercontent.com/86894344/154400973-05f3aa03-95c0-438d-8441-b0fe22a80f0b.png">
 
 
 ### Received Emails 
