@@ -21,6 +21,7 @@ const PuzzleContainer = () => {
   const [pieceCount, setPieceCount] = useState('');
   const [quality, setQuality] = useState('');
   const [filteredPuzzles, setFilteredPuzzles] = useState<ICleanedPuzzleObject[]>([]);
+  const [searchError, setSearchError] = useState('')
   const fetchedPuzzles = useContext(PuzzleContext)
 
   const [categoryList, setCategoryList] = useState<ICleanedPuzzleObject[]>([]);
@@ -56,6 +57,28 @@ const PuzzleContainer = () => {
     setPieceCount(event.target.value)
     const pieceCountPuzzles = fetchedPuzzles.puzzles.filter((puzzle: ICleanedPuzzleObject) => puzzle.pieceCount === event.target.value);
     setPieceCountList(pieceCountPuzzles)
+  }
+
+  const handleNoResults = () => {
+    setSearchError('Oops, nothing matches that search criteria!')
+    setCategory('')
+    setQuality('')
+    setPieceCount('')
+  }
+
+  const clear = () => {
+    setCategory('')
+    setQuality('')
+    setPieceCount('')
+    setFilteredPuzzles([])
+  }
+
+  const yes = () => {
+    if (!category && !quality && !pieceCount) {
+      handleNoResults()
+    } else {
+      handleSearch()
+    }
   }
 
   const handleSearch = () => {
@@ -134,8 +157,10 @@ const PuzzleContainer = () => {
           </Select>
         </FormControl>
         </ThemeProvider>
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={yes}>Search</button>
+        <button onClick={clear}>Clear</button>
       </div>
+      <p>{searchError}</p>
       <section className='puzzles-container'>
         {filteredPuzzles.length ? displayFilteredPuzzles : allPuzzles}
       </section>
