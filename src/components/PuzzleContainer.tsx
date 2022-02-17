@@ -80,7 +80,7 @@ const PuzzleContainer = () => {
     const allThreeWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.quality === quality && puzzle.pieceCount === pieceCount)
     const firstTwoWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.pieceCount === pieceCount)
     const lastTwoWrong = allFilteredPuzzles.find(puzzle => puzzle.quality === quality && puzzle.pieceCount === pieceCount)
-    const endsWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.quality === pieceCount)
+    const endsWrong = allFilteredPuzzles.find(puzzle => puzzle.category === category && puzzle.quality === quality)
     const noCategory = allFilteredPuzzles.find(puzzle => puzzle.category === category )
     if (category && quality && pieceCount && allThreeWrong === undefined) {
       handleNoResults()
