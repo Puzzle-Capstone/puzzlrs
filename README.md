@@ -16,6 +16,8 @@ Puzzlrs allows people who love puzzles to trade amongst each other. As puzzlrs o
 
 With puzzlrs, users can log in and upload their own puzzles available for trade. They can view the full list and filter by metrics like category, piece count, and quality. By clicking any given puzzle, they can request a trade. Whoever's puzzle is being requested then receives an email. Via their user profile, they can see all puzzles they've listed, any requests they've sent, and they can accept or deny any requests they've received. 
 
+This application was created in just 2 weeks by a team of 3 front-end and 2 back-end students for our capstone project at Turing School of Software & Design.
+
 ## Technologies
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![React Router](https://img.shields.io/badge/-React%20Router-211f20?logo=react-router&logoColor=61DAFB&style=for-the-badge)
