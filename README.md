@@ -91,6 +91,11 @@ Scroll down for screenshots:
 
 ### Error Handling 
 
+<img width="700" alt="Screen Shot 2022-02-16 at 8 48 19 PM" src="https://user-images.githubusercontent.com/86894344/154401581-e8172588-7a53-4a7c-9991-3b717ecf7480.png">
+
+<img width="700" alt="Screen Shot 2022-02-16 at 8 48 32 PM" src="https://user-images.githubusercontent.com/86894344/154401593-dc1e80aa-2f49-4b35-bd5c-3455eb7f246e.png">
+
+<img width="700" alt="Screen Shot 2022-02-16 at 8 49 00 PM" src="https://user-images.githubusercontent.com/86894344/154401610-4db29236-663c-4c8f-8e63-0ceaac0b4c14.png">
 
 
 ### Responsive Design
