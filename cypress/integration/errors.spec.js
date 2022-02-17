@@ -75,7 +75,7 @@ describe('error handling', () => {
     .get('.form-title').contains('Submit your puzzle')
   })
 
-  it.only('handles logged out puzzle request', () => {
+  it('handles logged out puzzle request', () => {
     cy.fixture('./puzzles.json').then((allPuzzles) => {
       cy.intercept('GET', 'https://puzzlrs.herokuapp.com/api/v1/puzzles', {
         statusCode: 200,
