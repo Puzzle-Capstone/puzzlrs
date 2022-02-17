@@ -73,9 +73,9 @@ Scroll down for screenshots:
 ### User Profile 
 <img width="700" alt="Screen Shot 2022-02-16 at 8 38 47 PM" src="https://user-images.githubusercontent.com/86894344/154400862-3164d54f-00a4-466b-8c72-e8cf279ddfb0.png">
 
-<img width="1432" alt="Screen Shot 2022-02-16 at 8 39 38 PM" src="https://user-images.githubusercontent.com/86894344/154400963-5713a684-8ed5-47ea-a189-6c23a832d976.png">
+<img width="700" alt="Screen Shot 2022-02-16 at 8 39 38 PM" src="https://user-images.githubusercontent.com/86894344/154400963-5713a684-8ed5-47ea-a189-6c23a832d976.png">
 
-<img width="1433" alt="Screen Shot 2022-02-16 at 8 39 52 PM" src="https://user-images.githubusercontent.com/86894344/154400973-05f3aa03-95c0-438d-8441-b0fe22a80f0b.png">
+<img width="700" alt="Screen Shot 2022-02-16 at 8 39 52 PM" src="https://user-images.githubusercontent.com/86894344/154400973-05f3aa03-95c0-438d-8441-b0fe22a80f0b.png">
 
 
 ### Received Emails 
