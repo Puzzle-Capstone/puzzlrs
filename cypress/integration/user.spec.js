@@ -32,14 +32,15 @@ describe('user profile page', () => {
 	})
 
 	it('should be able to click a puzzle and see further information', () => {
-		cy.get('.center > .user-puzzle-container > .puzzle-image > .user-puzzles').click()
+		cy.get(':nth-child(2) > .user-puzzles').click()
 		.get('.puzzle-details').should('be.visible')
-		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(1)').contains('Poor')
+		.get('.puzzle-detail-image').should('be.visible')
+		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(1)').contains('Good')
 		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(2)').contains('People')
-		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(3)').contains('25.99')
+		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(3)').contains('33.99')
 		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(4)').contains('2')
 		.get('h4').contains('1000')
-		.get('.request-buttons > :nth-child(1)').contains('Delete Request')
+		.get('.request-button').contains('Delete')
 	})
 
 	it('should be able to hit x icon and exit out of puzzle details', () => {
@@ -48,26 +49,19 @@ describe('user profile page', () => {
 		.get('.center > .user-puzzle-container > .puzzle-image > .user-puzzles').should('be.visible')
 	})
 
-	it('should be able to hit deny button and the puzzle will be removed from requests', () => {
+	it('should display a modal that has the ability to deny a request', () => {
 		cy.intercept('PATCH', 'https://puzzlrs.herokuapp.com/api/v1/request/13', {
       statusCode: 201,
       body: {
-				"id": 13,
-				"user_id": 9,
-				"puzzle_id": 3,
-				"status": "pending",
-				"created_at": "2022-02-09T18:07:40.439Z",
-				"updated_at": "2022-02-09T18:07:40.439Z"
+				status: 'declined'
 			}
-		}).as('denyRequest')
+		})
 		.get(':nth-child(3) > .user-puzzle-container > .puzzle-image > .user-puzzles').click()
 		.get('.puzzle-details').should('be.visible')
-		// .get('.request-buttons > :nth-child(2)').click()
 		.get('.request-buttons > :nth-child(2)').contains('Deny')
-			// .wait('@denyRequest').then(({response}) => {console.log(response)})
 	})
 		
-	it('should be able to click accept button and see puzzle removed from requests', () => {
+	it('should display a modal that has the ability to accept a request', () => {
 		cy.intercept('PATCH', 'https://puzzlrs.herokuapp.com/api/v1/request/13', {
 			statusCode: 201,
 			body: {
@@ -79,30 +73,30 @@ describe('user profile page', () => {
 		.get('.request-buttons > :nth-child(1)').contains('Accept')
 	})
 	
-	it('should be able to click delete button and puzzle will be removed from my puzzles list', () => {
-		cy.intercept('DELETE', 'https://puzzlrs.herokuapp.com/api/v1/request/1', {
+	it('should display a modal that has the ability to delete a puzzle from my puzzles', () => {
+		cy.intercept('DELETE', 'https://puzzlrs.herokuapp.com/api/v1/puzzles/2', {
 			statusCode: 200,
-			body: {
-				'id': 1,
-				'type': "puzzle",
-				'attributes': {
-					'availability': false,
-					'category': "Animals",
-					'image': "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053",
-					'missing_pieces': "2",
-					'original_price_point': "32.99",
-					'piece_count': "500",
-					'quality': "poor",
-					'user_id': 6
-				}
-			}
+			// body: {
+			// 	'id': 1,
+			// 	'type': "puzzle",
+			// 	'attributes': {
+			// 		'availability': false,
+			// 		'category': "Animals",
+			// 		'image': "https://cdn.shopify.com/s/files/1/0279/7325/5307/products/puzzle-500-piece-obuhanych-cat_5274227_5_1800x1800.jpg?v=1639082053",
+			// 		'missing_pieces': "2",
+			// 		'original_price_point': "32.99",
+			// 		'piece_count': "500",
+			// 		'quality': "poor",
+			// 		'user_id': 6
+			// 	}
+			// }
 		})
 		.get(':nth-child(2) > .user-puzzles').click()
 		.get('.puzzle-details').should('be.visible')
-		.get('.request-button').contains('Delete').click()
+		.get('.request-button').contains('Delete')
 	})
 
-	it('should be able to hit the delete request button and puzzle will be removed from my sent requests', () => {
+	it('should display a modal that has the ability to delete a puzzle from my sent requests', () => {
 		cy.intercept('DELETE', 'https://puzzlrs.herokuapp.com/api/v1/request/1', {
 			statusCode: 201
 		})
