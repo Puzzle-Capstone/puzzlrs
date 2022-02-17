@@ -40,7 +40,7 @@ describe('user profile page', () => {
 		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(3)').contains('33.99')
 		.get('.individual-puzzle-details > :nth-child(2) > :nth-child(4)').contains('2')
 		.get('h4').contains('1000')
-		.get('.request-buttons > :nth-child(1)').contains('Delete')
+		.get('.request-button').contains('Delete')
 	})
 
 	it('should be able to hit x icon and exit out of puzzle details', () => {

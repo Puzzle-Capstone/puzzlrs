@@ -78,7 +78,7 @@ describe('Puzzle grid tests', () => {
       .get('.individual-puzzle-details > :nth-child(2) > :nth-child(3)').contains('32.99')
       .get('.individual-puzzle-details > :nth-child(2) > :nth-child(4)').contains('2')
       .get('.puzzle-image-pieces > h4').contains('500')
-      .get('.submit-button').contains('Request Puzzle')
+      .get('.request-button').contains('Request Puzzle')
   })
 
   it('updates filter dropdowns with user interaction', () => {
