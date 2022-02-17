@@ -61,10 +61,6 @@ const PuzzleContainer = () => {
 
   const handleNoResults = () => {
     setSearchError(true)
-    // setCategory('')
-    // setQuality('')
-    // setPieceCount('')
-    // setFilteredPuzzles([])
   }
 
   const clear = () => {
