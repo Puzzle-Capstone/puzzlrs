@@ -1,10 +1,14 @@
 .puzzles-container {
-	padding: 35px;
+	padding: 5px 35px 35px 35px;
 	min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, auto));
   justify-items: center;
   gap: 0 1%;
+}
+
+.error-message {
+	margin-left: 1.5em;
 }
 
 .puzzle-page {
@@ -77,6 +81,10 @@
 
 .puzzles-container {
 	padding: 0;
+}
+
+.error-message {
+	text-align: center;
 }
 
 }
