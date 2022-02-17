@@ -1,0 +1,96 @@
+header {
+  background-color: transparent;
+  width: 100vw;
+  height: 7em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3em;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1 {
+  font-size: 5em;
+  color: #5D736B;
+}
+
+h1:hover {
+  color: #474E4A;
+}
+
+.nav-buttons button {
+  background: #5D736B;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  margin: .5em;
+  font-weight: bold;
+}
+
+.nav-buttons button:hover {
+  background-color: #474E4A;
+  cursor: pointer;
+}
+
+.nav-buttons button:active {
+  background-color: #474E4A;
+  transform: translateY(2px);
+}
+
+.login-dropdown {
+  width: 15em;
+}
+
+.nav-buttons {
+  width: 70vw;
+}
+
+.nav-buttons div {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 2em;
+}
+
+
+@media only screen and (max-width: 713px) {
+
+  h1 {
+    margin-top: .3em;
+  }
+
+  .link {
+    display: none;
+  }
+
+ .not-logged-in {
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin-bottom: 3em
+  }
+
+  .logged-in {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2.5em;
+  }
+
+  .nav-buttons div {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+  }
+
+  .login-dropdown {
+    width: 15em;
+    margin-right: 1em;
+  }
+
+}

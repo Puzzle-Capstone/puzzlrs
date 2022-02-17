@@ -1,0 +1,26 @@
+.puzzle-image {
+  width: 14em;
+  height: 14em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.puzzle-image:hover {
+	transition: .2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.user-puzzles {
+  width: 14em;
+  height: 14em;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .puzzle-image {
+    margin: 0;
+  }
+}
