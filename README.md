@@ -62,6 +62,9 @@ Scroll down for screenshots:
 ### View Puzzles Page  
 <img width="700" alt="Screen Shot 2022-02-16 at 8 38 26 PM" src="https://user-images.githubusercontent.com/86894344/154400803-54c23cb6-3267-4a52-8455-181b79667edc.png">
 
+<img width="700" alt="Screen Shot 2022-02-16 at 8 39 07 PM" src="https://user-images.githubusercontent.com/86894344/154401398-1e7c1844-b66a-417f-a483-22849ea0cdb8.png">
+
+
 <img width="700" alt="Screen Shot 2022-02-16 at 8 39 22 PM" src="https://user-images.githubusercontent.com/86894344/154400917-031d12f5-cd63-4ec2-a853-8c2f84463e45.png">
 
 
